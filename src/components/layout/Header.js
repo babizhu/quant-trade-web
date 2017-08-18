@@ -7,10 +7,11 @@ import classnames from 'classnames';
 
 // const SubMenu = Menu.SubMenu;
 
-const Header = () => {
+const Header = ({user}) => {
   return (
     <div>
-      <h1>Header</h1>
+      <h1>{user.name}</h1>
+	
     </div>
   );
 };

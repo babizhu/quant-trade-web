@@ -16,16 +16,24 @@ import classnames from 'classnames';
 
 // const { Header } = layout;
 const App = ({ children, dispatch, app, loading, location }) => {
+  // noinspection JSAnnotator
+  const headerProps = {
+
+    user:{
+      name:'刘老爷'
+    }
+  };
+
   return (
     <div>
       <Helmet>
-        <title>ANTD ADMIN</title>
+        <title>quant-trade</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
       </Helmet>
       <div>
-        <Header />
+        <Header {...headerProps}/>
 
       </div>
     </div>
