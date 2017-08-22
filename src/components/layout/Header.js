@@ -84,10 +84,10 @@ const Header = ({user}) => {
 
           </li>
           <Dropdown overlay={menu1}>
-            <li className='person'>
+            <li className={styles.person}>
                             <span>
                                 <img src={user.iconUrl} alt=''/>
-                                <span>{user.name} <Icon type="down" className="downIcon"/></span>
+                                <span>{user.name} <Icon type="down" className={styles.downIcon}/></span>
                             </span>
             </li>
           </Dropdown>
