@@ -20,7 +20,8 @@ const App = ({ children, dispatch, app, loading, location }) => {
   const headerProps = {
 
     user:{
-      name:'刘老爷'
+      name:'刘老爷',
+      iconUrl:'/img/lyy.jpg'
     }
   };
 

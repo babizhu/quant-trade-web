@@ -1,3 +1,150 @@
+@header-bgcolor: #37474f;
+@header-height: 44px;
+@header-middle-height: 132px;
+
+
+.header {
+  min-height: @header-height;
+  background-color: @header-bgcolor;
+  color: white;
+  //border-bottom: 10px solid darken(@header-bgcolor, 10%);
+  ul {
+    height: @header-height;
+  }
+  li {
+    cursor: pointer;
+    //margin: 0;
+    padding: 14px 18px;
+    &:hover {
+      background-color: darken(@header-bgcolor, 10%);
+    }
+    height: 100%;
+    background-color: @header-bgcolor;
+  }
+
+  @media (max-width: 768px) {
+    .downIcon {
+      float: right;
+      top: 4px;
+    }
+    .badge {
+      float: right;
+      top: 0px;
+    }
+    .visibleXsInlineBlock {
+      //display: inline-block;
+      margin-left: 10px;
+    }
+    .ant-menu-item {
+      //background: @header-bgcolor;
+      //color: white;
+
+      &:hover {
+        background-color: darken(@header-bgcolor, 10%);
+      }
+      background: @header-bgcolor;
+      color: white;
+
+    }
+    .ant-menu > .ant-menu-item-divider {
+      margin: 0px;
+      background: black;
+    }
+  }
+  .ant-dropdown{
+    padding-top: 0px;
+
+
+  }
+  @media (min-width: 768px) {
+    .visible-xs-inline-block {
+      display: none;
+    }
+  }
+
+  .brand {
+    //厂商图标
+    img {
+      height: 22px;
+    }
+
+    @media (min-width: 768px) {
+      //如果是pc大屏
+      .mobile-icon {
+        display: none;
+      }
+      height: 0px;
+    }
+    height: @header-height;
+    .mobileIcon {
+      float: right;
+    }
+    .leftIcon {
+      float: left;
+    }
+  }
+  .in {
+    li {
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    display: block !important;
+    @media (max-width: 768px) {
+      height: @header-middle-height;
+    }
+  }
+  .headerMiddle {
+    //height: auto;
+    @media (min-width: 768px) {
+      //如果是pc大屏
+
+      float: left;
+      li {
+        float: left;
+      }
+      padding-left: 125px; //head-middle
+
+    }
+    @media (max-width: 768px) {
+      display: none;
+      .icon {
+        padding-left: 3px;;
+      }
+    }
+  }
+
+  .headerRight {
+    @media (min-width: 768px) {
+      float: right;
+      li {
+        float: left;
+      }
+    }
+    @media (max-width: 768px) {
+      display: none;
+    }
+    .person {
+      img {
+        max-height: 28px;
+        margin-top: -6px;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
+    }
+    span {
+      padding-left: 4px;
+    }
+  }
+  //border-bottom: 1px solid  darken(@header-bgcolor, 10%);
+}
+
+//图标对象
+.icon {
+  font-size: 16px;
+}
+
+/////////////////////////////////////ant design hack///////////////////////////////////////
+
 //@import "../../themes/vars.less";
 //
 //.header {
