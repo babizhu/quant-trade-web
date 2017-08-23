@@ -1,64 +1,66 @@
+/* eslint-disable no-undef */
 import React from 'react';
-import {Icon, Menu,Dropdown} from 'antd';
+import { Icon, Menu, Dropdown } from 'antd';
 // import Menus from './Menu';
 
 // const SubMenu = Menu.SubMenu;
 import styles from './Header.less';
 
-const Header = ({user}) => {
-  const menu = <div style={{width: '100%'}}><Menu>
+// eslint-disable-next-line no-undef
+const Header = ({ user }) => {
+  const subMenuClick = function () {
+    alert(2);
+  };
+  const menu = (<div style={{ width: '100%' }}><Menu>
+
 
     <Menu.Item>
-      <span><img src='/img/gb.png' alt=''/> English</span>
+      <span><img src="/img/gb.png" alt="" /> English</span>
     </Menu.Item>
     <Menu.Item>
-      <span><img src='/img/gb.png' alt='' style={{paddingTop: '1px'}}/> English</span>
+      <span><img src="/img/gb.png" alt="" style={{ paddingTop: '1px' }} /> English</span>
     </Menu.Item>
     <Menu.Item>
-      <span><img src='/img/gb.png' alt='' style={{paddingTop: '1px'}}/> 中 国</span>
+      <span><img src="/img/gb.png" alt="" style={{ paddingTop: '1px' }} /> 中 国</span>
     </Menu.Item>
 
-  </Menu></div>;
-  const menu1 = <div><Menu>
+  </Menu></div>);
+  const menu1 = (<div><Menu>
 
     <Menu.Item>
-      <Icon type="aliwangwang"/><span> 我的资料</span>
+      <Icon type="aliwangwang" /><span> 我的资料</span>
     </Menu.Item>
     <Menu.Item>
-      <Icon type="plus-circle"/><span> 我的朋友</span>
+      <Icon type="plus-circle" /><span> 我的朋友</span>
     </Menu.Item>
-    <Menu.Divider className="menu-divider"/>
+    <Menu.Divider className="menu-divider" />
     <Menu.Item>
-      <Icon type="minus-circle"/> <span>退出系统</span>
+      <Icon type="minus-circle" /> <span>退出系统</span>
     </Menu.Item>
 
-  </Menu></div>;
+  </Menu></div>);
 
   return (
-
-
     <div className={styles.header}>
       <div className={styles.brand}>
         <ul>
           <li className={styles.leftIcon}>
-            <a href='/'>
-              <img src='/img/logo_light.png' alt=''/>
-            </a>
+            <img src="/logo.png" alt="必发财炒股鸡" />
           </li>
-          <li className={styles.mobileIcon} >
-            <Icon type="appstore" className={styles.icon}/>
+          <li className={styles.mobileIcon} onClick={subMenuClick}>
+            <Icon type="appstore" className={styles.icon} />
           </li>
           <li className={styles.mobileIcon}>
-            <Icon type="bars" className={styles.icon}/>
+            <Icon type="bars" className={styles.icon} />
           </li>
         </ul>
       </div>
 
       <div className={styles.headerMiddle}>
         <ul>
-          <li ><Icon type="bars" className={styles.icon}/></li>
+          <li ><Icon type="bars" className={styles.icon} /></li>
           <li>
-            <Icon type="github" className={styles.icon}/>
+            <Icon type="github" className={styles.icon} />
             <span className={styles.visibleXsInlineBlock}>Git updates</span>
 
           </li>
@@ -68,34 +70,25 @@ const Header = ({user}) => {
 
       <div className={styles.headerRight}>
         <ul>
-
-
           <Dropdown overlay={menu}>
-            <li className='lang'>
-                            <span>
-                                <img src='/img/gb.png' alt='' style={{paddingTop: '1px'}}/>
-                                English <Icon type="down" className={styles.downIcon}/>
-                            </span>
+            <li>
+              <span>
+                <img src="/img/gb.png" alt="" style={{ paddingTop: '1px' }} /> English <Icon type="down" className={styles.downIcon} />
+              </span>
             </li>
           </Dropdown>
-          <li className='msg'>
-            <Icon type="aliwangwang-o" className={styles.headerIcon}/>
-            <span className={styles.visibleXsInlineBlock}>短 信</span>
 
-          </li>
           <Dropdown overlay={menu1}>
             <li className={styles.person}>
-                            <span>
-                                <img src={user.iconUrl} alt=''/>
-                                <span>{user.name} <Icon type="down" className={styles.downIcon}/></span>
-                            </span>
+              <span>
+                <img src={user.iconUrl} alt="用户" />
+                <span>{user.name} <Icon type="down" className={styles.downIcon} /></span>
+              </span>
             </li>
           </Dropdown>
         </ul>
       </div>
     </div>
-
-
   );
 };
 

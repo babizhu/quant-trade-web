@@ -1,0 +1,159 @@
+
+@header-bgcolor: #263238;
+@select-bgcolor: #26a69a;
+//$open-bgcolor:  lighten($select-bgcolor,30%);
+@open-bgcolor:  @select-bgcolor;//菜单展开的状态
+@siderbar-bgcolor: #263238;
+@font-color: #fff;
+.siderbar {
+  a {
+    color: @font-color;
+  }
+  .sidebarContent {
+    font-size: 13px;
+    display: table;
+
+    color:@font-color;
+    position: relative;
+    //line-height: 2;
+    .media {
+      padding: 20px;
+      .mediaLeft {
+        vertical-align: bottom;
+        display: table-cell;
+        padding-right: 20px;
+        .imgCircle {
+          max-height: 40px;
+          border-radius: 10%;
+        }
+
+      }
+      .mediaBody {
+        display: table-cell;
+        width: 10000px;
+        vertical-align: top;
+        .textSizeMini {
+          //font-weight: normal;
+          font-size: 11px;
+          color: rgba(255, 255, 255, 0.8);
+        }
+      }
+      .mediaRight {
+        vertical-align: middle;
+        font-size: 16px;
+        display: table-cell;
+        padding-left: 20px;
+      }
+    }
+    .subItemActive {
+      background-color: darken(@header-bgcolor, 25%) !important;
+    }
+    .open {
+      background-color: @open-bgcolor  !important;
+    }
+    .select {
+      background-color: @select-bgcolor !important;
+    }
+    .sidebarCategory {
+      .categoryContent {
+
+        .navigationUl {
+          //line-height: 3;
+          li {
+            opacity: 0.95;
+            z-index: 99;
+
+            cursor: pointer;
+            position: relative;
+            .miniMenu {
+              position: absolute;
+              top: 0;
+              right: -240px;
+              background-color: @select-bgcolor;
+              border-color: rgb(38, 166, 154);
+              //border-right-color: rgb(38, 166, 154);
+              //border-bottom-color: rgb(38, 166, 154);
+              //border-left-color: rgb(38, 166, 154);
+              padding: 12px 30px;
+
+              width: 240px;
+              text-align: left;
+              color: #fff;
+              //border-bottom-right-radius: 3px;
+              border-top-right-radius: 3px;
+
+              &:after {
+                content: "";
+                //width: 0;
+                //height: 0;
+
+                border-top: 5px solid transparent;
+                border-bottom: 5px solid transparent;
+                border-right: 5px solid;
+                border-right-color: inherit;//不知道为什么不能和border-right合并，一合并，本css的目的：小三角就没有了
+                position: absolute;
+                left: -5px;
+                top: 50%;
+                margin-top: -5px;
+              }
+            }
+            .miniSubMenu {
+              position: absolute;
+              top: 43px;
+              right: -240px;
+              width: 240px;
+              text-align: left;
+              //color: #fff;
+              //border-top-right-radius: 3px;
+              border-left: 1px solid rgba(255, 255, 255, 0.1);
+              border-radius: 0 0 3px 0;
+              li {
+                padding: 11px 30px;
+                margin: 5px 0;
+              }
+
+            }
+            ul {
+              background-color: @header-bgcolor;
+              -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+              box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+              li:hover {
+                background-color: darken(rgba(0, 0, 0, 0.15), 10%);
+
+              }
+              li {
+                padding: 10px 60px;
+              }
+            }
+            &:hover {
+              background-color: darken(@header-bgcolor, 10%);
+            }
+          }
+          .navigationItem {
+            .arrow {
+              float: right;
+            }
+            i {
+              padding: 15px 22px;
+            }
+          }
+          .navigationHeaderIcon {
+            padding: 0 18px;
+          }
+
+          .navigationHeader {
+            padding: 10px 5px;
+            color: rgba(255, 255, 255, 0.5);
+            span {
+              margin-left: 15px;
+            }
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+}
