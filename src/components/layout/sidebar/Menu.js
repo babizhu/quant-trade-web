@@ -4,10 +4,11 @@
  */
 import React, { Component } from 'react';
 import { Icon } from 'antd';
-// import Animate from 'rc-animate';
+import {NORMAL,MINI} from "../../../consts/Consts";
+
+import Animate from 'rc-animate';
 
 import SubMenu from './SubMenu';
-// import { MINI } from '../../actions/SideBar';
 
 class Menu extends Component {
   constructor() {
@@ -24,7 +25,7 @@ class Menu extends Component {
   }
 
   handlerMouseOver(menuItem) {
-    const { showMode } = this.props.sideBar;
+    const { showMode } = this.props;
 
     if (showMode === false) {
             // console.log(menuItem.text + '.' + menuItem.index);
@@ -64,20 +65,20 @@ class Menu extends Component {
      * @param componentUrl
      */
   static isSelected(menuItem, componentUrl) {
-    const url = componentUrl.substring(1);// 去除掉url最前面的/
-        // console.log( 'url=' + url);
-        // console.log(url.split('/')[0]+ ' ' + url.split('/')[1]);
-        // console.log(menuItem.component);
-    if (url == menuItem.component || url.split('/')[0] == menuItem.component) {
-      return true;
-    }
-    if (menuItem.subMenu) {
-      for (const subMenu of menuItem.subMenu) {
-        if (subMenu.component == url || url.split('/')[0] == subMenu.component) {
-          return true;
-        }
-      }
-    }
+    // const url = componentUrl.substring(1);// 去除掉url最前面的/
+    //     // console.log( 'url=' + url);
+    //     // console.log(url.split('/')[0]+ ' ' + url.split('/')[1]);
+    //     // console.log(menuItem.component);
+    // if (url == menuItem.component || url.split('/')[0] == menuItem.component) {
+    //   return true;
+    // }
+    // if (menuItem.subMenu) {
+    //   for (const subMenu of menuItem.subMenu) {
+    //     if (subMenu.component == url || url.split('/')[0] == subMenu.component) {
+    //       return true;
+    //     }
+    //   }
+    // }
     return false;
   }
 
@@ -87,8 +88,8 @@ class Menu extends Component {
      * @param index
      */
   buildMenuItem(menuItem, index) {
-    const { componentUrl, sideBar } = this.props;
-    const showMode = sideBar.showMode;
+    const { componentUrl, sideBar,showMode } = this.props;
+
 
     let arrow;// 菜单右边的箭头的显示内容
     let liClassName = 'navigation-item';// li标签的className
@@ -112,7 +113,8 @@ class Menu extends Component {
         subMenuClassName = 'miniSubMenu';
       }
     } else {
-      if (sideBar.openMenu.items.indexOf(menuItem.index) != -1) {
+      // if (sideBar.openMenu.items.indexOf(menuItem.index) != -1) {
+      if (true) {
         showSubMenu = true;
       }
       if (hasSubMenu) {
@@ -169,7 +171,8 @@ class Menu extends Component {
   render() {
     const { menuData } = this.props;
     const menu = menuData.map((item, index) => {
-      if (item.show) {
+      // if (item.show) {
+      if (true) {
         return this.buildMenuItem(item, index);
       }
     });

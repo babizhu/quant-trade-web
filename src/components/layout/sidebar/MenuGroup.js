@@ -10,19 +10,20 @@ import React, { Component } from 'react';
 import { Icon } from 'antd';
 
 import Menu from './Menu';
+import styles from '../Sidebar.less';
+import {NORMAL} from "../../../consts/Consts";
 
 class MenuGroup extends Component {
 
   render() {
-    const { menuGroup, sideBar, ...others } = this.props;
-    // const showMode = sideBar.showMode;
+    const { menuGroup,showMode} = this.props;
     return (
       <span>
-        <li className="navigation-header">
-          <span >{menuGroup.text}</span>
-          <Icon type={menuGroup.icon} className="navigation-header-icon" />
+        <li className={styles.navigationHeader}>
+          {showMode === NORMAL && <span >{menuGroup.text}</span>}
+          {showMode !== NORMAL && <Icon type={menuGroup.icon} className={styles.navigationHeaderIcon} />}
         </li>
-        <Menu menuData={menuGroup.menu} {...this.props} />
+        <Menu menuData={menuGroup.menu} showMode={showMode} />
       </span>
     );
   }
