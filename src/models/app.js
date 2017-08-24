@@ -10,10 +10,16 @@
 
 // const { prefix } = config;
 // import { routerRedux } from 'dva/router'
+import { prefix } from '../consts/Config';
+
 export default {
   namespace: 'app',
   state: {
-    user: {},
+    user: {
+      name: '刘老爷',
+      iconUrl: '/img/lyy.jpg',
+      address: '重庆市 南岸区',
+    },
     permissions: {
       visit: [],
     },
@@ -25,11 +31,11 @@ export default {
         router: '/dashboard',
       },
     ],
-    // menuPopoverVisible: false,
-    // siderFold: window.localStorage.getItem(`${prefix}siderFold`) === 'true',
-    // darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
-    // isNavbar: document.body.clientWidth < 769,
-    // navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
+        // menuPopoverVisible: false,
+    sideBarFold: false, // 导航栏是否收起
+        // darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
+    isNavbar: document.body.clientWidth < 769,
+        // navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
   },
   subscriptions: {
 
@@ -41,17 +47,16 @@ export default {
   effects: {
 
     * logout({
-      payload,
-    }, { call, put }) {
-      // const data = yield call(logout, parse(payload));
-      // if (data.success) {
-      //   yield put({ type: 'query' });
-      // } else {
-      //   throw (data);
-      // }
+                     payload,
+                 }, { call, put }) {
+            // const data = yield call(logout, parse(payload));
+            // if (data.success) {
+            //   yield put({ type: 'query' });
+            // } else {
+            //   throw (data);
+            // }
     },
 
   },
-  reducers: {
-  },
+  reducers: {},
 };

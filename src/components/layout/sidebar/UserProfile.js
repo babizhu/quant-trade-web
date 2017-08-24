@@ -7,15 +7,13 @@ import { Icon } from 'antd';
 
 // import {MINI,NORMAL} from '../../actions/SideBar'
 // changeShowMode
-import { MINI } from '../../../consts/Consts';
 import styles from '../Sidebar.less';
 
 export default class UserProfile extends Component {
 
 
   render() {
-        // const {menuData, ...others} = this.props;
-    const { profile, showMode } = this.props;
+    const { user, isFold } = this.props;
 
         // let user = this.props.userData;
         // let iconMode = this.props.iconMode;//是否仅显示图标模式
@@ -31,7 +29,7 @@ export default class UserProfile extends Component {
       display: 'table-cell',
     };
 
-    if (showMode === MINI) {
+    if (isFold) {
       mediaStyle = {
         padding: '23px 10px',
       };
@@ -47,14 +45,14 @@ export default class UserProfile extends Component {
         <div className={styles.categoryContent}>
           <div className={styles.media} style={mediaStyle}>
             <div className={styles.mediaLeft} style={mediaLeftStyle}>
-              <img src={profile.iconUrl} className={styles.imgCircle} alt="刘老爷" />
+              <img src={user.iconUrl} className={styles.imgCircle} alt={user.name} />
             </div>
 
             <div className={styles.mediaBody} style={mediaShow}>
-              <span>{profile.name}</span>
+              <span>{user.name}</span>
 
               <div className={styles.textSizeMini}>
-                <Icon type="environment-o" /> &nbsp;{profile.address}
+                <Icon type="environment-o" /> &nbsp;{user.address}
               </div>
             </div>
 
@@ -70,11 +68,13 @@ export default class UserProfile extends Component {
 
 
 UserProfile.propTypes = {
-  profile: PropTypes.shape({
+  user: PropTypes.shape({
     name: PropTypes.string.isRequired,
     iconUrl: PropTypes.string,
     address: PropTypes.string,
   }).isRequired,
+  isFold: PropTypes.bool.isRequired,
+
 };
 UserProfile.defaultProps = {};
 

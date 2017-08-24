@@ -11,19 +11,20 @@ import { Icon } from 'antd';
 
 import Menu from './Menu';
 import styles from '../Sidebar.less';
-import {NORMAL} from "../../../consts/Consts";
+import { NORMAL } from '../../../consts/Consts';
 
 class MenuGroup extends Component {
 
   render() {
-    const { menuGroup,showMode} = this.props;
+    const { menuGroup, showMode, currentPath } = this.props;
+    console.log(`currentPath = ${currentPath}`);
     return (
       <span>
         <li className={styles.navigationHeader}>
           {showMode === NORMAL && <span >{menuGroup.text}</span>}
           {showMode !== NORMAL && <Icon type={menuGroup.icon} className={styles.navigationHeaderIcon} />}
         </li>
-        <Menu menuData={menuGroup.menu} showMode={showMode} />
+        <Menu menuData={menuGroup.menu} {...showMode} {...currentPath} />
       </span>
     );
   }
