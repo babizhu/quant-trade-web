@@ -35,6 +35,9 @@ const App = ({ children, dispatch, app, loading, location }) => {
     // noinspection JSAnnotator
   const headerProps = {
     user,
+    switchSider () {
+      dispatch({ type: 'app/switchSider' })
+    },
   };
 
   const sidebarProps = {

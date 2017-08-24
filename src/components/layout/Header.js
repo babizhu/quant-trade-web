@@ -7,10 +7,8 @@ import { Icon, Menu, Dropdown } from 'antd';
 import styles from './Header.less';
 
 // eslint-disable-next-line no-undef
-const Header = ({ user }) => {
-  const subMenuClick = function () {
-    alert(2);
-  };
+const Header = ({ user,switchSider }) => {
+
   const menu = (<div style={{ width: '100%' }}><Menu>
 
 
@@ -47,7 +45,7 @@ const Header = ({ user }) => {
           <li className={styles.leftIcon}>
             <img src="/logo.png" alt="必发财炒股鸡" />
           </li>
-          <li className={styles.mobileIcon} onClick={subMenuClick}>
+          <li className={styles.mobileIcon}>
             <Icon type="appstore" className={styles.icon} />
           </li>
           <li className={styles.mobileIcon}>
@@ -58,7 +56,7 @@ const Header = ({ user }) => {
 
       <div className={styles.headerMiddle}>
         <ul>
-          <li ><Icon type="bars" className={styles.icon} /></li>
+          <li onClick={switchSider}><Icon type="bars" className={styles.icon} /></li>
           <li>
             <Icon type="github" className={styles.icon} />
             <span className={styles.visibleXsInlineBlock}>Git updates</span>

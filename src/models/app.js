@@ -32,7 +32,7 @@ export default {
       },
     ],
         // menuPopoverVisible: false,
-    sideBarFold: true, // 导航栏是否收起
+    sideBarFold: window.localStorage.getItem(`${prefix}sideBarFold`) === 'true', // 导航栏是否收起
         // darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
     bigScreen: document.body.clientWidth > 769,
         // navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
@@ -58,5 +58,13 @@ export default {
     },
 
   },
-  reducers: {},
+  reducers: {
+    switchSider (state) {
+      window.localStorage.setItem(`${prefix}sideBarFold`, !state.siderFold)
+      return {
+        ...state,
+        sideBarFold: !state.sideBarFold,
+      }
+    },
+  },
 };
