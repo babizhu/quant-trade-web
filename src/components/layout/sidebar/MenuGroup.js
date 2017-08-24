@@ -8,34 +8,34 @@
 
 import React, { Component } from 'react';
 import { Icon } from 'antd';
-
+import PropTypes from 'prop-types';
 import Menu from './Menu';
 import styles from '../Sidebar.less';
-import { NORMAL } from '../../../consts/Consts';
 
 class MenuGroup extends Component {
 
   render() {
-    const { menuGroup, showMode, currentPath } = this.props;
+    const { menuGroup, isFold, currentPath,bigScreen } = this.props;
     console.log(`currentPath = ${currentPath}`);
     return (
       <span>
         <li className={styles.navigationHeader}>
-          {showMode === NORMAL && <span >{menuGroup.text}</span>}
-          {showMode !== NORMAL && <Icon type={menuGroup.icon} className={styles.navigationHeaderIcon} />}
+          {!isFold && <span >{menuGroup.text}</span>}
+          {isFold && <Icon type={menuGroup.icon} className={styles.navigationHeaderIcon} />}
         </li>
-        <Menu menuData={menuGroup.menu} {...showMode} {...currentPath} />
+        <Menu menuData={menuGroup.menu} isFold={isFold} currentPath={currentPath} bigScreen={bigScreen} />
       </span>
     );
   }
 }
 
-// MenuGroup.propTypes = {
-//   menuGroup: PropTypes.object.isRequired, // 菜单数据
-//   componentUrl: PropTypes.string.isRequired, // url
-//   changeMenuOpenStatus: PropTypes.func.isRequired, // 函数用于设置菜单是否展开子菜单
-//   sideBar: PropTypes.object.isRequired, // 边栏相关的state
-// };
+MenuGroup.propTypes = {
+  menuGroup: PropTypes.object.isRequired, // 菜单数据
+  isFold: PropTypes.bool.isRequired,//侧边栏是否收起
+  bigScreen: PropTypes.bool.isRequired,//是否大屏
+  // changeMenuOpenStatus: PropTypes.func.isRequired, // 函数用于设置菜单是否展开子菜单
+  // sideBar: PropTypes.object.isRequired, // 边栏相关的state
+};
 // MenuGroup.defaultProps = {};
 
 export default MenuGroup;

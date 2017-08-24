@@ -11,7 +11,7 @@ export const initMenuData = [{
         {
           icon: 'phone',
           text: '企业列表',
-          component: 'enterprise',
+          component: '',
         },
       ],
     }, {
@@ -41,7 +41,7 @@ export const initMenuData = [{
         {
           icon: 'phone',
           text: '测试程序',
-          component: 'test',
+          component: '',
         },
       ],
     },

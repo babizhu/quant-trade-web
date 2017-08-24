@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Icon, Menu, Dropdown } from 'antd';
 import MenuGroup from './sidebar/MenuGroup';
 import UserProfile from './sidebar/UserProfile';
 import styles from './Sidebar.less';
-import { NORMAL } from '../../consts/Consts';
 
-const Sidebar = ({ user, menu, currentPath, isFold }) => {
+const Sidebar = ({ user, menu, currentPath, isFold, bigScreen }) => {
+  let widthValue = isFold?'auto':'240px';
   return (
-    <div className={styles.sidebar} >
+    <div className={styles.sidebar} style={{width:widthValue}}>
       <div className={styles.sidebarContent}>
         {<UserProfile user={user} isFold={isFold} />}
         <div className={styles.sidebarCategory}>
@@ -17,7 +16,7 @@ const Sidebar = ({ user, menu, currentPath, isFold }) => {
               {menu.map((menuGroup, index) => {
                 if (true || menuGroup.show) {
                   return (
-                    <MenuGroup key={index} menuGroup={menuGroup} showMode={NORMAL} currentPath={currentPath} />
+                    <MenuGroup key={index} menuGroup={menuGroup} isFold={isFold} currentPath={currentPath} bigScreen={bigScreen} />
                   );
                 }
               })}
@@ -36,6 +35,7 @@ Sidebar.propTypes = {
     address: PropTypes.string,
   }).isRequired,
   isFold: PropTypes.bool.isRequired,
+  bigScreen: PropTypes.bool.isRequired,
 };
 
 export default Sidebar;

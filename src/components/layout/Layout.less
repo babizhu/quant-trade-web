@@ -1,68 +1,14 @@
 
-@siderbar-bgcolor: #263238;
+@sidebar-bgcolor: #263238;
 .layout {
   position: relative;
   height: 100vh;
 
-  &.withnavbar {
-    .main {
-      margin-left: 0;
-    }
-  }
 
-  &.fold {
-    .sider {
-      width: 42px;
 
-      .logo {
-        img {
-          width: 28px;
-          margin: 6px 7px;
-        }
-      }
-
-      :global {
-        .ant-menu-root {
-          width: 100%;
-          overflow: visible;
-
-          & > .ant-menu-item {
-            padding: 0;
-            text-align: center;
-
-            .anticon {
-              font-size: 14px;
-              margin-right: 0;
-            }
-          }
-
-          & > .ant-menu-submenu {
-            & > .ant-menu-submenu-title {
-              padding: 0;
-              text-align: center;
-
-              .anticon {
-                font-size: 14px;
-                margin-right: 0;
-              }
-
-              &::after {
-                display: none;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .main {
-      margin-left: 42px;
-    }
-  }
-
-  .sider {
-    width: 224px;
-    background: @siderbar-bgcolor;
+  .sidebar {
+    //width: 240px;
+    background: @sidebar-bgcolor;
     position: absolute;
     overflow: visible;
     padding-bottom: 24px;

@@ -32,9 +32,9 @@ export default {
       },
     ],
         // menuPopoverVisible: false,
-    sideBarFold: false, // 导航栏是否收起
+    sideBarFold: true, // 导航栏是否收起
         // darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
-    isNavbar: document.body.clientWidth < 769,
+    bigScreen: document.body.clientWidth > 769,
         // navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
   },
   subscriptions: {

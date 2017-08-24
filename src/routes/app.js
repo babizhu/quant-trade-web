@@ -21,7 +21,7 @@ import styles from '../components/layout/Layout.less';
 import { initMenuData } from '../consts/MenuData.js';
 
 const App = ({ children, dispatch, app, loading, location }) => {
-  const { user, sideBarFold } = app;
+  const { user, sideBarFold,bigScreen } = app;
 
   console.log(`children=${children}`);
   console.log(`sideBarFold=${sideBarFold}`);
@@ -42,6 +42,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
     currentPath: location.pathname,
     isFold: sideBarFold,
     user,
+    bigScreen:bigScreen
   };
 
   return (
@@ -52,7 +53,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
       </Helmet>
       <div className={styles.layout}>
         <Header {...headerProps} />
-        <aside className={styles.sider}>
+        <aside className={styles.sidebar}>
           <Sidebar {...sidebarProps} />
         </aside>
       </div>
