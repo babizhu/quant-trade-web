@@ -60,7 +60,7 @@ export default {
   },
   reducers: {
     switchSider (state) {
-      window.localStorage.setItem(`${prefix}sideBarFold`, !state.siderFold)
+      window.localStorage.setItem(`${prefix}sideBarFold`, !state.sideBarFold)
       return {
         ...state,
         sideBarFold: !state.sideBarFold,
