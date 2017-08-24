@@ -64,9 +64,10 @@ class Menu extends Component {
   }
 
   handlerMouseOver(menuItem) {
-    const {showMode} = this.props;
+    const {isFold} = this.props;
+    console.log("isFold="+isFold);
 
-    if (showMode === false) {
+    if (isFold) {
       // console.log(menuItem.text + '.' + menuItem.index);
       this.setState({showSubMenuIndex: menuItem.index});
     }
@@ -74,8 +75,8 @@ class Menu extends Component {
 
   // 鼠标移出
   handlerMouseOut() {
-    const {showMode} = this.props;
-    if (showMode === false) {
+    const {isFold} = this.props;
+    if (isFold) {
       this.setState({showSubMenuIndex: -1});
     }
   }
@@ -92,14 +93,14 @@ class Menu extends Component {
    * @param index
    */
   buildMenuItem(menuItem, index) {
-    const {currentPath, sideBar, isFold} = this.props;
+    const {currentPath, isFold} = this.props;
 
 
     let arrow;// 菜单右边的箭头的显示内容
     let textClassName = '';// 菜单文本的className
     let subMenuClassName = '';// 子菜单的className
     let textShow = '';// 是否显示菜单文本（大屏幕下的NORMAL需要显示）
-    let showSubMenu = true;// 是否显示子菜单
+    let showSubMenu = false;// 是否显示子菜单
     const isSelected = Menu.isSelected(menuItem, currentPath);
     const hasSubMenu = !!menuItem.subMenu;
     if (isSelected) {
@@ -109,10 +110,10 @@ class Menu extends Component {
     if (isFold) {
       textClassName = styles.miniMenu;
       textShow = 'none';
-      if (true||this.state.showSubMenuIndex === menuItem.index) {
+      if (this.state.showSubMenuIndex === menuItem.index) {
         showSubMenu = true;
         textShow = 'block';
-        subMenuClassName = 'miniSubMenu';
+        subMenuClassName = styles.miniSubMenu;
       }
     } else {
       // if (sideBar.openMenu.items.indexOf(menuItem.index) != -1) {
@@ -129,7 +130,7 @@ class Menu extends Component {
       if (isFold) {
         subMenu = (<SubMenu
           subMenuClassName={subMenuClassName}
-          visible={false}
+          visible={showSubMenu}
           subMenuData={menuItem.subMenu}
           isFold={isFold}
           currentPath={currentPath}

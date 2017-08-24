@@ -13,6 +13,11 @@ export const initMenuData = [{
           text: '企业列表',
           component: '',
         },
+        {
+          icon: 'phone',
+          text: '收益列表',
+          component: '',
+        },
       ],
     }, {
       icon: 'user',
@@ -23,6 +28,11 @@ export const initMenuData = [{
         {
           icon: 'phone',
           text: '用户列表',
+          component: 'user',
+        },
+        {
+          icon: 'ellipsis',
+          text: '策略列表',
           component: 'user',
         },
       ],
@@ -41,7 +51,7 @@ export const initMenuData = [{
         {
           icon: 'phone',
           text: '测试程序',
-          component: '',
+          component: '/',
         },
       ],
     },
