@@ -3,16 +3,13 @@
 .layout {
   position: relative;
   height: 100vh;
-
-
-
   .sidebar {
     background: @sidebar-bgcolor;
     position: absolute;
     overflow: visible;
     padding-bottom: 24px;
     @media (min-width: 768px) {
-      height:  calc(~"100% - 44px");
+      min-height:  calc(~"100% - 44px");
     }
 
     transition: all 0.3s ease-out;
