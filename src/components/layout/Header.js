@@ -1,14 +1,14 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { Icon, Menu, Dropdown } from 'antd';
-// import Menus from './Menu';
+import Iconfont from '../Iconfont/Iconfont';
 
 // const SubMenu = Menu.SubMenu;
 import styles from './Header.less';
+import '../../svg/emoji/stage.svg';
 
 // eslint-disable-next-line no-undef
-const Header = ({ user,switchSider }) => {
-
+const Header = ({ user, switchSider }) => {
   const menu = (<div style={{ width: '100%' }}><Menu>
 
 
@@ -58,8 +58,10 @@ const Header = ({ user,switchSider }) => {
         <ul>
           <li onClick={switchSider}><Icon type="bars" className={styles.icon} /></li>
           <li>
+
+            <Iconfont colorful type={require('../../svg/emoji/stage.svg')} />
             <Icon type="github" className={styles.icon} />
-            <span className={styles.visibleXsInlineBlock}>Git updates</span>
+            <span className={styles.visibleXsInlineBlock}> Git updates</span>
 
           </li>
           <li>{new Date().toLocaleDateString()}</li>
