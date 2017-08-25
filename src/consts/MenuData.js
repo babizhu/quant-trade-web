@@ -106,7 +106,7 @@ export const initMenuData = [{
     {
       icon: 'shrink',
       text: '测试模块',
-      index: 7,
+      index: index++,
       subMenu: [
         {
           icon: 'phone',

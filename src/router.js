@@ -14,13 +14,22 @@ const Routers = function ({ history, app }) {
     {
       path: '/',
       component: App,
-      // getIndexRoute(nextState, cb) {
-      //   require.ensure([], (require) => {
-      //     // registerModel(app, require('./models/dashboard'));
-      //     // cb(null, { component: require('./routes/dashboard/') });
-      //   }, 'dashboard');
-      // },
+      getIndexRoute(nextState, cb) {
+        require.ensure([], (require) => {
+          registerModel(app, require('./models/dashboard'));
+          cb(null, { component: require('./routes/dashboard/') });
+        }, 'dashboard');
+      },
       childRoutes: [
+        {
+          path: 'dashboard',
+          getComponent (nextState, cb) {
+            require.ensure([], (require) => {
+              registerModel(app, require('./models/dashboard'))
+              cb(null, require('./routes/dashboard/'))
+            }, 'dashboard')
+          },
+        }
       ],
     },
   ];
