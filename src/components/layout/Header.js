@@ -48,7 +48,7 @@ const Header = ({ user,switchSider }) => {
           <li className={styles.mobileIcon}>
             <Icon type="appstore" className={styles.icon} />
           </li>
-          <li className={styles.mobileIcon}>
+          <li className={styles.mobileIcon} onClick={switchSider}>
             <Icon type="bars" className={styles.icon} />
           </li>
         </ul>

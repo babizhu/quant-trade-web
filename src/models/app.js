@@ -34,17 +34,32 @@ export default {
         // menuPopoverVisible: false,
     sideBarFold: window.localStorage.getItem(`${prefix}sideBarFold`) === 'true', // 导航栏是否收起
         // darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
-    bigScreen: document.body.clientWidth > 769,
+    bigScreen: document.body.clientWidth > 768,
         // navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
   },
   subscriptions: {
 
     setup({ dispatch }) {
-      dispatch({ type: 'changeNavbar' });
+      // dispatch({ type: 'query' });
+      // let tid;
+      window.onresize = () => {
+        dispatch({ type: 'changeSidebar' });
+        // clearTimeout(tid);
+        // tid = setTimeout(() => {
+        //   dispatch({ type: 'changeSidebar' });
+        // }, 300);
+      };
     },
 
   },
   effects: {
+    * changeSidebar(action, { put, select }) {
+      const { app } = yield (select(_ => _));
+      const bigScreen = document.body.clientWidth > 768;
+      if (bigScreen !== app.bigScreen) {
+        yield put({ type: 'handleNavbar', payload: bigScreen });
+      }
+    },
 
     * logout({
                      payload,
@@ -59,12 +74,18 @@ export default {
 
   },
   reducers: {
-    switchSider (state) {
-      window.localStorage.setItem(`${prefix}sideBarFold`, !state.sideBarFold)
+    handleNavbar(state, { payload }) {
+      return {
+        ...state,
+        bigScreen: payload,
+      };
+    },
+    switchSider(state) {
+      window.localStorage.setItem(`${prefix}sideBarFold`, !state.sideBarFold);
       return {
         ...state,
         sideBarFold: !state.sideBarFold,
-      }
+      };
     },
   },
 };
