@@ -34,7 +34,7 @@ export default {
         // menuPopoverVisible: false,
     sideBarFold: window.localStorage.getItem(`${prefix}sideBarFold`) === 'true', // 导航栏是否收起
         // darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
-    bigScreen: document.body.clientWidth > 768,
+    bigScreen: document.body.clientWidth >= 767,
         // navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
   },
   subscriptions: {
@@ -55,7 +55,7 @@ export default {
   effects: {
     * changeSidebar(action, { put, select }) {
       const { app } = yield (select(_ => _));
-      const bigScreen = document.body.clientWidth > 768;
+      const bigScreen = document.body.clientWidth >= 767;
       if (bigScreen !== app.bigScreen) {
         yield put({ type: 'handleNavbar', payload: bigScreen });
       }
