@@ -26,7 +26,7 @@ class SubMenu extends Component {
      * @param index
      */
   buildSubMenuItem(subMenuItem, index) {
-    const { currentPath } = this.props;
+    // const { currentPath } = this.props;
 
     // let liClassName = '';
     const isSelected = false;

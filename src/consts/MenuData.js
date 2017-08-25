@@ -4,18 +4,18 @@ export const initMenuData = [{
   menu: [
     {
       icon: 'home',
-      text: '企业管理',
+      text: '我的策略',
       index: 1,
       component: 'home',
       subMenu: [
         {
-          icon: 'phone',
-          text: '企业列表',
+          icon: 'stock',
+          text: '策略列表',
           component: '',
         },
         {
           icon: 'phone',
-          text: '收益列表',
+          text: '交易列表',
           component: '',
         },
       ],

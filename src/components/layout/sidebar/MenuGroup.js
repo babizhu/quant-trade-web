@@ -15,8 +15,7 @@ import styles from '../Sidebar.less';
 class MenuGroup extends Component {
 
   render() {
-    const { menuGroup, isFold, currentPath,bigScreen } = this.props;
-    console.log(`currentPath = ${currentPath}`);
+    const { menuGroup, isFold, currentPath, bigScreen } = this.props;
     return (
       <span>
         <li className={styles.navigationHeader}>
@@ -31,10 +30,9 @@ class MenuGroup extends Component {
 
 MenuGroup.propTypes = {
   menuGroup: PropTypes.object.isRequired, // 菜单数据
-  isFold: PropTypes.bool.isRequired,//侧边栏是否收起
-  bigScreen: PropTypes.bool.isRequired,//是否大屏
-  // changeMenuOpenStatus: PropTypes.func.isRequired, // 函数用于设置菜单是否展开子菜单
-  // sideBar: PropTypes.object.isRequired, // 边栏相关的state
+  isFold: PropTypes.bool.isRequired, // 侧边栏是否收起
+  bigScreen: PropTypes.bool.isRequired, // 是否大屏
+  currentPath: PropTypes.string.isRequired,
 };
 // MenuGroup.defaultProps = {};
 

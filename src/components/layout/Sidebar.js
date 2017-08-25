@@ -5,9 +5,30 @@ import UserProfile from './sidebar/UserProfile';
 import styles from './Sidebar.less';
 
 const Sidebar = ({ user, menu, currentPath, isFold, bigScreen }) => {
-  let widthValue = isFold?'auto':'240px';
+  let widthValue;
+  let displayMode;
+  if (bigScreen) {
+    if (isFold) { // 大屏幕下的mini模式，也就是仅显示菜单图标
+      widthValue = 'auto';
+    } else {
+      widthValue = '240px';
+    }
+        // displayMode = 'table-cell';
+  } else {
+    widthValue = '100%';
+    if (isFold) { // 小屏幕下的mini模式，隐藏sideBar
+      displayMode = 'none';
+    } else {
+      displayMode = 'block';
+    }
+  }
+  const menuGroupProps = {
+    isFold,
+    currentPath,
+    bigScreen,
+  };
   return (
-    <div className={styles.sidebar} style={{width:widthValue}}>
+    <div className={styles.sidebar} style={{ width: widthValue, display: displayMode }}>
       <div className={styles.sidebarContent}>
         {<UserProfile user={user} isFold={isFold} />}
         <div className={styles.sidebarCategory}>
@@ -16,7 +37,7 @@ const Sidebar = ({ user, menu, currentPath, isFold, bigScreen }) => {
               {menu.map((menuGroup, index) => {
                 if (true || menuGroup.show) {
                   return (
-                    <MenuGroup key={index} menuGroup={menuGroup} isFold={isFold} currentPath={currentPath} bigScreen={bigScreen} />
+                    <MenuGroup key={index} menuGroup={menuGroup} {...menuGroupProps} />
                   );
                 }
               })}

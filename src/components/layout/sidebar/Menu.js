@@ -2,27 +2,23 @@
  * Created by liu_k on 2016/4/5.
  * 菜单有两种状态，选中状态和展开状态，处于选中状态的菜单一定处于展开状态，反之未必
  */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Animate from 'rc-animate';
-import {Icon} from 'antd';
+import { Icon } from 'antd';
 import classnames from 'classnames';
-import {MINI} from '../../../consts/Consts';
 import SubMenu from './SubMenu';
 import styles from '../Sidebar.less';
 
 class Menu extends Component {
   /**
    * 设置当前菜单是否为选中状态
-   * 1、菜单本身的component和url相同，返回true
-   * 2、菜单的任意子菜单的component和url相同，返回true
-   * @param menuItem
-   * @param componentUrl
+   * 1、菜单本身的component和currentPath相同，返回true
+   * 2、菜单的任意子菜单的component和currentPath相同，返回true
+   * @param menuItem    menuItem
+   * @param currentPath currentPath
    */
   static isSelected(menuItem, currentPath) {
     const url = currentPath.substring(1);// 去除掉url最前面的/
-    // console.log( 'url=' + url);
-    // console.log(url.split('/')[0]+ ' ' + url.split('/')[1]);
-    // console.log(menuItem.component);
     if (url === menuItem.component || url.split('/')[0] === menuItem.component) {
       return true;
     }
@@ -41,15 +37,18 @@ class Menu extends Component {
     const arrowIcon = showSubMenu ? 'down' : 'right';
     return (
       <div className={styles.arrow}>
-        <Icon type={arrowIcon}/>
+        <Icon type={arrowIcon} />
       </div>
     );
   }
 
   constructor() {
     super();
-    this.currentSelectIndex = -1;
-    this.state = {showSubMenuIndex: -1};
+    // this.currentSelectIndex = -1;
+    this.state = {
+      showSubMenuIndex: [-1], // 侧边栏未收起时，需要显示子菜单的index集合
+      showSubMenuIndexInFold: -1, // 侧边栏未收起后，需要显示的子菜单
+    };
   }
 
   componentDidMount() {
@@ -57,27 +56,40 @@ class Menu extends Component {
     // if (this.currentSelectIndex !== -1) {
     //   changeMenuOpenStatus(this.currentSelectIndex);
     // }
+
   }
 
+    /**
+     * 设置子菜单是否展开
+     * @param index
+     */
   changeMenuOpenStatus(index) {
-    console.log(index);
+    const currentIndexArray = this.state.showSubMenuIndex;
+    for (let i = currentIndexArray.length - 1; i >= 0; i--) {
+      if (currentIndexArray[i] === index) {
+        currentIndexArray.splice(i, 1);
+        this.setState({ showSubMenuIndex: currentIndexArray });
+        return;
+      }
+    }
+    currentIndexArray.push(index);
+    this.setState({ showSubMenuIndex: currentIndexArray });
   }
 
   handlerMouseOver(menuItem) {
-    const {isFold} = this.props;
-    console.log("isFold="+isFold);
+    const { isFold } = this.props;
 
     if (isFold) {
       // console.log(menuItem.text + '.' + menuItem.index);
-      this.setState({showSubMenuIndex: menuItem.index});
+      this.setState({ showSubMenuIndexInFold: menuItem.index });
     }
   }
 
   // 鼠标移出
   handlerMouseOut() {
-    const {isFold} = this.props;
+    const { isFold } = this.props;
     if (isFold) {
-      this.setState({showSubMenuIndex: -1});
+      this.setState({ showSubMenuIndexInFold: -1 });
     }
   }
 
@@ -93,31 +105,27 @@ class Menu extends Component {
    * @param index
    */
   buildMenuItem(menuItem, index) {
-    const {currentPath, isFold} = this.props;
+    const { currentPath, isFold } = this.props;
 
 
     let arrow;// 菜单右边的箭头的显示内容
     let textClassName = '';// 菜单文本的className
     let subMenuClassName = '';// 子菜单的className
-    let textShow = '';// 是否显示菜单文本（大屏幕下的NORMAL需要显示）
+    let textShow = '';// 是否显示菜单文本（大屏幕下的侧边栏未收起的情况下需要显示）
     let showSubMenu = false;// 是否显示子菜单
     const isSelected = Menu.isSelected(menuItem, currentPath);
     const hasSubMenu = !!menuItem.subMenu;
-    if (isSelected) {
-      this.currentSelectIndex = menuItem.index;
-    }
-
     if (isFold) {
       textClassName = styles.miniMenu;
       textShow = 'none';
-      if (this.state.showSubMenuIndex === menuItem.index) {
+      subMenuClassName = styles.miniSubMenu;
+      if (this.state.showSubMenuIndexInFold === menuItem.index) {
         showSubMenu = true;
         textShow = 'block';
-        subMenuClassName = styles.miniSubMenu;
       }
     } else {
       // if (sideBar.openMenu.items.indexOf(menuItem.index) != -1) {
-      if (true) {
+      if (this.state.showSubMenuIndex.indexOf(menuItem.index) !== -1) {
         showSubMenu = true;
       }
       if (hasSubMenu) {
@@ -132,8 +140,6 @@ class Menu extends Component {
           subMenuClassName={subMenuClassName}
           visible={showSubMenu}
           subMenuData={menuItem.subMenu}
-          isFold={isFold}
-          currentPath={currentPath}
         />);
       } else {
         subMenu =
@@ -146,7 +152,7 @@ class Menu extends Component {
             <SubMenu
               isFold={isFold}
               subMenuClassName={subMenuClassName}
-              visible={isSelected}
+              visible={showSubMenu}
               subMenuData={menuItem.subMenu}
               currentPath={currentPath}
             />
@@ -156,13 +162,13 @@ class Menu extends Component {
 
     return (
       <li
-        className={classnames(styles.navigationItem, {[styles.select]: isSelected})} key={index}
+        className={classnames(styles.navigationItem, { [styles.select]: isSelected })} key={index}
         onClick={this.menuClick.bind(this, menuItem)}
         onMouseOver={this.handlerMouseOver.bind(this, menuItem)}
         onMouseOut={this.handlerMouseOut.bind(this)}
       >
-        <Icon type={menuItem.icon}/>
-        <span className={textClassName} style={{display: textShow}}>
+        <Icon type={menuItem.icon} />
+        <span className={textClassName} style={{ display: textShow }}>
           {menuItem.text}
         </span>
         {arrow}
@@ -172,7 +178,8 @@ class Menu extends Component {
   }
 
   render() {
-    const {menuData} = this.props;
+    const { menuData } = this.props;
+    console.log(menuData);
     const menu = menuData.map((item, index) => {
       // if (item.show) {
       if (true) {
