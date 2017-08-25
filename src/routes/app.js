@@ -16,12 +16,12 @@ import {initMenuData} from '../consts/MenuData.js';
 const App = ({children, dispatch, app, loading, location, routes}) => {
   const {user, sideBarFold, bigScreen} = app;
 
-  console.log(routes);
+  // console.log(routes);
   // console.log(`sideBarFold=${sideBarFold}`);
 
   // console.log(`dispatch=${dispatch}`);
   console.log(`loading=${loading}`);
-  console.log(location);
+  // console.log(location);
 
 
 // const App = () => {
