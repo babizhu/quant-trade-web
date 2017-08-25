@@ -1,45 +1,23 @@
+let index = 1;
 export const initMenuData = [{
   text: '主菜单',
   icon: 'ellipsis',
   menu: [
     {
-      icon: 'home',
-      text: '我的策略',
-      index: 1,
-      component: 'home1',
-      subMenu: [
-        {
-          icon: 'stock',
-          text: '策略列表',
-          component: '',
-        },
-        {
-          icon: 'phone',
-          text: '交易列表',
-          component: '',
-        },
-      ],
+      icon: 'pay-circle-o',
+      text: '策略列表',
+      index: index++,
+      component: 'home',
+
     }, {
-      icon: 'user',
-      text: '用户管理',
-      index: 2,
-      subMenu: [
-        {
-          icon: 'phone',
-          text: '用户列表',
-          component: 'user',
-        },
-        {
-          icon: 'ellipsis',
-          text: '策略列表',
-          component: 'user',
-        },
-      ],
+      icon: 'area-chart',
+      text: '交易列表',
+      index: index++,
     },
     {
       icon: 'home',
       text: '家庭设置',
-      index: 3,
+      index: index++,
 
       subMenu: [
         {
@@ -56,7 +34,7 @@ export const initMenuData = [{
     }, {
       icon: 'user',
       text: '路由设置',
-      index: 4,
+      index: index++,
       subMenu: [
         {
           icon: 'phone',
@@ -73,7 +51,7 @@ export const initMenuData = [{
     {
       icon: 'home',
       text: '我的配置',
-      index: 5,
+      index: index++,
       subMenu: [
         {
           icon: 'stock',
@@ -89,7 +67,7 @@ export const initMenuData = [{
     }, {
       icon: 'user',
       text: '收益状况',
-      index: 6,
+      index: index++,
       subMenu: [
         {
           icon: 'phone',
@@ -108,6 +86,23 @@ export const initMenuData = [{
   text: '杂项设置',
   icon: 'ellipsis',
   menu: [
+    {
+      icon: 'pay-circle-o',
+      text: '我要赞助',
+      index: index++,
+      subMenu: [
+        {
+          icon: 'phone',
+          text: '用户列表',
+          component: 'a',
+        },
+        {
+          icon: 'ellipsis',
+          text: '策略列表',
+          component: 'a',
+        },
+      ],
+    },
     {
       icon: 'shrink',
       text: '测试模块',
