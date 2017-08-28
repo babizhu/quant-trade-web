@@ -23,7 +23,7 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
     // </Link>);
     pathArray.push(<span key={item.text} className="breadcrumb">
       <Link to={item.component}>
-        <span className="name">{item.text}</span>
+        <span className={styles.nameOnly}>{item.text}</span>
       </Link>
       <span className={styles.separator}>{separator}</span>
     </span>);
@@ -49,27 +49,39 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
   };
   // console.log(pathArray);
   // let currentMenu;
+  outer:
   for (const tempMenu of menu) {
     const menuData = tempMenu.menu;
     if (menuData) {
       console.log(menuData);
       for (const m of menuData) {
         if (buildBread(m)) {
-          break;
+          break outer;
         } else {
           pathArray = [];
         }
       }
     }
+
   }
+
   // if (currentMenu) {
   //   crumbs = (<Link to={currentMenu.component}>
   //     <span className="name">{currentMenu.text}</span>
   //   </Link>);
   // }
-
+  const homeLink=
+  <span className="breadcrumb">
+      <Link to='/'>
+        <span className={styles.nameOnly}><Icon type="home" style={{ fontSize: '10px' }} /></span>
+      </Link>
+      <span className={styles.separator}>{separator}</span>
+    </span>;
   return (
-    <div className={styles.breadcrumb}><Icon type="home" style={{ fontSize: '10px' }} /> {pathArray} </div>
+    <div className={styles.breadcrumb}>
+      {homeLink}
+      {pathArray}
+      </div>
   );
 };
 export default Breadcrumb;
