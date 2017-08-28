@@ -179,7 +179,7 @@ class Menu extends Component {
 
   render() {
     const { menuData } = this.props;
-    console.log(menuData);
+    // console.log(menuData);
     const menu = menuData.map((item, index) => {
       // if (item.show) {
       if (true) {

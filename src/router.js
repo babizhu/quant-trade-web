@@ -23,13 +23,28 @@ const Routers = function ({ history, app }) {
       childRoutes: [
         {
           path: 'dashboard',
-          getComponent (nextState, cb) {
+          getComponent(nextState, cb) {
             require.ensure([], (require) => {
-              registerModel(app, require('./models/dashboard'))
-              cb(null, require('./routes/dashboard/'))
-            }, 'dashboard')
+              registerModel(app, require('./models/dashboard'));
+              cb(null, require('./routes/dashboard/'));
+            }, 'dashboard');
           },
-        }
+        }, {
+          path: 'user',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              registerModel(app, require('./models/user'));
+              cb(null, require('./routes/user/'));
+            }, 'user');
+          },
+        }, { path: 'stage',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              registerModel(app, require('./models/stage'));
+              cb(null, require('./routes/stage/'));
+            }, 'stage');
+          },
+        },
       ],
     },
   ];

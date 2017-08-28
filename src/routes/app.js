@@ -1,35 +1,35 @@
 /* global window */
 import React from 'react';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 // import NProgress from 'nprogress';
 // import pathToRegexp from 'path-to-regexp';
-import {connect} from 'dva';
+import { connect } from 'dva';
 import Header from '../components/layout/Header';
 import Sidebar from '../components/layout/Sidebar';
 import Breadcrumb from '../components/layout/Breadcrumb';
 import styles from '../components/layout/Layout.less';
-import {initMenuData} from '../consts/MenuData.js';
+import { initMenuData } from '../consts/MenuData.js';
 // import './app.less';
 // import Error from './error';
 
-const App = ({children, dispatch, app, loading, location, routes}) => {
-  const {user, sideBarFold, bigScreen} = app;
+const App = ({ children, dispatch, app, loading, location }) => {
+  const { user, sideBarFold, bigScreen } = app;
 
-  // console.log(routes);
-  // console.log(`sideBarFold=${sideBarFold}`);
+    // console.log(routes);
+    // console.log(`sideBarFold=${sideBarFold}`);
 
-  // console.log(`dispatch=${dispatch}`);
+    // console.log(`dispatch=${dispatch}`);
   console.log(`loading=${loading}`);
-  // console.log(location);
+    // console.log(location);
 
 
 // const App = () => {
-  // noinspection JSAnnotator
+    // noinspection JSAnnotator
   const headerProps = {
     user,
     switchSider() {
-      dispatch({type: 'app/switchSider'})
+      dispatch({ type: 'app/switchSider' });
     },
   };
 
@@ -38,36 +38,43 @@ const App = ({children, dispatch, app, loading, location, routes}) => {
     currentPath: location.pathname,
     isFold: sideBarFold,
     user,
-    bigScreen: bigScreen
+    bigScreen,
+  };
+
+    // noinspection JSAnnotator
+  const breadcrumbProps = {
+    menu: initMenuData,
+    currentPath: location.pathname,
+    separator: '/',
   };
 
   let contentMarginLeft = '240px';
   if (bigScreen && sideBarFold) {
-    contentMarginLeft = '59px'
+    contentMarginLeft = '59px';
   }
-  if(!bigScreen){
+  if (!bigScreen) {
     contentMarginLeft = '0px';
   }
   let sidebarPosition = '';
-  if(!bigScreen){
+  if (!bigScreen) {
     sidebarPosition = 'relative';
   }
   return (
     <div>
       <Helmet>
         <title>quant-trade</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
       <div className={styles.layout}>
         <Header {...headerProps} />
-        <aside className={styles.sidebar} style={{    position: sidebarPosition}}>
+        <aside className={styles.sidebar} style={{ position: sidebarPosition }}>
           <Sidebar {...sidebarProps} />
         </aside>
-        <div className={styles.container} style={{marginLeft: contentMarginLeft}}>
+        <div className={styles.container} style={{ marginLeft: contentMarginLeft }}>
 
-          <div>
-            <Breadcrumb routes={routes} params={{}} separator="/"/>
-          </div>
+
+          <Breadcrumb {...breadcrumbProps} />
+
           <div className={styles.content}>
             {children}
           </div>
@@ -85,5 +92,5 @@ App.propTypes = {
   loading: PropTypes.object,
 };
 
-export default connect(({app, loading}) => ({app, loading}))(App);
+export default connect(({ app, loading }) => ({ app, loading }))(App);
 

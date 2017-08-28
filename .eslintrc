@@ -23,7 +23,10 @@
     "no-cond-assign": [0],
     "import/no-unresolved": [0],
     "require-yield": [1],
-    "max-len":0
+    "max-len":0,
+    "no-plusplus": "off",
+    "no-console": 0,
+    "no-continue": 0
   },
   "parserOptions": {
     "ecmaFeatures": {

@@ -3,70 +3,73 @@
  * 内容页面上部的导航条
  */
 
-import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+
+import { Link } from 'react-router';
 import { Icon } from 'antd';
+import styles from './Breadcrumb.less';
 
-
-export default class Breadcrumb extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-
-    linkRender(href, name, separator) {
-
-        return (
-            <span key={name} className='breadcrumb'>
-                <Link to={href}>
-                    <span className="name">{name}</span>
-                </Link>
-                <span className='separator'>{separator}</span>
-            </span>
-        );
-        //return <span><a href={`${href}`}>{name}</a> {separator}</span> ;
-    }
-
-    nameRender(name) {
-        return <span className='nameOnly' key={name}> {name}</span>;
-    }
-
-    render() {
-        const { separator,routes,params } = this.props;
-        let crumbs;
-        if (routes && routes.length > 0) {
-            const paths = [];
-            crumbs = routes.map((route, i) => {
-                route.path = route.path || '';
-                let path = route.path.replace(/^\//, '');
-                Object.keys(params).forEach(key => {
-                    path = path.replace(`:${key}`, params[key]);
-                });
-                if (path) {
-                    paths.push(path);
-                }
-
-                if (!route.breadcrumbName) {
-                    return null;
-                }
-                const name = route.breadcrumbName.replace(/\:(.*)/g, (replacement, key) => {
-                    return params[key] || replacement;
-                });
-
-                let link;
-                if (i === routes.length - 1) {
-                    link = this.nameRender(name);
-
-                    //console.log( name )
-                } else {
-                    link = this.linkRender(`/${paths.join('/')}`, name, separator);
-
-                }
-                return link;
-            });
+const Breadcrumb = ({ menu, separator, currentPath }) => {
+  const path = currentPath.replace('/', '');
+  let pathArray = [];
+  const renderName = (item) => {
+    pathArray.push(
+      <span className={styles.nameOnly} key={item.text}> {item.text}</span>);
+    pathArray.push(<span className={styles.separator}>{separator}</span>);
+  };
+  const renderLink = (item) => {
+    // pathArray.push(<Link to={item.component}>
+    //   <span className="name">{item.text}</span>
+    // </Link>);
+    pathArray.push(<span key={item.text} className="breadcrumb">
+      <Link to={item.component}>
+        <span className="name">{item.text}</span>
+      </Link>
+      <span className={styles.separator}>{separator}</span>
+    </span>);
+  };
+  // const crumbs = (<Link to="/">
+  //   <span className="name">home</span>
+  // </Link>);
+  const buildBread = (item) => {
+    item.component ? renderLink(item) : renderName(item);
+    if (item.component === path) {
+      pathArray.push(separator);
+      return true;
+    } else if (item.subMenu) {
+      for (const m of item.subMenu) {
+        m.component ? renderLink(m) : renderName(m);
+        if (m.component === path) {
+          return true;
         }
-        return (
-            <span><Icon type='home' style={{fontSize:'10px'}}/> {crumbs}</span>
-        )
+      }
     }
-}
+
+    return false;
+  };
+  // console.log(pathArray);
+  // let currentMenu;
+  for (const tempMenu of menu) {
+    const menuData = tempMenu.menu;
+    if (menuData) {
+      console.log(menuData);
+      for (const m of menuData) {
+        if (buildBread(m)) {
+          break;
+        } else {
+          pathArray = [];
+        }
+      }
+    }
+  }
+  // if (currentMenu) {
+  //   crumbs = (<Link to={currentMenu.component}>
+  //     <span className="name">{currentMenu.text}</span>
+  //   </Link>);
+  // }
+
+  return (
+    <div className={styles.breadcrumb}><Icon type="home" style={{ fontSize: '10px' }} /> {pathArray} </div>
+  );
+};
+export default Breadcrumb;

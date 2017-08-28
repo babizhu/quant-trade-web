@@ -5,85 +5,26 @@ export const initMenuData = [{
   menu: [
     {
       icon: 'pay-circle-o',
-      text: '策略列表',
+      text: '投资信息',
       index: index++,
-      component: 'home',
-
-    }, {
-      icon: 'area-chart',
-      text: '交易列表',
-      index: index++,
-    },
-    {
-      icon: 'home',
-      text: '家庭设置',
-      index: index++,
-
       subMenu: [
         {
-          icon: 'stock',
+          icon: 'pay-circle-o',
           text: '策略列表',
-          component: 's',
+          index: index++,
+          component: 'stage',
         },
         {
-          icon: 'phone',
+          icon: 'area-chart',
           text: '交易列表',
-          component: 's',
+          index: index++,
+          component: 'trade',
         },
       ],
-    }, {
-      icon: 'user',
-      text: '路由设置',
-      index: index++,
-      subMenu: [
-        {
-          icon: 'phone',
-          text: '用户列表',
-          component: 'a',
-        },
-        {
-          icon: 'ellipsis',
-          text: '策略列表',
-          component: 'a',
-        },
-      ],
-    },
-    {
-      icon: 'home',
-      text: '我的配置',
-      index: index++,
-      subMenu: [
-        {
-          icon: 'stock',
-          text: '策略列表',
-          component: 'b',
-        },
-        {
-          icon: 'phone',
-          text: '交易列表',
-          component: 'b',
-        },
-      ],
-    }, {
-      icon: 'user',
-      text: '收益状况',
-      index: index++,
-      subMenu: [
-        {
-          icon: 'phone',
-          text: '用户列表',
-          component: 'd',
-        },
-        {
-          icon: 'ellipsis',
-          text: '策略列表',
-          component: 's',
-        },
-      ],
-    },
-  ],
-}, {
-  text: '杂项设置',
+    }],
+},
+{
+  text: '系统管理',
   icon: 'ellipsis',
   menu: [
     {
@@ -94,15 +35,16 @@ export const initMenuData = [{
         {
           icon: 'phone',
           text: '用户列表',
-          component: 'a',
+          component: 'user',
         },
         {
           icon: 'ellipsis',
-          text: '策略列表',
+          text: '所有策略',
           component: 'a',
         },
       ],
     },
+
     {
       icon: 'shrink',
       text: '测试模块',
