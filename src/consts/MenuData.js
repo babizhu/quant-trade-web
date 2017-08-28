@@ -23,40 +23,145 @@ export const initMenuData = [{
       ],
     }],
 },
-{
-  text: '系统管理',
-  icon: 'ellipsis',
-  menu: [
-    {
-      icon: 'pay-circle-o',
-      text: '我要赞助',
-      index: index++,
-      subMenu: [
-        {
-          icon: 'phone',
-          text: '用户列表',
-          component: 'user',
-        },
-        {
-          icon: 'ellipsis',
-          text: '所有策略',
-          component: 'a',
-        },
-      ],
-    },
+  {
+    text: '系统管理',
+    icon: 'ellipsis',
+    menu: [
+      {
+        icon: 'user',
+        text: '用户管理',
+        index: index++,
+        subMenu: [
+          {
+            icon: 'phone',
+            text: '用户列表',
+            component: 'user',
+          },
+          {
+            icon: 'ellipsis',
+            text: '所有策略',
+            component: 'a',
+          },
+        ],
+      },
 
-    {
-      icon: 'shrink',
-      text: '测试模块',
-      index: index++,
-      subMenu: [
-        {
-          icon: 'phone',
-          text: '测试程序',
-          component: '/',
-        },
-      ],
-    },
-  ],
-},
+      {
+        icon: 'shrink',
+        text: '测试模块',
+        index: index++,
+        subMenu: [
+          {
+            icon: 'phone',
+            text: '测试程序',
+            component: '/',
+          },
+        ],
+      },
+    ],
+  },{
+    text: '系统管理',
+    icon: 'ellipsis',
+    menu: [
+      {
+        icon: 'user',
+        text: '用户管理',
+        index: index++,
+        subMenu: [
+          {
+            icon: 'phone',
+            text: '用户列表',
+            component: 'user',
+          },
+          {
+            icon: 'ellipsis',
+            text: '所有策略',
+            component: 'a',
+          },
+        ],
+      },
+
+      {
+        icon: 'shrink',
+        text: '测试模块',
+        index: index++,
+        subMenu: [
+          {
+            icon: 'phone',
+            text: '测试程序',
+            component: '/',
+          },
+        ],
+      },
+    ],
+  },{
+    text: '系统管理',
+    icon: 'ellipsis',
+    menu: [
+      {
+        icon: 'user',
+        text: '用户管理',
+        index: index++,
+        subMenu: [
+          {
+            icon: 'phone',
+            text: '用户列表',
+            component: 'user',
+          },
+          {
+            icon: 'ellipsis',
+            text: '所有策略',
+            component: 'a',
+          },
+        ],
+      },
+
+      {
+        icon: 'shrink',
+        text: '测试模块',
+        index: index++,
+        subMenu: [
+          {
+            icon: 'phone',
+            text: '测试程序',
+            component: '/',
+          },
+        ],
+      },
+    ],
+  },{
+    text: '系统管理',
+    icon: 'ellipsis',
+    menu: [
+      {
+        icon: 'user',
+        text: '用户管理',
+        index: index++,
+        subMenu: [
+          {
+            icon: 'phone',
+            text: '用户列表',
+            component: 'user',
+          },
+          {
+            icon: 'ellipsis',
+            text: '所有策略',
+            component: 'a',
+          },
+        ],
+      },
+
+      {
+        icon: 'shrink',
+        text: '测试模块',
+        index: index++,
+        subMenu: [
+          {
+            icon: 'phone',
+            text: '测试程序',
+            component: '/',
+          },
+        ],
+      },
+    ],
+  },
 ];
