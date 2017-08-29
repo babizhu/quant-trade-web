@@ -6,6 +6,7 @@ import styles from './Sidebar.less';
 
 const Sidebar = ({ user, menu, currentPath, isFold, bigScreen, switchSider }) => {
   let widthValue;
+  console.log(document.body.clientWidth)
   if (bigScreen) {
     if (isFold) { // 大屏幕下的mini模式，也就是仅显示菜单图标
       widthValue = 'auto';
