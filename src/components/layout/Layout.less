@@ -4,11 +4,14 @@
   position: relative;
   height: 100vh;
   .sidebar {
+    &:hover{
+      overflow: auto;
+    }
     background: @sidebar-bgcolor;
     position: absolute;
 
     height: calc(100% - 44px);
-    overflow: auto;
+    overflow: hidden;
     z-index: 10000;
     //padding-bottom: 10px;
     @media (min-width: 768px) {

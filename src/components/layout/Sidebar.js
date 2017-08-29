@@ -6,7 +6,6 @@ import styles from './Sidebar.less';
 
 const Sidebar = ({ user, menu, currentPath, isFold, bigScreen }) => {
   let widthValue;
-  let displayMode;
   if (bigScreen) {
     if (isFold) { // 大屏幕下的mini模式，也就是仅显示菜单图标
       widthValue = 'auto';
@@ -16,11 +15,7 @@ const Sidebar = ({ user, menu, currentPath, isFold, bigScreen }) => {
         // displayMode = 'table-cell';
   } else {
     widthValue = '100%';
-    if (isFold) { // 小屏幕下的mini模式，隐藏sideBar
-      displayMode = 'none';
-    } else {
-      displayMode = 'block';
-    }
+
   }
   const menuGroupProps = {
     isFold,
@@ -28,7 +23,7 @@ const Sidebar = ({ user, menu, currentPath, isFold, bigScreen }) => {
     bigScreen,
   };
   return (
-    <div className={styles.sidebar} style={{ width: widthValue, display: displayMode }}>
+    <div className={styles.sidebar} style={{ width: widthValue }}>
       <div className={styles.sidebarContent}>
         {<UserProfile user={user} isFold={isFold} />}
         <div className={styles.sidebarCategory}>

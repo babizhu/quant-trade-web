@@ -52,13 +52,21 @@ const App = ({ children, dispatch, app, loading, location }) => {
   if (bigScreen && sideBarFold) {
     contentMarginLeft = '59px';
   }
+  let displayMode;
+
   if (!bigScreen) {
     contentMarginLeft = '0px';
+    if (sideBarFold) { // 小屏幕下的mini模式，隐藏sideBar
+      displayMode = 'none';
+    } else {
+      displayMode = 'block';
+    }
   }
   let sidebarPosition = '';
   if (!bigScreen) {
     sidebarPosition = 'relative';
   }
+
   return (
     <div>
       <Helmet>
@@ -67,7 +75,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
       </Helmet>
       <div className={styles.layout}>
         <Header {...headerProps} />
-        <aside className={styles.sidebar} style={{ position: sidebarPosition }}>
+        <aside className={styles.sidebar} style={{ position: sidebarPosition, display: displayMode }}>
           <Sidebar {...sidebarProps} />
         </aside>
         <div className={styles.container} style={{ marginLeft: contentMarginLeft }}>

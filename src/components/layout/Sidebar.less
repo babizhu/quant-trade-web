@@ -1,12 +1,21 @@
 
-@header-bgcolor: #263238;
+
 @select-bgcolor: #26a69a;
 //$open-bgcolor:  lighten($select-bgcolor,30%);
 @open-bgcolor:  @select-bgcolor;//菜单展开的状态
 @siderbar-bgcolor: #263238;
 @font-color: #fff;
 @sidebarWidth:240px;
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: lighten(@siderbar-bgcolor, 10%);
+}
+
 .sidebar {
+
   a {
     color: @font-color;
   }
@@ -47,7 +56,7 @@
       }
     }
     .subItemActive {
-      background-color: darken(@header-bgcolor, 25%) !important;
+      background-color: darken(@siderbar-bgcolor, 25%) !important;
     }
     .open {
       background-color: @open-bgcolor  !important;
@@ -56,6 +65,7 @@
       background-color: @select-bgcolor !important;
     }
     .sidebarCategory {
+
       .categoryContent {
         .navigationUl {
           //line-height: 3;
@@ -126,7 +136,7 @@
               }
             }
             &:hover {
-              background-color: darken(@header-bgcolor, 10%);
+              background-color: darken(@siderbar-bgcolor, 10%);
             }
           }
           .navigationItem {
