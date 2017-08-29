@@ -133,6 +133,7 @@ class Menu extends Component {
       }
     }
 
+    // showSubMenu = true;//测试侧边栏
     let subMenu;
     if (hasSubMenu) {
       if (isFold) {

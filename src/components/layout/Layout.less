@@ -5,17 +5,17 @@
   height: 100vh;
   .sidebar {
     &:hover{
-      overflow: auto;
+      //overflow: auto;
     }
     background: @sidebar-bgcolor;
     position: absolute;
 
-    height: calc(100% - 44px);
-    overflow: hidden;
-    z-index: 10000;
+    //height: calc(100% - 44px);
+    //overflow: hidden;
     //padding-bottom: 10px;
     @media (min-width: 768px) {
-      min-height:  calc(~"100% - 44px");
+      //min-height:  calc(~"100% - 44px");
+      min-height: e("calc(100vh - 44px)");
     }
 
     transition: all 0.3s ease-out;
@@ -29,18 +29,21 @@
     //  margin-left: 240px;
     //}
     //height: 100%;
-    overflow: auto;
+    overflow: hidden;
+    &:hover{
+      overflow: auto;
+    }
     height:  calc(~"100% - 44px");
 
   }
 
   .content {
+    //&:hover{
+    //  overflow: auto;
+    //  //background-color: rebeccapurple;
+    //}
     padding: 10px;
-    overflow: auto;
+    //overflow: hidden;
     background-color: #e6e6e6;
-    //min-height:  calc(~"100% - 44px");
-
-    //min-height: e("calc(100vh - 184px)");
-    //position: relative;
   }
 }
