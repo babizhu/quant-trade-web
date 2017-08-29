@@ -15,14 +15,19 @@ import styles from '../Sidebar.less';
 class MenuGroup extends Component {
 
   render() {
-    const { menuGroup, isFold, currentPath, bigScreen } = this.props;
+    const { menuGroup, isFold, currentPath, bigScreen, switchSider } = this.props;
     return (
       <span>
         <li className={styles.navigationHeader}>
           {!isFold && <span >{menuGroup.text}</span>}
           {isFold && <Icon type={menuGroup.icon} className={styles.navigationHeaderIcon} />}
         </li>
-        <Menu menuData={menuGroup.menu} isFold={isFold} currentPath={currentPath} bigScreen={bigScreen} />
+        <Menu
+          switchSider={switchSider}
+          menuData={menuGroup.menu} isFold={isFold}
+          currentPath={currentPath}
+          bigScreen={bigScreen}
+        />
       </span>
     );
   }
@@ -33,6 +38,8 @@ MenuGroup.propTypes = {
   isFold: PropTypes.bool.isRequired, // 侧边栏是否收起
   bigScreen: PropTypes.bool.isRequired, // 是否大屏
   currentPath: PropTypes.string.isRequired,
+  switchSider: PropTypes.func.isRequired,
+
 };
 // MenuGroup.defaultProps = {};
 

@@ -105,7 +105,7 @@ class Menu extends Component {
    * @param index
    */
   buildMenuItem(menuItem, index) {
-    const { currentPath, isFold } = this.props;
+    const { currentPath, isFold, switchSider,bigScreen } = this.props;
 
 
     let arrow;// 菜单右边的箭头的显示内容
@@ -141,7 +141,9 @@ class Menu extends Component {
           subMenuClassName={subMenuClassName}
           visible={showSubMenu}
           currentPath={currentPath}
-
+          switchSider={switchSider}
+          isFold={isFold}
+          bigScreen={bigScreen}
           subMenuData={menuItem.subMenu}
         />);
       } else {
@@ -153,6 +155,8 @@ class Menu extends Component {
             transitionName="fade"
           >
             <SubMenu
+              switchSider={switchSider}
+              bigScreen={bigScreen}
 
               isFold={isFold}
               subMenuClassName={subMenuClassName}

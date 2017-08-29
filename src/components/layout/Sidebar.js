@@ -4,7 +4,7 @@ import MenuGroup from './sidebar/MenuGroup';
 import UserProfile from './sidebar/UserProfile';
 import styles from './Sidebar.less';
 
-const Sidebar = ({ user, menu, currentPath, isFold, bigScreen }) => {
+const Sidebar = ({ user, menu, currentPath, isFold, bigScreen, switchSider }) => {
   let widthValue;
   if (bigScreen) {
     if (isFold) { // 大屏幕下的mini模式，也就是仅显示菜单图标
@@ -15,7 +15,6 @@ const Sidebar = ({ user, menu, currentPath, isFold, bigScreen }) => {
         // displayMode = 'table-cell';
   } else {
     widthValue = '100%';
-
   }
   const menuGroupProps = {
     isFold,
@@ -32,7 +31,7 @@ const Sidebar = ({ user, menu, currentPath, isFold, bigScreen }) => {
               {menu.map((menuGroup, index) => {
                 if (true || menuGroup.show) {
                   return (
-                    <MenuGroup key={index} menuGroup={menuGroup} {...menuGroupProps} />
+                    <MenuGroup key={index} menuGroup={menuGroup} {...menuGroupProps} switchSider={switchSider} />
                   );
                 }
               })}
@@ -52,6 +51,7 @@ Sidebar.propTypes = {
   }).isRequired,
   isFold: PropTypes.bool.isRequired,
   bigScreen: PropTypes.bool.isRequired,
+    switchSider: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

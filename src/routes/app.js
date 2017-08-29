@@ -16,16 +16,12 @@ import { initMenuData } from '../consts/MenuData.js';
 const App = ({ children, dispatch, app, loading, location }) => {
   const { user, sideBarFold, bigScreen } = app;
 
-    // console.log(routes);
-    // console.log(`sideBarFold=${sideBarFold}`);
-
-    // console.log(`dispatch=${dispatch}`);
   console.log(`loading=${loading}`);
-    // console.log(location);
 
-
-// const App = () => {
-    // noinspection JSAnnotator
+  //
+  // const swichSider = () => {
+  //   dispatch({ type: 'app/switchSider' });
+  // };
   const headerProps = {
     user,
     switchSider() {
@@ -34,6 +30,9 @@ const App = ({ children, dispatch, app, loading, location }) => {
   };
 
   const sidebarProps = {
+    switchSider() {
+      dispatch({ type: 'app/switchSider' });
+    },
     menu: initMenuData,
     currentPath: location.pathname,
     isFold: sideBarFold,
@@ -61,7 +60,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
       displayMode = 'none';
     } else {
       displayMode = 'block';
-        height = 'auto';
+      height = 'auto';
     }
   }
   let sidebarPosition = '';
@@ -77,7 +76,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
       </Helmet>
       <div className={styles.layout}>
         <Header {...headerProps} />
-        <aside className={styles.sidebar} style={{ position: sidebarPosition, display: displayMode, height:height }}>
+        <aside className={styles.sidebar} style={{ position: sidebarPosition, display: displayMode, height }}>
           <Sidebar {...sidebarProps} />
         </aside>
         <div className={styles.container} style={{ marginLeft: contentMarginLeft }}>

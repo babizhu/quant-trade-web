@@ -10,6 +10,9 @@ import styles from '../Sidebar.less';
 
 class SubMenu extends Component {
 
+  hideMenu() {
+    alert(3);
+  }
   static click(e) {
     if (e && e.stopPropagation) {
       e.stopPropagation();
@@ -26,7 +29,7 @@ class SubMenu extends Component {
      * @param index
      */
   buildSubMenuItem(subMenuItem, index) {
-    const { currentPath } = this.props;
+    const { currentPath, switchSider, bigScreen } = this.props;
 
     // let liClassName = '';
     let isSelected = false;
@@ -36,7 +39,7 @@ class SubMenu extends Component {
     }
     return (
       <li key={index} className={classnames({ [styles.subItemActive]: isSelected })} onClick={SubMenu.click.bind(this)}>
-        <Link to={subMenuItem.component ? `/${subMenuItem.component}` : '/'} key={index}>
+        <Link to={subMenuItem.component ? `/${subMenuItem.component}` : '/'} key={index} onClick={() => { !bigScreen && switchSider(); }}>
           <div>
             {subMenuItem.text}
           </div>
