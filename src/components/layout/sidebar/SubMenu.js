@@ -26,14 +26,14 @@ class SubMenu extends Component {
      * @param index
      */
   buildSubMenuItem(subMenuItem, index) {
-    // const { currentPath } = this.props;
+    const { currentPath } = this.props;
 
     // let liClassName = '';
-    const isSelected = false;
-    // if (componentUrl.substring(1) === subMenuItem.component) {
-    //   liClassName += ' subItemActive';
-    //     isSelected = true;
-    // }
+    let isSelected = false;
+    if (currentPath.substring(1) === subMenuItem.component) {
+      // liClassName += ' subItemActive';
+      isSelected = true;
+    }
     return (
       <li key={index} className={classnames({ [styles.subItemActive]: isSelected })} onClick={SubMenu.click.bind(this)}>
         <Link to={subMenuItem.component ? `/${subMenuItem.component}` : '/'} key={index}>

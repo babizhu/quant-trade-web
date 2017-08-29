@@ -62,7 +62,6 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
         }
       }
     }
-
   }
 
   // if (currentMenu) {
@@ -70,18 +69,18 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
   //     <span className="name">{currentMenu.text}</span>
   //   </Link>);
   // }
-  const homeLink=
-  <span className="breadcrumb">
-      <Link to='/'>
+  const homeLink =
+    (<span className={styles.homeLink}>
+      <Link to="/">
         <span className={styles.nameOnly}><Icon type="home" style={{ fontSize: '10px' }} /></span>
       </Link>
       <span className={styles.separator}>{separator}</span>
-    </span>;
+    </span>);
   return (
     <div className={styles.breadcrumb}>
       {homeLink}
       {pathArray}
-      </div>
+    </div>
   );
 };
 export default Breadcrumb;

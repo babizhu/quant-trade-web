@@ -1,3 +1,4 @@
+@import "../../consts/css/var";
 
 @sidebar-bgcolor: #263238;
 .layout {
@@ -5,17 +6,18 @@
   height: 100vh;
   .sidebar {
     &:hover{
-      //overflow: auto;
+      //overflow: auto;//bug01,取消注释侧边栏在fold模式下无法弹出子菜单
     }
     background: @sidebar-bgcolor;
     position: absolute;
 
-    //height: calc(100% - 44px);
-    //overflow: hidden;
+
+    //overflow: hidden;//bug01,取消注释侧边栏在fold模式下无法弹出子菜单
     //padding-bottom: 10px;
     @media (min-width: 768px) {
       //min-height:  calc(~"100% - 44px");
-      min-height: e("calc(100vh - 44px)");
+      height:  calc(~"100% - 44px");
+
     }
 
     transition: all 0.3s ease-out;
@@ -29,6 +31,7 @@
     //  margin-left: 240px;
     //}
     //height: 100%;
+    background-color: @content-background-color;
     overflow: hidden;
     &:hover{
       overflow: auto;
@@ -44,6 +47,6 @@
     //}
     padding: 10px;
     //overflow: hidden;
-    background-color: #e6e6e6;
+    //background-color: #e6e6e6;
   }
 }

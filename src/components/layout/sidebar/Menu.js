@@ -125,7 +125,7 @@ class Menu extends Component {
       }
     } else {
       // if (sideBar.openMenu.items.indexOf(menuItem.index) != -1) {
-      if (this.state.showSubMenuIndex.indexOf(menuItem.index) !== -1) {
+      if (this.state.showSubMenuIndex.indexOf(menuItem.index) !== -1 || isSelected) {
         showSubMenu = true;
       }
       if (hasSubMenu) {
@@ -140,6 +140,8 @@ class Menu extends Component {
         subMenu = (<SubMenu
           subMenuClassName={subMenuClassName}
           visible={showSubMenu}
+          currentPath={currentPath}
+
           subMenuData={menuItem.subMenu}
         />);
       } else {
@@ -151,6 +153,7 @@ class Menu extends Component {
             transitionName="fade"
           >
             <SubMenu
+
               isFold={isFold}
               subMenuClassName={subMenuClassName}
               visible={showSubMenu}

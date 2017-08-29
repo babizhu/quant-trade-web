@@ -53,6 +53,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
     contentMarginLeft = '59px';
   }
   let displayMode;
+  let height;
 
   if (!bigScreen) {
     contentMarginLeft = '0px';
@@ -60,6 +61,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
       displayMode = 'none';
     } else {
       displayMode = 'block';
+        height = 'auto';
     }
   }
   let sidebarPosition = '';
@@ -75,7 +77,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
       </Helmet>
       <div className={styles.layout}>
         <Header {...headerProps} />
-        <aside className={styles.sidebar} style={{ position: sidebarPosition, display: displayMode }}>
+        <aside className={styles.sidebar} style={{ position: sidebarPosition, display: displayMode, height:height }}>
           <Sidebar {...sidebarProps} />
         </aside>
         <div className={styles.container} style={{ marginLeft: contentMarginLeft }}>
