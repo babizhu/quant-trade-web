@@ -28,9 +28,7 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
       <span className={styles.separator}>{separator}</span>
     </span>);
   };
-  // const crumbs = (<Link to="/">
-  //   <span className="name">home</span>
-  // </Link>);
+
   const buildBread = (item) => {
     item.component ? renderLink(item) : renderName(item);
     if (item.component === path) {
@@ -53,7 +51,7 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
   for (const tempMenu of menu) {
     const menuData = tempMenu.menu;
     if (menuData) {
-      console.log(menuData);
+      // console.log(menuData);
       for (const m of menuData) {
         if (buildBread(m)) {
           break outer;
@@ -63,12 +61,6 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
       }
     }
   }
-
-  // if (currentMenu) {
-  //   crumbs = (<Link to={currentMenu.component}>
-  //     <span className="name">{currentMenu.text}</span>
-  //   </Link>);
-  // }
   const homeLink =
     (<span className={styles.homeLink}>
       <Link to="/">

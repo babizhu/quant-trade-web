@@ -1,8 +1,8 @@
-const APIV1 = '/api/v1'
-const APIV2 = '/api/v2'
+const APIV1 = '/api';
+const APIV2 = '/api/v2';
 
 module.exports = {
-  name: 'AntD Admin',
+  name: 'Quant Trade',
   prefix: 'antdAdmin',
   footerText: 'Ant Design Admin  © 2017 zuiidea',
   logo: '/logo.png',
@@ -10,7 +10,7 @@ module.exports = {
   iconFontJS: '/iconfont.js',
   YQL: ['http://www.zuimeitianqi.com'],
   CORS: [],
-  openPages: ['/login'],
+  // openPages: ['/login'],
   apiPrefix: '/api/v1',
   api: {
     userLogin: `${APIV1}/user/login`,
@@ -24,4 +24,4 @@ module.exports = {
     v1test: `${APIV1}/test`,
     v2test: `${APIV2}/test`,
   },
-}
+};

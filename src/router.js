@@ -8,12 +8,31 @@ const registerModel = (app, model) => {
     app.model(model);
   }
 };
+const validateLogin = (next, replace, callback) => {
+  const from = next.location.pathname;
+  const isLoggedIn = false;
+  if (!isLoggedIn && next.location.pathname !== '/login') {
+    replace(`/login?from=${from}`);
+  }
+  callback();
+};
 
 const Routers = function ({ history, app }) {
   const routes = [
     {
+      path: 'login',
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          registerModel(app, require('./models/login'));
+          cb(null, require('./routes/login/'));
+        }, 'login');
+      },
+    },
+    {
+
       path: '/',
       component: App,
+      onEnter: validateLogin,
       getIndexRoute(nextState, cb) {
         require.ensure([], (require) => {
           registerModel(app, require('./models/dashboard'));
@@ -21,6 +40,7 @@ const Routers = function ({ history, app }) {
         }, 'dashboard');
       },
       childRoutes: [
+
         {
           path: 'dashboard',
           getComponent(nextState, cb) {
