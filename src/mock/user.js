@@ -241,7 +241,34 @@ export default {
   'GET /api/users': { users: [1, 2] },
 
     // GET POST 可省略
-  '/api/users/1': { id: 1 },
+  'POST /api/user/login': (req, res) => { if (true) {
+    const now = new Date();
+    now.setDate(now.getDate() + 1);
+    res.cookie('token', JSON.stringify({ id: '0123456789', deadline: now.getTime() }), {
+      maxAge: 900000,
+      httpOnly: true,
+    });
+    res.json({ success: true, message: 'Ok' });
+  } else {
+    res.status(400).end();
+  } },
+
+  // [`POST api/user/login`](req, res) {
+  //   const { username, password } = req.body;
+  //   // const user = adminUsers.filter(item => item.username === username);
+  //
+  //   if (true) {
+  //     const now = new Date();
+  //     now.setDate(now.getDate() + 1);
+  //     res.cookie('token', JSON.stringify({ id: user[0].id, deadline: now.getTime() }), {
+  //       maxAge: 900000,
+  //       httpOnly: true,
+  //     });
+  //     res.json({ success: true, message: 'Ok' });
+  //   } else {
+  //     res.status(400).end();
+  //   }
+  // },
 
     // 支持自定义函数，API 参考 express@4
   'POST /api/users/create': (req, res) => { res.end('OK'); },

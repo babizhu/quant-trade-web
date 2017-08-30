@@ -11,7 +11,7 @@ const registerModel = (app, model) => {
 const validateLogin = (next, replace, callback) => {
   const from = next.location.pathname;
   const isLoggedIn = false;
-  if (!isLoggedIn && next.location.pathname !== '/login') {
+  if (!isLoggedIn && next.location.pathname !== '/login'&&next.location.pathname==='/') {
     replace(`/login?from=${from}`);
   }
   callback();
