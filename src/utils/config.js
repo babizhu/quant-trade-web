@@ -1,7 +1,7 @@
 const APIV1 = '/api';
 const APIV2 = '/api/v2';
 
-module.exports = {
+export default {
   name: 'Quant Trade',
   prefix: 'antdAdmin',
   footerText: 'Ant Design Admin  © 2017 zuiidea',
@@ -13,8 +13,8 @@ module.exports = {
   // openPages: ['/login'],
   apiPrefix: '/api/v1',
   api: {
-    userLogin: `${APIV1}/user/login`,
-    userLogout: `${APIV1}/user/logout`,
+    userLogin: `${APIV1}/login`,
+    userLogout: `${APIV1}/logout`,
     userInfo: `${APIV1}/userInfo`,
     users: `${APIV1}/users`,
     posts: `${APIV1}/posts`,

@@ -241,7 +241,7 @@ export default {
   'GET /api/users': { users: [1, 2] },
 
     // GET POST 可省略
-  'POST /api/user/login': (req, res) => {
+  'POST /api/login': (req, res) => {
     if (true) {
       const now = new Date();
       now.setDate(now.getDate() + 1);
@@ -254,7 +254,7 @@ export default {
       res.status(400).end();
     }
   },
-  'GET /api/user/logout': (req, res) => {
+  'GET /api/logout': (req, res) => {
     res.status(200).end();
   },
 
