@@ -8,7 +8,8 @@ import styles from './Header.less';
 import '../../svg/emoji/stage.svg';
 
 // eslint-disable-next-line no-undef
-const Header = ({ user, switchSider }) => {
+const Header = ({ user, switchSider, logout }) => {
+  const handleClickMenu = e => e.key === 'logout' && logout();
   const menu = (<div style={{ width: '100%' }}><Menu>
 
 
@@ -23,7 +24,7 @@ const Header = ({ user, switchSider }) => {
     </Menu.Item>
 
   </Menu></div>);
-  const menu1 = (<div><Menu>
+  const menu1 = (<div><Menu onClick={handleClickMenu} >
 
     <Menu.Item>
       <Icon type="aliwangwang" /><span> 我的资料</span>
@@ -32,7 +33,7 @@ const Header = ({ user, switchSider }) => {
       <Icon type="plus-circle" /><span> 我的朋友</span>
     </Menu.Item>
     <Menu.Divider className="menu-divider" />
-    <Menu.Item>
+    <Menu.Item key="logout">
       <Icon type="minus-circle" /> <span>退出系统</span>
     </Menu.Item>
 

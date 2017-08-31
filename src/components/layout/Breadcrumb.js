@@ -13,14 +13,16 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
   const path = currentPath.replace('/', '');
   let pathArray = [];
   const renderName = (item) => {
-    pathArray.push(
-      <span className={styles.nameOnly} key={item.text}> {item.text}</span>);
-    pathArray.push(<span className={styles.separator}>{separator}</span>);
+    // pathArray.push(
+    //   <span className={styles.nameOnly} key={item.text}> {item.text}</span>);
+    // pathArray.push(<span className={styles.separator}>{separator}</span>);
+
+    pathArray.push(<span key={item.text} className="breadcrumb">
+      <span className={styles.nameOnly} key={item.text}> {item.text}</span>
+      <span className={styles.separator}>{separator}</span>
+    </span>);
   };
   const renderLink = (item) => {
-    // pathArray.push(<Link to={item.component}>
-    //   <span className="name">{item.text}</span>
-    // </Link>);
     pathArray.push(<span key={item.text} className="breadcrumb">
       <Link to={item.component}>
         <span className={styles.nameOnly}>{item.text}</span>
@@ -30,13 +32,21 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
   };
 
   const buildBread = (item) => {
-    item.component ? renderLink(item) : renderName(item);
+    if (item.component !== undefined) {
+      renderLink(item);
+    } else {
+      renderName(item);
+    }
     if (item.component === path) {
       pathArray.push(separator);
       return true;
     } else if (item.subMenu) {
       for (const m of item.subMenu) {
-        m.component ? renderLink(m) : renderName(m);
+        if (m.component !== undefined) {
+          renderLink(m);
+        } else {
+          renderName(m);
+        }
         if (m.component === path) {
           return true;
         }

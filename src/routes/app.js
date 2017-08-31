@@ -27,6 +27,9 @@ const App = ({ children, dispatch, app, loading, location }) => {
     switchSider() {
       dispatch({ type: 'app/switchSider' });
     },
+    logout() {
+      dispatch({ type: 'app/logout' });
+    },
   };
 
   const sidebarProps = {

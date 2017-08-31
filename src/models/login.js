@@ -1,6 +1,7 @@
 import { routerRedux } from 'dva/router';
 import { queryURL } from '../utils';
 import { login } from '../services/login';
+import { setCookie } from '../utils/cookie';
 
 export default {
   namespace: 'login',
@@ -9,13 +10,12 @@ export default {
   },
 
   effects: {
-    * login({
-      payload,
-    }, { put, call }) {
+    * login({ payload }, { put, call }) {
       yield put({ type: 'showLoginLoading' });
       const data = yield call(login, payload);
       yield put({ type: 'hideLoginLoading' });
       if (data.success) {
+        setCookie('token', '13234242324deab003');
         const from = queryURL('from');
         yield put({ type: 'app/query' });
         if (from) {

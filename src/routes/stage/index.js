@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'dva';
-import { Row, Col, Card } from 'antd';
-import styles from './index.less';
+// import { Row, Col, Card } from 'antd';
+// import styles from './index.less';
 
 
 function Stage({ stage }) {
   const { stages } = stage;
-  console.log(stages);
+  // console.log(stages);
   return (
     <div>
       <h1>名字：{stages[0].name}</h1>
@@ -31,7 +31,7 @@ function Stage({ stage }) {
 }
 
 Stage.propTypes = {
-  stages: PropTypes.object,
+  stage: PropTypes.object.isRequired,
 };
-
+// noinspection JSUnusedGlobalSymbols
 export default connect(({ stage }) => ({ stage }))(Stage);

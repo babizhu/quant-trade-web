@@ -26,6 +26,7 @@ const Login = ({
     });
   }
 
+  // noinspection RequiredAttributes
   return (
     <div className={styles.form}>
       <div className={styles.logo}>
@@ -72,4 +73,5 @@ Login.propTypes = {
   dispatch: PropTypes.func,
 };
 
+// noinspection JSUnusedGlobalSymbols
 export default connect(({ login }) => ({ login }))(Form.create()(Login));

@@ -241,17 +241,22 @@ export default {
   'GET /api/users': { users: [1, 2] },
 
     // GET POST 可省略
-  'POST /api/user/login': (req, res) => { if (true) {
-    const now = new Date();
-    now.setDate(now.getDate() + 1);
-    res.cookie('token', JSON.stringify({ id: '0123456789', deadline: now.getTime() }), {
-      maxAge: 900000,
-      httpOnly: true,
-    });
-    res.json({ success: true, message: 'Ok' });
-  } else {
-    res.status(400).end();
-  } },
+  'POST /api/user/login': (req, res) => {
+    if (true) {
+      const now = new Date();
+      now.setDate(now.getDate() + 1);
+      // res.cookie('token', JSON.stringify({ id: '0123456789', deadline: now.getTime() }), {
+      //   maxAge: 900000,
+      //   // httpOnly: true,
+      // });
+      res.json({ success: true, message: 'Ok' });
+    } else {
+      res.status(400).end();
+    }
+  },
+  'GET /api/user/logout': (req, res) => {
+    res.status(200).end();
+  },
 
   // [`POST api/user/login`](req, res) {
   //   const { username, password } = req.body;

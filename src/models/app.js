@@ -5,12 +5,15 @@
 // import { parse } from 'qs';
 // import config from 'config';
 // import { EnumRoleType } from 'enums';
-// import { query, logout } from '../services/app';
+import { routerRedux } from 'dva/router';
+import { logout } from '../services/app';
 // import * as menusService from '../services/menus';
 
 // const { prefix } = config;
 // import { routerRedux } from 'dva/router'
 import { prefix } from '../consts/Config';
+import { delCookie } from '../utils/cookie';
+
 
 export default {
   namespace: 'app',
@@ -62,14 +65,15 @@ export default {
     },
 
     * logout({
-                     payload,
-                 }, { call, put }) {
-            // const data = yield call(logout, parse(payload));
-            // if (data.success) {
-            //   yield put({ type: 'query' });
-            // } else {
-            //   throw (data);
-            // }
+      payload,
+    }, { put, call }) {
+      const data = yield call(logout, payload);
+      if (data.success) {
+        delCookie('token', '/');
+        yield put(routerRedux.push('/login'));
+      } else {
+        throw (data);
+      }
     },
 
   },

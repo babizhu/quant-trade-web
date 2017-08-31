@@ -6,9 +6,10 @@ import styles from './index.less';
 
 
 function Dashboard({ dashboard }) {
+  // console.log(`dashboard${dashboard}`);
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>count:{dashboard.count}</h1>
       <h1>Dashboard</h1>
       <h1>Dashboard</h1>
       <h1>Dashboard</h1>

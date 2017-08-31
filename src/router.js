@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'dva/router';
 import App from './routes/app';
+import { getCookie } from './utils/cookie';
 
 const registerModel = (app, model) => {
   if (!(app._models.filter(m => m.namespace === model.namespace).length === 1)) {
@@ -10,8 +11,10 @@ const registerModel = (app, model) => {
 };
 const validateLogin = (next, replace, callback) => {
   const from = next.location.pathname;
-  const isLoggedIn = false;
-  if (!isLoggedIn && next.location.pathname !== '/login'&&next.location.pathname==='/') {
+  // console.log(getCookie('token'));
+  const token = getCookie('token');
+  const isLoggedIn = token !== null;
+  if (!isLoggedIn && next.location.pathname !== '/login') {
     replace(`/login?from=${from}`);
   }
   callback();
@@ -22,6 +25,7 @@ const Routers = function ({ history, app }) {
     {
       path: 'login',
       getComponent(nextState, cb) {
+                // noinspection JSUnresolvedFunction
         require.ensure([], (require) => {
           registerModel(app, require('./models/login'));
           cb(null, require('./routes/login/'));
@@ -49,7 +53,8 @@ const Routers = function ({ history, app }) {
               cb(null, require('./routes/dashboard/'));
             }, 'dashboard');
           },
-        }, {
+        },
+        {
           path: 'user',
           getComponent(nextState, cb) {
             require.ensure([], (require) => {
@@ -57,7 +62,8 @@ const Routers = function ({ history, app }) {
               cb(null, require('./routes/user/'));
             }, 'user');
           },
-        }, { path: 'stage',
+        }, {
+          path: 'stage',
           getComponent(nextState, cb) {
             require.ensure([], (require) => {
               registerModel(app, require('./models/stage'));
