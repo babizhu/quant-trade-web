@@ -107,9 +107,12 @@ export default function request(options) {
     let msg;
     let statusCode;
     if (response && response instanceof Object) {
-      const { data, statusText } = response;
+      const { data } = response;
+      // console.log(response)
+      console.log(response.request.responseURL)
+      // const { data, statusText } = response;
       statusCode = response.status;
-      msg = data.message || statusText;
+      msg = `${data.eid}|${data.msg}|${response.request.responseURL}`;// 不知道为什么返回一个对象(response.data)回报错
     } else {
       statusCode = 600;
       msg = error.message || 'Network Error';

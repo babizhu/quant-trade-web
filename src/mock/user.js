@@ -242,7 +242,8 @@ export default {
 
     // GET POST 可省略
   'POST /api/login': (req, res) => {
-    if (true) {
+    const { username, password } = req.body;
+    if (username === 'admin' && password === 'admin') {
       const now = new Date();
       now.setDate(now.getDate() + 1);
       // res.cookie('token', JSON.stringify({ id: '0123456789', deadline: now.getTime() }), {
@@ -251,7 +252,7 @@ export default {
       // });
       res.json({ success: true, message: 'Ok' });
     } else {
-      res.status(400).end();
+      res.status(500).json({ eid: 1003, msg: '' });
     }
   },
   'GET /api/logout': (req, res) => {

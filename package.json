@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "roadhog server",
-    "build": "roadhog build",
+    "build": "roadhog build -debug",
     "lint": "eslint --ext .js src test"
   },
   "engines": {

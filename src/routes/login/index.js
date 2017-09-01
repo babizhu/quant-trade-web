@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import { Button, Row, Form, Input } from 'antd';
 import { config } from '../../utils';
+import JSEncrypt from '../../utils/jsencrypt';
+import { PUBLIC_KEY } from '../../consts/Key';
 import styles from './index.less';
 
 const FormItem = Form.Item;
@@ -22,7 +24,11 @@ const Login = ({
       if (errors) {
         return;
       }
-      dispatch({ type: 'login/login', payload: values });
+      const encrypt = new JSEncrypt();
+      encrypt.setPublicKey(PUBLIC_KEY);
+      const password = encrypt.encrypt(values.password);
+      console.log(password);
+      dispatch({ type: 'login/login', payload: { username: values.username, password } });
     });
   }
 
