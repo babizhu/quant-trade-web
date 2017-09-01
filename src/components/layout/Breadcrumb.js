@@ -11,6 +11,7 @@ import styles from './Breadcrumb.less';
 
 const Breadcrumb = ({ menu, separator, currentPath }) => {
   const path = currentPath.replace('/', '');
+
   let pathArray = [];
   const renderName = (item) => {
     // pathArray.push(
@@ -55,10 +56,14 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
 
     return false;
   };
+  if (path === '' || path === 'dashboard') {
+    const m = { text: 'Home' };
+    renderName(m);
+  } else {
   // console.log(pathArray);
   // let currentMenu;
-  let isFound = false;
-  outer:
+    let isFound = false;
+    outer:
   for (const tempMenu of menu) {
     const menuData = tempMenu.menu;
     if (menuData) {
@@ -73,10 +78,11 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
       }
     }
   }
-  if (!isFound) {
+    if (!isFound) {
     // alert('not found');
-    const m = { text: '404 Not Found' };
-    renderName(m);
+      const m = { text: '404 Not Found' };
+      renderName(m);
+    }
   }
   const homeLink =
     (<span className={styles.homeLink}>
