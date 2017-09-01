@@ -242,8 +242,8 @@ export default {
 
     // GET POST 可省略
   'POST /api/login': (req, res) => {
-    const { username, password } = req.body;
-    if (username === 'admin' && password === 'admin') {
+    const { username } = req.body;
+    if (username === 'admin') {
       const now = new Date();
       now.setDate(now.getDate() + 1);
       // res.cookie('token', JSON.stringify({ id: '0123456789', deadline: now.getTime() }), {
