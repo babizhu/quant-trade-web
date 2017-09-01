@@ -27,7 +27,6 @@ const Login = ({
       const encrypt = new JSEncrypt();
       encrypt.setPublicKey(PUBLIC_KEY);
       const password = encrypt.encrypt(values.password);
-      console.log(password);
       dispatch({ type: 'login/login', payload: { username: values.username, password } });
     });
   }
@@ -42,29 +41,37 @@ const Login = ({
       <form>
         <FormItem hasFeedback>
           {getFieldDecorator('username', {
+            initialValue: 'admin',
             rules: [
               {
                 required: true,
+                message: 'Please input your username!',
               },
             ],
-          })(<Input size="large" onPressEnter={handleOk} placeholder="Username" />)}
+          })(<Input
+            size="large" onPressEnter={handleOk} placeholder="Username"
+          />)}
         </FormItem>
         <FormItem hasFeedback>
           {getFieldDecorator('password', {
+            initialValue: 'admin',
             rules: [
               {
                 required: true,
               },
             ],
-          })(<Input size="large" type="password" onPressEnter={handleOk} placeholder="Password" />)}
+          })(<Input
+
+            size="large" type="password" onPressEnter={handleOk} placeholder="Password"
+          />)}
         </FormItem>
         <Row>
           <Button type="primary" size="large" onClick={handleOk} loading={loginLoading}>
             Sign in
           </Button>
           <p>
-            <span>Username：guest</span>
-            <span>Password：guest</span>
+            <span>Username：admin</span>
+            <span>Password：admin</span>
           </p>
         </Row>
 
