@@ -21,10 +21,11 @@ const Sidebar = ({ user, menu, currentPath, isFold, bigScreen, switchSider }) =>
     isFold,
     currentPath,
     bigScreen,
+    switchSider,
   };
   return (
-    <div className={styles.sidebar} style={{ width: widthValue }}>
-      <div className={styles.sidebarContent}>
+    <div className={styles.sidebar} style={{ width: widthValue }} >
+      <div className={styles.sidebarContent} >
         {<UserProfile user={user} isFold={isFold} />}
         <div className={styles.sidebarCategory}>
           <div className={styles.categoryContent}>
@@ -32,7 +33,7 @@ const Sidebar = ({ user, menu, currentPath, isFold, bigScreen, switchSider }) =>
               {menu.map((menuGroup, index) => {
                 if (true || menuGroup.show) {
                   return (
-                    <MenuGroup key={index} menuGroup={menuGroup} {...menuGroupProps} switchSider={switchSider} />
+                    <MenuGroup key={index} menuGroup={menuGroup} {...menuGroupProps} />
                   );
                 }
               })}
