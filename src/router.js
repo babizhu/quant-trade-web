@@ -71,6 +71,14 @@ const Routers = function ({ history, app }) {
             }, 'stage');
           },
         },
+        {
+          path: '*',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              cb(null, require('./routes/notfound/'));
+            }, 'error');
+          },
+        },
       ],
     },
   ];

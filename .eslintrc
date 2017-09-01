@@ -35,9 +35,9 @@
     "no-plusplus": "off",
     "no-console": 0,
     "no-continue": 0,
-    "no-labels":0
+    "no-labels":0,
 //    "no-unused-labels": 0,
-//    "no-unused-expressions": 0
+    "no-unused-expressions": 0
   },
   "parserOptions": {
     "ecmaFeatures": {

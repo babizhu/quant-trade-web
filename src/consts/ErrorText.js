@@ -50,6 +50,9 @@ const errors = {
         // text: 'hadoop文件%s没找到,this is a test for%s'
     text: '您无权访问 %s 文件（夹）',
   },
+  504: {
+    text: '网络错误 : %s',
+  },
   600: {
         // text: 'hadoop文件%s没找到,this is a test for%s'
     text: '您无法访问远程网络',

@@ -57,6 +57,7 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
   };
   // console.log(pathArray);
   // let currentMenu;
+  let isFound = false;
   outer:
   for (const tempMenu of menu) {
     const menuData = tempMenu.menu;
@@ -64,12 +65,18 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
       // console.log(menuData);
       for (const m of menuData) {
         if (buildBread(m)) {
+          isFound = true;
           break outer;
         } else {
           pathArray = [];
         }
       }
     }
+  }
+  if (!isFound) {
+    // alert('not found');
+    const m = { text: '404 Not Found' };
+    renderName(m);
   }
   const homeLink =
     (<span className={styles.homeLink}>
@@ -78,6 +85,7 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
       </Link>
       <span className={styles.separator}>{separator}</span>
     </span>);
+
   return (
     <div className={styles.breadcrumb}>
       {homeLink}

@@ -10,9 +10,7 @@ import styles from '../Sidebar.less';
 
 class SubMenu extends Component {
 
-  hideMenu() {
-    alert(3);
-  }
+
   static click(e) {
     if (e && e.stopPropagation) {
       e.stopPropagation();
@@ -56,6 +54,7 @@ class SubMenu extends Component {
       if (true) {
         return this.buildSubMenuItem(item, index);
       }
+      return '';
     });
     return (
 

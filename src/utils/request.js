@@ -109,10 +109,14 @@ export default function request(options) {
     if (response && response instanceof Object) {
       const { data } = response;
       // console.log(response)
-      console.log(response.request.responseURL);
+      // console.log(response.request.responseURL);
       // const { data, statusText } = response;
       statusCode = response.status;
-      msg = `${data.eid}|${data.msg}|${response.request.responseURL}`;// 不知道为什么返回一个对象(response.data)回报错
+      if (statusCode === 500) {
+        msg = `${data.eid}|${data.msg}|${response.request.responseURL}`;
+      } else {
+        msg = `504|${data}|${response.request.responseURL}`;
+      }// 不知道为什么返回一个对象(response.data)回报错
     } else {
       statusCode = 600;
       msg = `600||http://${location.hostname}:${location.port}${options.url}`;

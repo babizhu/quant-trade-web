@@ -46,25 +46,20 @@ const Header = ({ user, switchSider, logout }) => {
           <li className={styles.leftIcon}>
             <img src="/logo.png" alt="必发财炒股鸡" />
           </li>
-          <li className={styles.mobileIcon}>
-            <Icon type="appstore" className={styles.icon} />
-          </li>
-          <li className={styles.mobileIcon} onClick={switchSider}>
-            <Icon type="bars" className={styles.icon} />
-          </li>
+
         </ul>
       </div>
 
       <div className={styles.headerMiddle}>
         <ul>
           <li onClick={switchSider}><Icon type="bars" className={styles.icon} /></li>
-          <li>
+          {/*<li>*/}
 
-            <Iconfont colorful type={require('../../svg/emoji/stage.svg')} />
-            <Icon type="github" className={styles.icon} />
-            <span className={styles.visibleXsInlineBlock}> Git updates</span>
+            {/*<Iconfont colorful type={require('../../svg/emoji/stage.svg')} />*/}
+            {/*<Icon type="github" className={styles.icon} />*/}
+            {/*<span className={styles.visibleXsInlineBlock}> Git updates</span>*/}
 
-          </li>
+          {/*</li>*/}
           <li>{new Date().toLocaleDateString()}</li>
         </ul>
       </div>
