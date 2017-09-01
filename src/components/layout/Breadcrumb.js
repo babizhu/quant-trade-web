@@ -56,7 +56,7 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
 
     return false;
   };
-  if (path === '' || path === 'dashboard') {
+  if (path === '' || path === 'dashboard') { // 根路径和dashboard在menuData中不存在，所以特殊处理
     const m = { text: 'Home' };
     renderName(m);
   } else {
