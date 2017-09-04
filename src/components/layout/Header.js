@@ -77,8 +77,7 @@ const Header = ({ user, switchSider, logout }) => {
           <Dropdown overlay={menu1}>
             <li className={styles.person}>
               <span>
-                <img src={user.iconUrl} alt="用户" />
-                <span>{user.name} <Icon type="down" className={styles.downIcon} /></span>
+                <img src={user.iconUrl} alt="用户" /> {user.name}  <Icon type="down" className={styles.downIcon} />
               </span>
             </li>
           </Dropdown>
