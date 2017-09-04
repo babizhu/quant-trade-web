@@ -84,9 +84,9 @@ export default {
         bigScreen: payload,
       };
     },
-    switchSiderOnContent(state){//如果是小屏幕并且sidebar显示的情况下 点击空白处，让siebar收起，可能会有别个bug，再看看吧
+    switchSiderOnContent(state) { // 如果是小屏幕并且sidebar显示的情况下 点击空白处，让siebar收起，可能会有别个bug，再看看吧
       // console.log('state.sideBarFold'+state.sideBarFold);
-      if(!state.sideBarFold && !state.bigScreen) {
+      if (!state.sideBarFold && !state.bigScreen) {
         return {
           ...state,
           sideBarFold: !state.sideBarFold,

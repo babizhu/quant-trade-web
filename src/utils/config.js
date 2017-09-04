@@ -1,10 +1,11 @@
 const APIV1 = '/api';
 const APIV2 = '/api/v2';
-
+const HOST = 'http://localhost:8080';
 export default {
+  host: HOST,
   name: 'Quant Trade',
-  prefix: 'antdAdmin',
-  footerText: 'Ant Design Admin  © 2017 zuiidea',
+  prefix: 'quantTrade',
+  // footerText: 'Ant Design Admin  © 2017 zuiidea',
   logo: '/logo.png',
   iconFontCSS: '/iconfont.css',
   iconFontJS: '/iconfont.js',

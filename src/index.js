@@ -1,6 +1,7 @@
 import dva from 'dva';
 import { notification } from 'antd';
 import { hashHistory } from 'dva/router';
+// import { browserHistory } from 'dva/router';
 import createLoading from 'dva-loading';
 import { getErrMsg } from './consts/ErrorText';
 import './index.css';
@@ -10,6 +11,7 @@ const app = dva({
   ...createLoading({
     effects: true,
   }),
+  // history: browserHistory,
   history: hashHistory,
   onError(error) {
     const msg = error.message.split('|');

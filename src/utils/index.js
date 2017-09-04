@@ -40,16 +40,27 @@ import request from './request';
 //   return format;
 // };
 
-
 // /**
-//  * @param   {String}
-//  * @return  {String}
+//  * 匹配 browserHistory 方式的路径
+//  * @param name
+//  * @returns {*}
 //  */
+// const queryURL = (name) => {
+//   const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i');
+//   const r = window.location.search.substr(1).match(reg);
+//   if (r !== null) return decodeURI(r[2]);
+//   return null;
+// };
 
+/**
+  * 匹配 hashHistory 方式的路径
+  * @param name
+  * @returns {*}
+  */
 const queryURL = (name) => {
-  const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i');
-  const r = window.location.search.substr(1).match(reg);
-  if (r !== null) return decodeURI(r[2]);
+  const reg = new RegExp(`${name}=([^&]*)(&|$)`, 'i');
+  const r = window.location.hash.match(reg);
+  if (r !== null) return decodeURI(r[1]);
   return null;
 };
 

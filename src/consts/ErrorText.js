@@ -61,6 +61,10 @@ const errors = {
         // text: 'hadoop文件%s没找到,this is a test for%s'
     text: '您无权访问 %s 文件（夹）',
   },
+  998: {
+        // text: 'hadoop文件%s没找到,this is a test for%s'
+    text: '数据库错误：%s',
+  },
 };
 
 /**
@@ -92,7 +96,7 @@ export function getErrMsg(errId, args, url) {
     // console.log(args);
 
   if (args.split) {
-    for (const arg of args.split(',')) {
+    for (const arg of args.split('^')) {
       msg = msg.replace('%s', arg);
     }
   }

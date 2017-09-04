@@ -5,7 +5,7 @@ import jsonp from 'jsonp';
 import lodash from 'lodash';
 import pathToRegexp from 'path-to-regexp';
 import { message } from 'antd';
-import { YQL, CORS } from './config';
+import { YQL, CORS, host } from './config';
 
 const fetch = (options) => {
   let {
@@ -18,7 +18,7 @@ const fetch = (options) => {
   const cloneData = lodash.cloneDeep(data);
 
   try {
-    let domin = '';
+    let domin = host;
     if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
       domin = url.match(/[a-zA-z]+:\/\/[^/]*/)[0];
       url = url.slice(domin.length);
@@ -74,6 +74,7 @@ const fetch = (options) => {
 };
 
 export default function request(options) {
+    // options.fetchType = 'CORS';
   if (options.url && options.url.indexOf('//') > -1) {
     const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`;
     if (window.location.origin !== origin) {

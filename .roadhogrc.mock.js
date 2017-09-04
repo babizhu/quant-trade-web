@@ -13,5 +13,5 @@ fs.readdirSync(root).forEach((item) => {
     // console.log(info);
     Object.assign(mock, require(root  + item))
 });
-console.log(mock);
+// console.log(mock);
 module.exports = mock;
