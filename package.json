@@ -9,6 +9,7 @@
     "install-node": "6.9.2"
   },
 
+
   "dependencies": {
     "antd": "^2.12.7",
     "axios": "latest",
