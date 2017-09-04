@@ -43,12 +43,18 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
       return true;
     } else if (item.subMenu) {
       for (const m of item.subMenu) {
-        if (m.component !== undefined) {
-          renderLink(m);
-        } else {
-          renderName(m);
-        }
+        // if (m.component !== undefined) {
+        //   renderLink(m);
+        // } else {
+        //   renderName(m);
+        // }
+
         if (m.component === path) {
+          if (m.component !== undefined) {
+            renderLink(m);
+          } else {
+            renderName(m);
+          }
           return true;
         }
       }
