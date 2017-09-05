@@ -38,9 +38,9 @@ class SubMenu extends Component {
     return (
       <li key={index} className={classnames({ [styles.subItemActive]: isSelected })} onClick={SubMenu.click.bind(this)}>
         <Link to={subMenuItem.component ? `/${subMenuItem.component}` : '/'} key={index} onClick={() => { !bigScreen && switchSider(); }}>
-          <div>
+
             {subMenuItem.text}
-          </div>
+
 
         </Link>
       </li>
