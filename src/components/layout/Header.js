@@ -53,20 +53,20 @@ const Header = ({ user, switchSider, logout }) => {
       <div className={styles.headerMiddle}>
         <ul>
           <li onClick={switchSider}><Icon type="bars" className={styles.icon} /></li>
-          {/*<li>*/}
+          {/* <li>*/}
 
-            {/*<Iconfont colorful type={require('../../svg/emoji/stage.svg')} />*/}
-            {/*<Icon type="github" className={styles.icon} />*/}
-            {/*<span className={styles.visibleXsInlineBlock}> Git updates</span>*/}
+          {/* <Iconfont colorful type={require('../../svg/emoji/stage.svg')} />*/}
+          {/* <Icon type="github" className={styles.icon} />*/}
+          {/* <span className={styles.visibleXsInlineBlock}> Git updates</span>*/}
 
-          {/*</li>*/}
+          {/* </li>*/}
           <li>{new Date().toLocaleDateString()}</li>
         </ul>
       </div>
 
       <div className={styles.headerRight}>
         <ul>
-          <Dropdown overlay={menu}>
+          <Dropdown overlay={menu} trigger={['click', 'hover']}>
             <li>
               <span>
                 <img src="/img/gb.png" alt="" style={{ paddingTop: '1px' }} /> English <Icon type="down" className={styles.downIcon} />
@@ -74,10 +74,10 @@ const Header = ({ user, switchSider, logout }) => {
             </li>
           </Dropdown>
 
-          <Dropdown overlay={menu1}>
+          <Dropdown overlay={menu1} trigger={['click', 'hover']}>
             <li className={styles.person}>
               <span>
-                <img src={user.iconUrl} alt="用户" /> {user.name}  <Icon type="down" className={styles.downIcon} />
+                <img src={user.iconUrl} alt="用户" /> {user.name}            <Icon type="down" className={styles.downIcon} />
               </span>
             </li>
           </Dropdown>
