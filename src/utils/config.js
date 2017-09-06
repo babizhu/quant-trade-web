@@ -1,6 +1,6 @@
 const APIV1 = '/api';
 const APIV2 = '/api/v2';
-const HOST = 'http://localhost:8080';
+const HOST = 'http://192.168.31.133:8080';
 export default {
   host: HOST,
   name: 'Quant Trade',
@@ -18,6 +18,7 @@ export default {
     userLogout: `${APIV1}/logout`,
     userInfo: `${APIV1}/userInfo`,
     users: `${APIV1}/users`,
+    userQuery: `${APIV1}/user/query`,
     posts: `${APIV1}/posts`,
     user: `${APIV1}/user/:id`,
     dashboard: `${APIV1}/dashboard`,
