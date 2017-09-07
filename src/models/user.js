@@ -1,9 +1,11 @@
 import modelExtend from 'dva-model-extend';
 
-import * as usersService from '../services/user';
+// import * as usersService from '../services/user';
+import { create, query, remove, update } from '../services/user'
+
 import { pageModel } from './common';
 
-const { query } = usersService;
+// const { query } = usersService;
 
 // noinspection JSUnusedGlobalSymbols
 export default modelExtend(pageModel, {
@@ -46,8 +48,25 @@ export default modelExtend(pageModel, {
         throw data;
       }
     },
+
+    * create ({ payload }, { call, put }) {
+      const data = yield call(create, payload)
+      if (data.success) {
+        yield put({ type: 'hideModal' })
+        yield put({ type: 'query' })
+      } else {
+        throw data
+      }
+    },
   },
   reducers: {
 
+    showModal (state, { payload }) {
+      return { ...state, ...payload, modalVisible: true }
+    },
+
+    hideModal (state) {
+      return { ...state, modalVisible: false }
+    },
   },
 });

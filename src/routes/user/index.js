@@ -48,7 +48,7 @@ const User = ({ dispatch, user, loading }) => {
   };
 
   const columns = [{
-    title: 'Name',
+    title: '用户名',
     dataIndex: 'username',
     key: 'name',
   }, {
@@ -56,11 +56,19 @@ const User = ({ dispatch, user, loading }) => {
     dataIndex: 'roles',
     key: 'roles',
   }, {
-    title: '居住地址',
+    title: '地址',
     dataIndex: 'address',
     key: 'address',
   }, {
-    title: 'Action',
+    title: '电话',
+    dataIndex: 'phone',
+    key: 'phone',
+  }, {
+    title: '邮件',
+    dataIndex: 'email',
+    key: 'email',
+  }, {
+    title: '操作',
     key: 'action',
     render: (text, record) => (
       <span>
@@ -86,7 +94,7 @@ const User = ({ dispatch, user, loading }) => {
         <Search
           placeholder="search by name or description" onSearch={(keyword) => {
             console.log(keyword);
-          }} style={{ width: '25%' }}
+          }} style={{ width: '35%' }}
         />
         <div style={{ float: 'right' }}>
           <Button
@@ -94,7 +102,7 @@ const User = ({ dispatch, user, loading }) => {
             className={styles.button}
           />
           <Button type="ghost" icon="plus" className={styles.button} onClick={onAdd}>添加</Button>
-          <DropdownButton overlay={menu}>
+          <DropdownButton overlay={menu}  trigger={['click', 'hover']}>
                         更多操作
                     </DropdownButton>
         </div>

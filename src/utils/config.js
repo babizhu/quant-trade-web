@@ -19,6 +19,7 @@ export default {
     userInfo: `${APIV1}/userInfo`,
     users: `${APIV1}/users`,
     userQuery: `${APIV1}/user/query`,
+    userSave: `${APIV1}/user/save`,
     posts: `${APIV1}/posts`,
     user: `${APIV1}/user/:id`,
     dashboard: `${APIV1}/dashboard`,

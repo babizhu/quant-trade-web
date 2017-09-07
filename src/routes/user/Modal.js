@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input, InputNumber, Radio, Modal, Cascader } from 'antd';
-import city from '../../utils/city';
+import { Form, Input, Modal } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -33,7 +32,7 @@ const modal = ({
         ...getFieldsValue(),
         key: item.key,
       };
-      data.address = data.address.join(' ');
+      // data.address = data.address.join(' ');
       onOk(data);
     });
   };
@@ -46,8 +45,8 @@ const modal = ({
   return (
     <Modal {...modalOpts}>
       <Form layout="horizontal">
-        <FormItem label="Name" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('name', {
+        <FormItem label="用户名" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('username', {
             initialValue: item.name,
             rules: [
               {
@@ -56,9 +55,8 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="NickName" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('nickName', {
-            initialValue: item.nickName,
+        <FormItem label="密 码" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('password', {
             rules: [
               {
                 required: true,
@@ -66,33 +64,17 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="Gender" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('isMale', {
-            initialValue: item.isMale,
+        <FormItem label="角 色" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('roles', {
+            initialValue: item.roles,
             rules: [
               {
                 required: true,
-                type: 'boolean',
               },
             ],
-          })(
-            <Radio.Group>
-              <Radio value>Male</Radio>
-              <Radio value={false}>Female</Radio>
-            </Radio.Group>,
-          )}
+          })(<Input />)}
         </FormItem>
-        <FormItem label="Age" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('age', {
-            initialValue: item.age,
-            rules: [
-              {
-                required: true,
-                type: 'number',
-              },
-            ],
-          })(<InputNumber min={18} max={100} />)}
-        </FormItem>
+
         <FormItem label="Phone" hasFeedback {...formItemLayout}>
           {getFieldDecorator('phone', {
             initialValue: item.phone,
@@ -117,21 +99,7 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="Address" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('address', {
-            initialValue: item.address && item.address.split(' '),
-            rules: [
-              {
-                required: true,
-              },
-            ],
-          })(<Cascader
-            size="large"
-            style={{ width: '100%' }}
-            options={city}
-            placeholder="Pick an address"
-          />)}
-        </FormItem>
+
       </Form>
     </Modal>
   );
