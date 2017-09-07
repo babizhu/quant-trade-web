@@ -17,7 +17,7 @@ export default {
       if (data.success) {
         setCookie('token', '13234242324deab003');
         const from = queryURL('from');
-        yield put({ type: 'app/query' });
+        // yield put({ type: 'app/query' });
         if (from) {
           yield put(routerRedux.push(from));
         } else {

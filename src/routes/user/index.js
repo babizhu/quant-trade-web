@@ -1,17 +1,51 @@
 import React from 'react';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 import { Table, Icon, Input, Button, Dropdown, Menu } from 'antd';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'dva';
+import Modal from './Modal';
+import styles from './index.less';
 
 const Search = Input.Search;
 const DropdownButton = Dropdown.Button;
-import styles from './index.less';
 
-const User = ({ location, dispatch, user, loading }) => {
-  const { users, list } = user;
+const User = ({ dispatch, user, loading }) => {
+  const { list, modalVisible, modalType, currentItem } = user;
+  const onAdd = () => {
+    dispatch({
+      type: 'user/showModal',
+      payload: {
+        modalType: 'create',
+      },
+    });
+  };
 
-  const refresh = () => {};
+
+  const modalProps = {
+    item: modalType === 'create' ? {} : currentItem,
+    visible: modalVisible,
+    maskClosable: false,
+    confirmLoading: loading.effects['user/update'],
+    title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
+    wrapClassName: 'vertical-center-modal',
+    onOk(data) {
+      dispatch({
+        type: `user/${modalType}`,
+        payload: data,
+      });
+    },
+    onCancel() {
+      dispatch({
+        type: 'user/hideModal',
+      });
+    },
+  };
+  const refresh = () => {
+    dispatch({
+      type: 'user/query',
+      payload: '',
+    });
+  };
 
   const columns = [{
     title: 'Name',
@@ -22,7 +56,7 @@ const User = ({ location, dispatch, user, loading }) => {
     dataIndex: 'roles',
     key: 'roles',
   }, {
-    title: 'Address',
+    title: '居住地址',
     dataIndex: 'address',
     key: 'address',
   }, {
@@ -38,7 +72,7 @@ const User = ({ location, dispatch, user, loading }) => {
         More actions <Icon type="down" />
         </a>
       </span>
-    ),
+        ),
   }];
 
   const menu = (
@@ -47,33 +81,31 @@ const User = ({ location, dispatch, user, loading }) => {
     </Menu>
     );
   return (
-    <div style={{ backgroundColor: 'white' }}>
-      <div style={{ margin: '10px 0px', height: 'auto', minWidth: '560px' }}>
-
-
-        <Search placeholder="search by name or description" onSearch={(keyword) => { console.log(keyword); }} style={{ width: '25%' }} />
+    <div className={styles.user}>
+      <div className={styles.userListHeader}>
+        <Search
+          placeholder="search by name or description" onSearch={(keyword) => {
+            console.log(keyword);
+          }} style={{ width: '25%' }}
+        />
         <div style={{ float: 'right' }}>
           <Button
             type="primary" icon="reload" onClick={refresh}
-            className="button"
+            className={styles.button}
           />
-          <Button
-            type="ghost" icon="plus" className="button"
-          >
-            添加</Button>
-
-          <DropdownButton overlay={menu} type="primary" style={{ margin: '0px 6px' }}>
-            更多操作
-          </DropdownButton>
+          <Button type="ghost" icon="plus" className={styles.button} onClick={onAdd}>添加</Button>
+          <DropdownButton overlay={menu}>
+                        更多操作
+                    </DropdownButton>
         </div>
 
       </div>
       <Table columns={columns} dataSource={list} rowKey={record => record._id} />
+      {modalVisible && <Modal {...modalProps} />}
     </div>
   );
 };
 
-User.propTypes = {
-};
-export default connect(({ user }) => ({ user }))(User);
+User.propTypes = {};
+export default connect(({ user, loading }) => ({ user, loading }))(User);
 

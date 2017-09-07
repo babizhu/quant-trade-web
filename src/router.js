@@ -10,11 +10,11 @@ const registerModel = (app, model) => {
   }
 };
 const validateLogin = (next, replace, callback) => {
-  const from = next.location.pathname;
   // console.log(getCookie('token'));
   const token = getCookie('token');
   const isLoggedIn = token !== null;
   if (!isLoggedIn && next.location.pathname !== '/login') {
+    const from = next.location.pathname;
     replace(`/login?from=${from}`);
   }
   callback();

@@ -32,7 +32,7 @@ export const initMenuData = [{
       index: index++,
       subMenu: [
         {
-          icon: 'phone',
+          icon: 'user',
           text: '用户列表',
           component: 'user',
         },
@@ -44,12 +44,12 @@ export const initMenuData = [{
       ],
     },
     {
-      icon: 'shrink',
+      icon: 'right-circle-o',
       text: '测试模块',
       index: index++,
       subMenu: [
         {
-          icon: 'phone',
+          icon: 'exclamation-circle-o',
           text: '测试程序',
           component: '/',
         },

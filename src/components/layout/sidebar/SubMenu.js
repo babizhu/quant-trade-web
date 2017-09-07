@@ -3,7 +3,7 @@
  * 显示最底层的子菜单
  */
 import React, { Component } from 'react';
-// import { Icon } from 'antd';
+import { Icon } from 'antd';
 import classnames from 'classnames';
 import { Link } from 'react-router';
 import styles from '../Sidebar.less';
@@ -36,10 +36,10 @@ class SubMenu extends Component {
       isSelected = true;
     }
     return (
-      <li key={index} className={classnames({ [styles.subItemActive]: isSelected })} onClick={SubMenu.click.bind(this)}>
+      <li key={index} className={classnames(styles.subItem, { [styles.subItemActive]: isSelected })} onClick={SubMenu.click.bind(this)}>
         <Link to={subMenuItem.component ? `/${subMenuItem.component}` : '/'} key={index} onClick={() => { !bigScreen && switchSider(); }}>
 
-            {subMenuItem.text}
+          <Icon type={subMenuItem.icon} style={{ padding: '10px' }} /> {subMenuItem.text}
 
 
         </Link>

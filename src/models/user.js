@@ -9,9 +9,10 @@ const { query } = usersService;
 export default modelExtend(pageModel, {
   namespace: 'user',
   state: {
-    users: {
-      name: 'liulaoye',
-    },
+    currentItem: {},
+    modalVisible: false,
+    modalType: 'create',
+
   },
   subscriptions: {
     setup({ dispatch, history }) {
