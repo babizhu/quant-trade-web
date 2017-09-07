@@ -1,7 +1,7 @@
-import modelExtend from 'dva-model-extend'
+import modelExtend from 'dva-model-extend';
 
-import * as usersService from '../services/user'
-import { pageModel } from './common'
+import * as usersService from '../services/user';
+import { pageModel } from './common';
 
 const { query } = usersService;
 
@@ -14,25 +14,25 @@ export default modelExtend(pageModel, {
     },
   },
   subscriptions: {
-    setup ({ dispatch, history }) {
+    setup({ dispatch, history }) {
       history.listen((location) => {
         if (location.pathname === '/user') {
           dispatch({
             type: 'query',
             payload: location.query,
-          })
+          });
         }
-      })
+      });
     },
   },
   effects: {
-    * query ({ payload = {} }, { call, put }) {
+    * query({ payload = {} }, { call, put }) {
       const data = yield call(query, payload);
-      if (data) {
+      if (data.success) {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: data.data,
+            list: data.list,
             pagination: {
               current: Number(payload.page) || 1,
               pageSize: Number(payload.pageSize) || 10,
@@ -40,11 +40,13 @@ export default modelExtend(pageModel, {
               // total: data.total,
             },
           },
-        })
+        });
+      } else {
+        throw data;
       }
     },
   },
   reducers: {
 
   },
-})
+});
