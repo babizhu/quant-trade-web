@@ -82,7 +82,6 @@ const User = ({ dispatch, user, loading }) => {
       </span>
         ),
   }];
-
   const menu = (
     <Menu>
       <Menu.Item key="1">上传EXCEL</Menu.Item>
