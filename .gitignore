@@ -1,11 +1,24 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.idea
 
+dist
 # dependencies
 /node_modules
 
 # production
-/dist-old
 
 # misc
 .DS_Store
 npm-debug.log*
+/src/utils/config.js
+将删除 .idea/compiler.xml
+将删除 .idea/inspectionProfiles/
+将删除 .idea/jsLibraryMappings.xml
+将删除 .idea/jsLinters/
+将删除 .idea/misc.xml
+将删除 .idea/modules.xml
+将删除 .idea/mongoSettings.xml
+将删除 .idea/quant-trade-web.iml
+将删除 .idea/vcs.xml
+将删除 .idea/workspace.xml
+将删除 dist/
