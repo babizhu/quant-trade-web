@@ -82,7 +82,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
         <aside className={styles.sidebar} style={{ position: sidebarPosition, display: displayMode, height }}>
           <Sidebar {...sidebarProps} />
         </aside>
-
+        <div className={styles.container} style={{ marginLeft: contentMarginLeft }}>
 
 
           <Breadcrumb {...breadcrumbProps} />
