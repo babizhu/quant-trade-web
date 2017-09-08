@@ -24,14 +24,24 @@ const modal = ({
   ...modalProps
 }) => {
   const handleOk = () => {
-    validateFields((errors) => {
+    validateFields((errors, values) => {
       if (errors) {
         return;
       }
-      const data = {
-        ...getFieldsValue(),
-        key: item.key,
-      };
+      let data;
+      if (item._id) { // update
+        data = {
+          email: values.email,
+          phone: values.phone,
+          roles: values.roles,
+          _id: item._id,
+        };
+      } else {
+        data = {
+          ...getFieldsValue(),
+          _id: -1,
+        };
+      }
       // data.address = data.address.join(' ');
       onOk(data);
     });
@@ -47,7 +57,7 @@ const modal = ({
       <Form layout="horizontal">
         <FormItem label="用户名" hasFeedback {...formItemLayout}>
           {getFieldDecorator('username', {
-            initialValue: item.name,
+            initialValue: item.username,
             rules: [
               {
                 required: true,
@@ -57,6 +67,7 @@ const modal = ({
         </FormItem>
         <FormItem label="密 码" hasFeedback {...formItemLayout}>
           {getFieldDecorator('password', {
+            initialValue: item.password,
             rules: [
               {
                 required: true,

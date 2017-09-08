@@ -63,6 +63,9 @@ const errors = {
         // text: 'hadoop文件%s没找到,this is a test for%s'
     text: '数据库错误：%s',
   },
+  999: {
+    text: '系统错误：%s',
+  },
   1004: {
     text: '登录失败，用户名或密码错误。',
   },

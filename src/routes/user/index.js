@@ -1,6 +1,6 @@
 import React from 'react';
 // import classnames from 'classnames';
-import { Table, Icon, Input, Button, Dropdown, Menu } from 'antd';
+import { Table, Icon, Input, Button, Dropdown, Menu, Tooltip } from 'antd';
 // import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import Modal from './Modal';
@@ -19,7 +19,15 @@ const User = ({ dispatch, user, loading }) => {
       },
     });
   };
-
+  const onEditItem = (item) => {
+    dispatch({
+      type: 'user/showModal',
+      payload: {
+        modalType: 'update',
+        currentItem: item,
+      },
+    });
+  };
 
   const modalProps = {
     item: modalType === 'create' ? {} : currentItem,
@@ -30,7 +38,7 @@ const User = ({ dispatch, user, loading }) => {
     wrapClassName: 'vertical-center-modal',
     onOk(data) {
       dispatch({
-        type: `user/${modalType}`,
+        type: 'user/save',
         payload: data,
       });
     },
@@ -69,18 +77,30 @@ const User = ({ dispatch, user, loading }) => {
     key: 'email',
   }, {
     title: '操作',
-    key: 'action',
-    render: (text, record) => (
-      <span>
-        <a href="#">Action 一 {record.name}</a>
-        <span className="ant-divider" />
-        <a href="#">Delete</a>
-        <span className="ant-divider" />
-        <a href="#" className="ant-dropdown-link">
-        More actions <Icon type="down" />
-        </a>
-      </span>
-        ),
+    key: 'operation',
+    render(text, record) {
+      return (
+        <div onClick={(e) => {}}>
+          <span className="table-actions">
+            <Tooltip title="编辑">
+              <Button type="ghost" className="button" onClick={() => onEditItem(record)}>
+                <Icon type="edit" />
+              </Button>
+            </Tooltip>
+            <Tooltip title="删除">
+              <Button
+                type="ghost"
+                className="button"
+                onClick={() => {}}
+              >
+                <Icon type="delete" />
+              </Button>
+            </Tooltip>
+
+          </span>
+        </div>
+      );
+    },
   }];
   const menu = (
     <Menu>
@@ -101,7 +121,7 @@ const User = ({ dispatch, user, loading }) => {
             className={styles.button}
           />
           <Button type="ghost" icon="plus" className={styles.button} onClick={onAdd}>添加</Button>
-          <DropdownButton overlay={menu}  trigger={['click', 'hover']}>
+          <DropdownButton overlay={menu} trigger={['click', 'hover']}>
                         更多操作
                     </DropdownButton>
         </div>
