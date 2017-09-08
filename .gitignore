@@ -10,7 +10,8 @@ dist
 # misc
 .DS_Store
 npm-debug.log*
-/src/utils/config.js
+
+
 将删除 .idea/compiler.xml
 将删除 .idea/inspectionProfiles/
 将删除 .idea/jsLibraryMappings.xml
