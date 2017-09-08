@@ -48,7 +48,7 @@ const User = ({ dispatch, user, loading }) => {
   };
 
   const columns = [{
-    title: '用户名',
+    title: '用户',
     dataIndex: 'username',
     key: 'name',
   }, {
