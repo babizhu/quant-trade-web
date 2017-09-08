@@ -40,3 +40,5 @@ app.router(require('./router'));
 // 5. Start
 app.start('#root');
 // master
+
+//Creating a new branch is quick AND simple.
