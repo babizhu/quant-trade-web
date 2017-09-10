@@ -39,7 +39,7 @@ const modal = ({
       } else {
         data = {
           ...getFieldsValue(),
-          _id: -1,
+          _id: '-1',
         };
       }
       // data.address = data.address.join(' ');
