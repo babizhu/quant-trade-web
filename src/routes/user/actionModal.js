@@ -26,6 +26,7 @@ const ActionModal = ({
   const isUpdate = () => {
     return modalOpts.modalType === 'update';
   };
+  // noinspection JSUnusedLocalSymbols
   const isDelete = () => {
     return modalOpts.modalType === 'delete';
   };
@@ -43,6 +44,7 @@ const ActionModal = ({
           email: values.email,
           phone: values.phone,
           roles: values.roles,
+          address:values.address,
           _id: item._id,
         };
       } else if (isCreate()) {
@@ -75,6 +77,7 @@ const ActionModal = ({
     return (<span style={{ lineHeight: '25px' }}>
       <div>用户 : {item.username}</div>
       <div>角色 : {item.roles}</div>
+      <div>地址 : {item.address}</div>
       <div>电话 : {item.phone}</div>
       <div>邮件 : {item.email}</div>
     </span>);
@@ -123,7 +126,16 @@ const ActionModal = ({
             ],
           })(<Input />)}
         </FormItem>
-
+        <FormItem label="地 址" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('address', {
+            initialValue: item.address,
+            rules: [
+              {
+                required: false,
+              },
+            ],
+          })(<Input />)}
+        </FormItem>
         <FormItem label="Phone" hasFeedback {...formItemLayout}>
           {getFieldDecorator('phone', {
             initialValue: item.phone,

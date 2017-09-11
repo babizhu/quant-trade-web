@@ -1,12 +1,13 @@
 import React from 'react';
 // import classnames from 'classnames';
-import { Table, Icon, Input, Button, Dropdown, Menu, Tooltip, Modal } from 'antd';
+import { Table, Icon, Input, Button, Dropdown, Menu, Tooltip } from 'antd';
 // import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import ActionModal from './actionModal';
+import {showError} from '../../index';
+
 import styles from './index.less';
 
-const confirm = Modal.confirm;
 const Search = Input.Search;
 const DropdownButton = Dropdown.Button;
 
@@ -33,7 +34,8 @@ const User = ({ dispatch, user, loading }) => {
   const onDeleteItem = (item) => {
     if (item.username === 'admin') {
       // const err = { eid: 999 };
-      throw new Error({ eid: 999 });
+      showError({url:'',msg:'无法删除最高管理员admin!'})
+      return;
     }
     dispatch({
       type: 'user/showModal',
