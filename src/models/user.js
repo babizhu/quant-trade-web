@@ -1,7 +1,7 @@
 import modelExtend from 'dva-model-extend';
 
 // import * as usersService from '../services/user';
-import { create, query, remove, update } from '../services/user';
+import { create, query, remove } from '../services/user';
 
 import { pageModel } from './common';
 
@@ -53,6 +53,18 @@ export default modelExtend(pageModel, {
       const data = yield call(create, payload);
       if (data.success) {
         yield put({ type: 'hideModal' });
+        yield put({ type: 'query' });
+      } else {
+        throw data;
+      }
+    },
+
+    * delete({ payload }, { call, put, select }) {
+      const data = yield call(remove, payload);
+      // const { selectedRowKeys } = yield select(_ => _.user);
+      if (data.success) {
+        yield put({ type: 'hideModal' });
+        // yield put({ type: 'updateState', payload: { selectedRowKeys: selectedRowKeys.filter(_ => _ !== payload) } });
         yield put({ type: 'query' });
       } else {
         throw data;

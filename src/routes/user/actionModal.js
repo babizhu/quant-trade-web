@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input, Modal } from 'antd';
+import { Form, Input, Modal, Icon } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -13,7 +13,7 @@ const formItemLayout = {
   },
 };
 
-const modal = ({
+const ActionModal = ({
   item = {},
   onOk,
   form: {
@@ -23,37 +23,74 @@ const modal = ({
   },
   ...modalProps
 }) => {
+  const isUpdate = () => {
+    return modalOpts.modalType === 'update';
+  };
+  const isDelete = () => {
+    return modalOpts.modalType === 'delete';
+  };
+  const isCreate = () => {
+    return modalOpts.modalType === 'create';
+  };
   const handleOk = () => {
     validateFields((errors, values) => {
       if (errors) {
         return;
       }
       let data;
-      if (item._id) { // update
+      if (isUpdate()) { // update
         data = {
           email: values.email,
           phone: values.phone,
           roles: values.roles,
           _id: item._id,
         };
-      } else {
+      } else if (isCreate()) {
         data = {
           ...getFieldsValue(),
-          _id: -1,
+          _id: '-1',
+        };
+      } else {
+        data = {
+          _id: item._id,
         };
       }
       // data.address = data.address.join(' ');
       onOk(data);
     });
   };
-
+  const buildModalTitle = (modalType) => {
+    if (modalType === 'create') {
+      return 'Create User';
+    } else if (modalType === 'update') {
+      return 'Update User';
+    }
+    return 'Delete User';
+  };
   const modalOpts = {
     ...modalProps,
     onOk: handleOk,
   };
-
-  return (
-    <Modal {...modalOpts}>
+  const formatText = () => {
+    return (<span style={{ lineHeight: '25px' }}>
+      <div>用户 : {item.username}</div>
+      <div>角色 : {item.roles}</div>
+      <div>电话 : {item.phone}</div>
+      <div>邮件 : {item.email}</div>
+    </span>);
+  };
+  const buildDeleteForm = () => {
+    return (
+      <div className={'ant-confirm-body'} style={{ margin: '15px', color: '#fa0' }}>
+        <Icon className={'anticon'} type="question-circle" />
+        <span className={'ant-confirm-title'}>确认要删除吗?</span>
+        <div className={'ant-confirm-content'}>{formatText()}</div>
+      </div>
+    );
+  };
+  const buildAEForm = () => {
+    // console.log(item);
+    return (
       <Form layout="horizontal">
         <FormItem label="用户名" hasFeedback {...formItemLayout}>
           {getFieldDecorator('username', {
@@ -63,18 +100,19 @@ const modal = ({
                 required: true,
               },
             ],
-          })(<Input />)}
+          })(<Input disabled={modalOpts.modalType === 'update'} />)}
         </FormItem>
-        <FormItem label="密 码" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('password', {
-            initialValue: item.password,
-            rules: [
-              {
-                required: true,
-              },
-            ],
-          })(<Input />)}
-        </FormItem>
+        {!item.password &&
+          <FormItem label="密 码" hasFeedback {...formItemLayout}>
+            {getFieldDecorator('password', {
+              rules: [
+                {
+                  required: true,
+                },
+              ],
+            })(<Input />)}
+          </FormItem>
+              }
         <FormItem label="角 色" hasFeedback {...formItemLayout}>
           {getFieldDecorator('roles', {
             initialValue: item.roles,
@@ -112,15 +150,21 @@ const modal = ({
         </FormItem>
 
       </Form>
+    );
+  };
+  console.log(modalProps);
+  return (
+    <Modal {...modalOpts} title={buildModalTitle(modalOpts.modalType)}>
+      {modalOpts.modalType === 'del' ? buildDeleteForm() : buildAEForm()}
     </Modal>
   );
 };
 
-modal.propTypes = {
+ActionModal.propTypes = {
   form: PropTypes.object.isRequired,
   type: PropTypes.string,
   item: PropTypes.object,
   onOk: PropTypes.func,
 };
 
-export default Form.create()(modal);
+export default Form.create()(ActionModal);

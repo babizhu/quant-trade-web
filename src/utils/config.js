@@ -20,6 +20,7 @@ export default {
     users: `${APIV1}/users`,
     userQuery: `${APIV1}/user/query`,
     userSave: `${APIV1}/user/save`,
+    userDelete: `${APIV1}/user/del`,
     posts: `${APIV1}/posts`,
     user: `${APIV1}/user/:id`,
     dashboard: `${APIV1}/dashboard`,

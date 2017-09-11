@@ -1,11 +1,12 @@
 import React from 'react';
 // import classnames from 'classnames';
-import { Table, Icon, Input, Button, Dropdown, Menu, Tooltip } from 'antd';
+import { Table, Icon, Input, Button, Dropdown, Menu, Tooltip, Modal } from 'antd';
 // import PropTypes from 'prop-types';
 import { connect } from 'dva';
-import Modal from './Modal';
+import ActionModal from './actionModal';
 import styles from './index.less';
 
+const confirm = Modal.confirm;
 const Search = Input.Search;
 const DropdownButton = Dropdown.Button;
 
@@ -29,16 +30,33 @@ const User = ({ dispatch, user, loading }) => {
     });
   };
 
+  const onDeleteItem = (item) => {
+    if (item.username === 'admin') {
+      // const err = { eid: 999 };
+      throw new Error({ eid: 999 });
+    }
+    dispatch({
+      type: 'user/showModal',
+      payload: {
+        modalType: 'del',
+        currentItem: item,
+      },
+    });
+  };
+
   const modalProps = {
     item: modalType === 'create' ? {} : currentItem,
     visible: modalVisible,
     maskClosable: false,
     confirmLoading: loading.effects['user/update'],
-    title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
+    // title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
+    modalType,
     wrapClassName: 'vertical-center-modal',
     onOk(data) {
+      console.log(data);
+      // console.log('modalType='+modalType);
       dispatch({
-        type: 'user/save',
+        type: modalType === 'del' ? 'user/delete' : 'user/save',
         payload: data,
       });
     },
@@ -80,7 +98,7 @@ const User = ({ dispatch, user, loading }) => {
     key: 'operation',
     render(text, record) {
       return (
-        <div onClick={(e) => {}}>
+        <div>
           <span className="table-actions">
             <Tooltip title="编辑">
               <Button type="ghost" className="button" onClick={() => onEditItem(record)}>
@@ -91,7 +109,7 @@ const User = ({ dispatch, user, loading }) => {
               <Button
                 type="ghost"
                 className="button"
-                onClick={() => {}}
+                onClick={() => onDeleteItem(record)}
               >
                 <Icon type="delete" />
               </Button>
@@ -107,6 +125,7 @@ const User = ({ dispatch, user, loading }) => {
       <Menu.Item key="1">上传EXCEL</Menu.Item>
     </Menu>
     );
+
   return (
     <div className={styles.user}>
       <div className={styles.userListHeader}>
@@ -128,7 +147,7 @@ const User = ({ dispatch, user, loading }) => {
 
       </div>
       <Table columns={columns} dataSource={list} rowKey={record => record._id} />
-      {modalVisible && <Modal {...modalProps} />}
+      {modalVisible && <ActionModal {...modalProps} />}
     </div>
   );
 };
