@@ -5,14 +5,14 @@ import { hashHistory } from 'dva/router';
 import createLoading from 'dva-loading';
 import { getErrMsg } from './consts/ErrorText';
 import './index.css';
-import * as React from "react";
+import * as React from 'react';
 
-export function showError(errDescription){
+export function showError(errDescription) {
   notification.error({
     message: '出故障啦',
     description: <span> {errDescription.url}
-    <div style={{ marginTop: '20px' }}>{errDescription.msg}</div>
-    <div style={{ marginTop: '20px' }}>{new Date().toLocaleString('zh-CN', {hour12: false})}</div>
+      <div style={{ marginTop: '20px' }}>{errDescription.msg}</div>
+      <div style={{ marginTop: '20px' }}>{new Date().toLocaleString('zh-CN', { hour12: false })}</div>
     </span>,
     duration: 600,
     // key,

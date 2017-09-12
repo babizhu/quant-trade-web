@@ -4,7 +4,7 @@ import { Table, Icon, Input, Button, Dropdown, Menu, Tooltip } from 'antd';
 // import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import ActionModal from './actionModal';
-import {showError} from '../../index';
+import { showError } from '../../index';
 
 import styles from './index.less';
 
@@ -34,7 +34,7 @@ const User = ({ dispatch, user, loading }) => {
   const onDeleteItem = (item) => {
     if (item.username === 'admin') {
       // const err = { eid: 999 };
-      showError({url:'',msg:'无法删除最高管理员admin!'})
+      showError({ url: '', msg: '无法删除最高管理员admin!' });
       return;
     }
     dispatch({
@@ -55,7 +55,7 @@ const User = ({ dispatch, user, loading }) => {
     modalType,
     wrapClassName: 'vertical-center-modal',
     onOk(data) {
-      console.log(data);
+      // console.log(data);
       // console.log('modalType='+modalType);
       dispatch({
         type: modalType === 'del' ? 'user/delete' : 'user/save',
@@ -148,7 +148,11 @@ const User = ({ dispatch, user, loading }) => {
         </div>
 
       </div>
-      <Table columns={columns} dataSource={list} rowKey={record => record._id} />
+      <Table
+        columns={columns} dataSource={list}
+        rowKey={record => record._id}
+        loading={loading.effects['user/query']}
+      />
       {modalVisible && <ActionModal {...modalProps} />}
     </div>
   );

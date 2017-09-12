@@ -164,7 +164,7 @@ const ActionModal = ({
       </Form>
     );
   };
-  console.log(modalProps);
+  // console.log(modalProps);
   return (
     <Modal {...modalOpts} title={buildModalTitle(modalOpts.modalType)}>
       {modalOpts.modalType === 'del' ? buildDeleteForm() : buildAEForm()}
