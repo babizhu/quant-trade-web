@@ -4,7 +4,7 @@ export const initMenuData = [{
   icon: 'ellipsis',
   menu: [
     {
-      icon: 'pay-circle-o',
+      icon: 'bulp',
       text: '投资信息',
       index: index++,
       subMenu: [
