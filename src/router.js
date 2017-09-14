@@ -63,6 +63,14 @@ const Routers = function ({ history, app }) {
             }, 'user');
           },
         }, {
+          path: 'tradingstrategy',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              registerModel(app, require('./models/tradingstrategy'));
+              cb(null, require('./routes/tradingstrategy/'));
+            }, 'tradingstrategy');
+          },
+        }, {
           path: 'stage',
           getComponent(nextState, cb) {
             require.ensure([], (require) => {

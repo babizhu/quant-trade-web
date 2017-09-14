@@ -28,5 +28,8 @@ export default {
     menus: `${APIV1}/menus`,
     v1test: `${APIV1}/test`,
     v2test: `${APIV2}/test`,
+    strategyQuery: `${APIV1}/tradingstrategy/query`,
+    strategySave: `${APIV1}/tradingstrategy/save`,
+    strategyDelete: `${APIV1}/tradingstrategy/del`,
   },
 };

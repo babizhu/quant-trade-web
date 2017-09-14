@@ -4,19 +4,19 @@ export const initMenuData = [{
   icon: 'ellipsis',
   menu: [
     {
-      icon: 'bulp',
+      icon: 'bulb',
       text: '投资信息',
       index: index++,
       subMenu: [
         {
           icon: 'pay-circle-o',
-          text: '策略列表',
+          text: '我的策略',
           index: index++,
           component: 'stage',
         },
         {
           icon: 'area-chart',
-          text: '交易列表',
+          text: '我的交易dd',
           index: index++,
           component: 'trade',
         },
@@ -45,13 +45,13 @@ export const initMenuData = [{
     },
     {
       icon: 'right-circle-o',
-      text: '测试模块',
+      text: '交易策略',
       index: index++,
       subMenu: [
         {
-          icon: 'exclamation-circle-o',
-          text: '测试程序',
-          component: '/',
+          icon: 'pay-circle-o',
+          text: '策略列表',
+          component: 'tradingstrategy',
         },
       ],
     },

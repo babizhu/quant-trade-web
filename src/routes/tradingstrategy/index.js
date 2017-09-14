@@ -4,18 +4,18 @@ import { Table, Icon, Input, Button, Dropdown, Menu, Tooltip } from 'antd';
 // import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import ActionModal from './actionModal';
-import { showError } from '../../index';
+// import { showError } from '../../index';
 
 import styles from './index.less';
 
 const Search = Input.Search;
 const DropdownButton = Dropdown.Button;
 
-const User = ({ dispatch, user, loading }) => {
-  const { list, modalVisible, modalType, currentItem, pagination } = user;
+const TradingStrategy = ({ dispatch, tradingstrategy, loading }) => {
+  const { list, modalVisible, modalType, currentItem, pagination } = tradingstrategy;
   const onAdd = () => {
     dispatch({
-      type: 'user/showModal',
+      type: 'tradingstrategy/showModal',
       payload: {
         modalType: 'create',
       },
@@ -23,7 +23,7 @@ const User = ({ dispatch, user, loading }) => {
   };
   const onEditItem = (item) => {
     dispatch({
-      type: 'user/showModal',
+      type: 'tradingstrategy/showModal',
       payload: {
         modalType: 'update',
         currentItem: item,
@@ -32,13 +32,9 @@ const User = ({ dispatch, user, loading }) => {
   };
 
   const onDeleteItem = (item) => {
-    if (item.username === 'admin') {
-      // const err = { eid: 999 };
-      showError({ url: '', msg: '无法删除最高管理员admin!' });
-      return;
-    }
+
     dispatch({
-      type: 'user/showModal',
+      type: 'tradingstrategy/showModal',
       payload: {
         modalType: 'del',
         currentItem: item,
@@ -50,51 +46,46 @@ const User = ({ dispatch, user, loading }) => {
     item: modalType === 'create' ? {} : currentItem,
     visible: modalVisible,
     maskClosable: false,
-    confirmLoading: loading.effects['user/update'],
-    // title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
+    confirmLoading: loading.effects['tradingstrategy/update'],
     modalType,
     wrapClassName: 'vertical-center-modal',
     onOk(data) {
       // console.log(data);
       // console.log('modalType='+modalType);
       dispatch({
-        type: modalType === 'del' ? 'user/delete' : 'user/save',
+        type: modalType === 'del' ? 'tradingstrategy/delete' : 'tradingstrategy/save',
         payload: data,
       });
     },
     onCancel() {
       dispatch({
-        type: 'user/hideModal',
+        type: 'tradingstrategy/hideModal',
       });
     },
   };
   const refresh = () => {
     dispatch({
-      type: 'user/query',
+      type: 'tradingstrategy/query',
       payload: '',
     });
   };
 
   const columns = [{
-    title: '用户',
-    dataIndex: 'username',
+    title: '名称',
+    dataIndex: 'name',
     key: 'name',
   }, {
-    title: '角色',
-    dataIndex: 'roles',
-    key: 'roles',
+    title: '作者',
+    dataIndex: 'owner',
+    key: 'owner',
   }, {
-    title: '地址',
-    dataIndex: 'address',
-    key: 'address',
+    title: '类名',
+    dataIndex: 'className',
+    key: 'className',
   }, {
-    title: '电话',
-    dataIndex: 'phone',
-    key: 'phone',
-  }, {
-    title: '邮件',
-    dataIndex: 'email',
-    key: 'email',
+    title: '描述',
+    dataIndex: 'desc',
+    key: 'desc',
   }, {
     title: '操作',
     key: 'operation',
@@ -129,8 +120,8 @@ const User = ({ dispatch, user, loading }) => {
     );
 
   return (
-    <div className={styles.user}>
-      <div className={styles.userListHeader}>
+    <div className={styles.tradingstrategy}>
+      <div className={styles.listHeader}>
         <Search
           placeholder="search by name or description" onSearch={(keyword) => {
             console.log(keyword);
@@ -152,13 +143,13 @@ const User = ({ dispatch, user, loading }) => {
         pagination={pagination}
         columns={columns} dataSource={list}
         rowKey={record => record._id}
-        loading={loading.effects['user/query']}
+        loading={loading.effects['tradingstrategy/query']}
       />
       {modalVisible && <ActionModal {...modalProps} />}
     </div>
   );
 };
 
-User.propTypes = {};
-export default connect(({ user, loading }) => ({ user, loading }))(User);
+TradingStrategy.propTypes = {};
+export default connect(({ tradingstrategy, loading }) => ({ tradingstrategy, loading }))(TradingStrategy);
 
