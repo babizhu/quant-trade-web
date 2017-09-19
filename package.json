@@ -3,6 +3,7 @@
   "scripts": {
     "start": "roadhog server",
     "build": "roadhog build -debug",
+    "build:dll": "roadhog buildDll",
     "lint": "eslint --ext .js src test"
   },
   "engines": {
@@ -13,8 +14,9 @@
     "axios": "latest",
     "babel-runtime": "^6.9.2",
     "classnames": "^2.2.5",
-    "dva": "^1.2.1",
-    "dva-loading": "^0.2.1",
+    "dva": "^2.0.3-0",
+    "dva-loading": "^0.2.0",
+    "query-string": "^5.0.0",
     "jsonp": "latest",
     "lodash": "latest",
     "mockjs": "^1.0.1-beta3",

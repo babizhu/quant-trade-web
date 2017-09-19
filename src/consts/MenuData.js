@@ -16,7 +16,7 @@ export const initMenuData = [{
         },
         {
           icon: 'area-chart',
-          text: '我的交易dd',
+          text: '我的交易',
           index: index++,
           component: 'trade',
         },

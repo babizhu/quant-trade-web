@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import { Icon } from 'antd';
 import classnames from 'classnames';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import styles from '../Sidebar.less';
 
 class SubMenu extends Component {

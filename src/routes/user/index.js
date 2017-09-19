@@ -101,20 +101,19 @@ const User = ({ dispatch, user, loading }) => {
     render(text, record) {
       return (
         <div>
-          <span className="table-actions">
+          <span>
             <Tooltip title="编辑">
-              <Button type="ghost" className="button" onClick={() => onEditItem(record)}>
-                <Icon type="edit" />
-              </Button>
+
+              <Icon
+                className={styles.actionButton} type="edit"
+                onClick={() => onEditItem(record)} style={{ fontSize: 16 }}
+              />
+
             </Tooltip>
             <Tooltip title="删除">
-              <Button
-                type="ghost"
-                className="button"
-                onClick={() => onDeleteItem(record)}
-              >
-                <Icon type="delete" />
-              </Button>
+
+              <Icon type="delete" style={{ fontSize: 16, color: '#08c' }} onClick={() => onDeleteItem(record)}/>
+
             </Tooltip>
 
           </span>
@@ -139,9 +138,9 @@ const User = ({ dispatch, user, loading }) => {
         <div style={{ float: 'right' }}>
           <Button
             type="primary" icon="reload" onClick={refresh}
-            className={styles.button}
+            className={styles.headButton}
           />
-          <Button type="ghost" icon="plus" className={styles.button} onClick={onAdd}>添加</Button>
+          <Button type="ghost" icon="plus" className={styles.headButton} onClick={onAdd}>添加</Button>
           <DropdownButton overlay={menu} trigger={['click', 'hover']}>
                         更多操作
                     </DropdownButton>
