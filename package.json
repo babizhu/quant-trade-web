@@ -10,7 +10,7 @@
     "install-node": "6.9.2"
   },
   "dependencies": {
-    "antd": "^2.12.7",
+    "antd": "^2.13.2",
     "axios": "latest",
     "babel-runtime": "^6.9.2",
     "classnames": "^2.2.5",

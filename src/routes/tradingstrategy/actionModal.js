@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Form, Input, Modal, Icon } from 'antd';
 
 const FormItem = Form.Item;
-
+const { TextArea } = Input;
 const formItemLayout = {
   labelCol: {
     span: 6,
@@ -132,7 +132,8 @@ const ActionModal = ({
                 required: true,
               },
             ],
-          })(<Input />)}
+          })(<TextArea placeholder="请输入该策略的详细描述" autosize={{ minRows: 2, maxRows: 6 }} />
+            )}
         </FormItem>
 
 
