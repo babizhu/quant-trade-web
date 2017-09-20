@@ -4,6 +4,7 @@ import { Form, Input, Modal, Icon } from 'antd';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
+
 const formItemLayout = {
   labelCol: {
     span: 6,
@@ -27,9 +28,6 @@ const ActionModal = ({
     return modalOpts.modalType === 'update';
   };
 
-  // const isDelete = () => {
-  //   return modalOpts.modalType === 'delete';
-  // };
   const isCreate = () => {
     return modalOpts.modalType === 'create';
   };
@@ -60,11 +58,11 @@ const ActionModal = ({
   };
   const buildModalTitle = (modalType) => {
     if (modalType === 'create') {
-      return 'Create 策略';
+      return '新建 交易';
     } else if (modalType === 'update') {
-      return 'Update 策略';
+      return 'Update 交易';
     }
-    return 'Delete 策略';
+    return 'Delete 交易';
   };
   const modalOpts = {
     ...modalProps,
@@ -73,9 +71,9 @@ const ActionModal = ({
   const formatText = () => {
     return (<span style={{ lineHeight: '25px' }}>
       <div>名 称 : {item.name}</div>
-      <div>类 名 : {item.className}</div>
-      <div>作 者 : {item.owner}</div>
-      <div>描 述 : {item.desc}</div>
+      <div>策 略 : {item.className}</div>
+      <div>运行频率 : {item.owner}</div>
+      <div>初始资金 : {item.desc}</div>
     </span>);
   };
   const buildDeleteForm = () => {
@@ -103,8 +101,8 @@ const ActionModal = ({
         </FormItem>
 
 
-        <FormItem label="作 者" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('owner', {
+        <FormItem label="策 略" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('strategy', {
             initialValue: item.owner,
             rules: [
               {
@@ -113,9 +111,9 @@ const ActionModal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="类 名" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('className', {
-            initialValue: item.className,
+        <FormItem label="初始资金" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('cash', {
+            initialValue: item.cash,
             rules: [
               {
                 required: true,
@@ -124,16 +122,25 @@ const ActionModal = ({
             ],
           })(<Input />)}
         </FormItem>
+        <FormItem label="参 数" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('arguments', {
+            initialValue: item.arguments,
+            rules: [
+              {
+                required: false,
+              },
+            ],
+          })(<TextArea placeholder="请输入详细描述" autosize={{ minRows: 3, maxRows: 6 }} />)}
+        </FormItem>
         <FormItem label="描 述" hasFeedback {...formItemLayout}>
           {getFieldDecorator('desc', {
             initialValue: item.desc,
             rules: [
               {
-                required: true,
+                required: false,
               },
             ],
-          })(<TextArea placeholder="请输入该策略的详细描述" autosize={{ minRows: 2, maxRows: 6 }} />,
-            )}
+          })(<TextArea placeholder="请输入详细描述" autosize={{ minRows: 2, maxRows: 6 }} />)}
         </FormItem>
 
 

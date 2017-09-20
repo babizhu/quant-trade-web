@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'dva';
+// import { withRouter } from 'dva/router';
 import { Button, Row, Form, Input } from 'antd';
 import { config } from '../../utils';
 import JSEncrypt from '../../utils/jsencrypt';
@@ -88,3 +89,4 @@ Login.propTypes = {
 
 // noinspection JSUnusedGlobalSymbols
 export default connect(({ login }) => ({ login }))(Form.create()(Login));
+// export default withRouter(connect(({ login }) => ({ login }))(Login));

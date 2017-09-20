@@ -137,21 +137,22 @@ import PropTypes from 'prop-types';
 import { Switch, Route, Redirect, routerRedux } from 'dva/router';
 import dynamic from 'dva/dynamic';
 import App from './routes/app';
-import { getCookie } from './utils/cookie';
+// import login from './routes/login';
+import { validateLogin } from './utils';
 
 
 const { ConnectedRouter } = routerRedux;
 
-const Routers = function ({ history, app }) {
+const Routers = ({ history, app }) => {
   const error = dynamic({
     app,
     component: () => import('./routes/notfound'),
   });
-  const Login = {
-      path: '/login',
-      models: () => [import('./models/login')],
-      component: () => import('./routes/login/'),
-  }
+  // const Login = dynamic({
+  //   path: '/login',
+  //   models: () => [import('./models/login')],
+  //   component: () => import('./routes/login/'),
+  // });
   const routes = [
     {
       path: '/dashboard',
@@ -165,22 +166,18 @@ const Routers = function ({ history, app }) {
       path: '/tradingstrategy',
       models: () => [import('./models/tradingstrategy')],
       component: () => import('./routes/tradingstrategy/'),
-    }, {
+    },
+    {
       path: '/login',
       models: () => [import('./models/login')],
       component: () => import('./routes/login/'),
+    }, {
+      path: '/trade',
+      models: () => [import('./models/trade')],
+      component: () => import('./routes/trade/'),
     },
   ];
-  const validateLogin = () => {
-    // if (pathname === '/login') {
-    //   return true;
-    // }
-    const token = getCookie('token');
-    const isLoggedIn = token !== null;
 
-
-    return isLoggedIn;
-  };
     // const preCondition=(condition, WrappedComponent)=> {
     //     return class extends Component {
     //         componentWillMount{
@@ -196,7 +193,9 @@ const Routers = function ({ history, app }) {
     <ConnectedRouter history={history}>
 
       <App>
+
         <Switch>
+
           <Route
             exact path="/" render={() => {
               return validateLogin() ? <Redirect to="/dashboard" /> : <Redirect to="/login" />;
@@ -217,6 +216,7 @@ const Routers = function ({ history, app }) {
                 }
           <Route component={error} />
         </Switch>
+
       </App>
     </ConnectedRouter>
   );

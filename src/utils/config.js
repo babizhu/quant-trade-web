@@ -31,5 +31,9 @@ export default {
     strategyQuery: `${APIV1}/tradingstrategy/query`,
     strategySave: `${APIV1}/tradingstrategy/save`,
     strategyDelete: `${APIV1}/tradingstrategy/del`,
+
+    tradeQuery: `${APIV1}/trade/query`,
+    tradeSave: ` ${APIV1}/trade/save`,
+    tradeDelete: `${APIV1}/trade/del`,
   },
 };

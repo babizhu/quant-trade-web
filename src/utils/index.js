@@ -3,6 +3,7 @@
 // import lodash from 'lodash';
 import config from './config';
 import request from './request';
+import { getCookie } from '../utils/cookie';
 
 //
 // // 连字符转驼峰
@@ -51,7 +52,16 @@ const queryURL = (name) => {
   if (r !== null) return decodeURI(r[2]);
   return null;
 };
+const validateLogin = () => {
+    // if (pathname === '/login') {
+    //   return true;
+    // }
+  const token = getCookie('token');
+  const isLoggedIn = token !== null;
 
+
+  return isLoggedIn;
+};
 /**
   * 匹配 hashHistory 方式的路径
   * @param name
@@ -114,6 +124,7 @@ export {
   config,
   request,
   queryURL,
+    validateLogin,
   // queryArray,
   // arrayToTree,
 };
