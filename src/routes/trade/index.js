@@ -75,16 +75,16 @@ const Trade = ({ dispatch, trade, loading }) => {
     key: 'name',
   }, {
     title: '策略',
-    dataIndex: 'strategy',
+    dataIndex: 'strategyId',
     key: 'strategy',
   }, {
     title: '初始资金',
-    dataIndex: 'cash',
+    dataIndex: 'initCash',
     key: 'cash',
   }, {
-    title: '参数',
-    dataIndex: 'arguments',
-    key: 'arguments',
+    title: '股票列表',
+    dataIndex: 'stocks',
+    key: 'stocks',
   }, {
     title: '开始日期',
     dataIndex: 'beginDate',
@@ -130,7 +130,7 @@ const Trade = ({ dispatch, trade, loading }) => {
       <div className={styles.listHeader}>
         <Search
           placeholder="search by name or description" onSearch={(keyword) => {
-            console.log(keyword);
+            // console.log(keyword);
           }} style={{ width: '35%' }}
         />
         <div style={{ float: 'right' }}>

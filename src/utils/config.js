@@ -1,7 +1,7 @@
 const APIV1 = '/api';
 const APIV2 = '/api/v2';
-const HOST = 'http://192.168.1.156:8080';
-// const HOST = 'http://192.168.31.133:8080';
+// const HOST = 'http://192.168.1.156:8080';
+const HOST = 'http://192.168.31.133:8080';
 export default {
   host: HOST,
   name: 'Quant Trade',
@@ -33,7 +33,7 @@ export default {
     strategyDelete: `${APIV1}/tradingstrategy/del`,
 
     tradeQuery: `${APIV1}/trade/query`,
-    tradeSave: ` ${APIV1}/trade/save`,
+    tradeSave: `${APIV1}/trade/save`,
     tradeDelete: `${APIV1}/trade/del`,
   },
 };

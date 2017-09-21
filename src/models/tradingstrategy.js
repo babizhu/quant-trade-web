@@ -1,7 +1,7 @@
 import modelExtend from 'dva-model-extend';
 
 // import * as usersService from '../services/user';
-import { create, query, remove } from '../services/strategy';
+import { save, query, remove } from '../services/strategy';
 
 import { pageModel } from './common';
 
@@ -51,7 +51,7 @@ export default modelExtend(pageModel, {
     },
 
     * save({ payload }, { call, put }) {
-      const data = yield call(create, payload);
+      const data = yield call(save, payload);
       if (data.success) {
         if (payload._id === '-1') {
           payload._id = data._id;

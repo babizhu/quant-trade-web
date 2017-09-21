@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input, Modal, Icon } from 'antd';
+import { Form, Input, Modal, Icon, InputNumber } from 'antd';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -46,6 +46,7 @@ const ActionModal = ({
         data = {
           ...getFieldsValue(),
           _id: '-1',
+          userName:'admin'
         };
       } else {
         data = {
@@ -89,7 +90,7 @@ const ActionModal = ({
     // console.log(item);
     return (
       <Form layout="horizontal">
-        <FormItem label="名 称" hasFeedback {...formItemLayout}>
+        <FormItem label="交易名称" hasFeedback {...formItemLayout}>
           {getFieldDecorator('name', {
             initialValue: item.name,
             rules: [
@@ -101,28 +102,44 @@ const ActionModal = ({
         </FormItem>
 
 
-        <FormItem label="策 略" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('strategy', {
-            initialValue: item.owner,
+        <FormItem label="交易策略" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('strategyId', {
+            initialValue: item.strategyId,
             rules: [
               {
-                required: false,
+                required: true,
               },
             ],
           })(<Input />)}
         </FormItem>
         <FormItem label="初始资金" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('cash', {
-            initialValue: item.cash,
+          {getFieldDecorator('initCash', {
+            initialValue: item.initCash === undefined?100000:item.initCash,
             rules: [
               {
                 required: true,
                 message: 'The input is not valid phone!',
               },
             ],
-          })(<Input />)}
+          })(<InputNumber
+            placeholder="请输入股票代码，多只股票请用半角逗号隔开"
+            formatter={value => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            parser={value => value.replace(/\$\s?|(,*)/g, '')}
+
+          />)}
         </FormItem>
-        <FormItem label="参 数" hasFeedback {...formItemLayout}>
+        <FormItem label="股票代码" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('stocks', {
+            initialValue: item.stocks,
+            rules: [
+              {
+                required: true,
+                message: 'The input is not valid phone!',
+              },
+            ],
+          })(<Input placeholder="请输入股票代码，多只股票请用半角逗号隔开"/>)}
+        </FormItem>
+        <FormItem label="运行参数" hasFeedback {...formItemLayout}>
           {getFieldDecorator('arguments', {
             initialValue: item.arguments,
             rules: [
@@ -130,7 +147,7 @@ const ActionModal = ({
                 required: false,
               },
             ],
-          })(<TextArea placeholder="请输入详细描述" autosize={{ minRows: 3, maxRows: 6 }} />)}
+          })(<TextArea placeholder="请填入运行时参数" autosize={{ minRows: 3, maxRows: 6 }} />)}
         </FormItem>
         <FormItem label="描 述" hasFeedback {...formItemLayout}>
           {getFieldDecorator('desc', {
@@ -140,7 +157,7 @@ const ActionModal = ({
                 required: false,
               },
             ],
-          })(<TextArea placeholder="请输入详细描述" autosize={{ minRows: 2, maxRows: 6 }} />)}
+          })(<TextArea placeholder="请输入详细描述" autosize={{ minRows: 3, maxRows: 6 }} />)}
         </FormItem>
 
 

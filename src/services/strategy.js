@@ -11,7 +11,7 @@ export async function query(params) {
   });
 }
 
-export async function create(params) {
+export async function save(params) {
   return request({
     url: strategySave,
     method: 'post',
