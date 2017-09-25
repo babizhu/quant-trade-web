@@ -178,7 +178,7 @@ const Routers = ({ history, app }) => {
     }, {
       path: '/trade/:id',
       models: () => [import('./models/trade/detail')],
-      component: () => import('./routes/trade/detail/index.js'),
+      component: () => import('./routes/trade/detail/'),
     },
   ];
 
@@ -201,23 +201,23 @@ const Routers = ({ history, app }) => {
         <Switch>
 
           <Route
-            exact path="/"  render={() => {
+            exact path="/" render={() => {
               return validateLogin() ? <Redirect to="/dashboard" /> : <Redirect to="/login" />;
             }}
           />
           {
-                routes.map(({ path, ...dynamics }, key) => (
-                  <Route
-                    key={key}
-                    exact
-                    path={path}
-                    component={dynamic({
-                      app,
-                      ...dynamics,
-                    })}
-                  />
-                ))
-            }
+                    routes.map(({ path, ...dynamics }, key) => (
+                      <Route
+                        key={key}
+                        exact
+                        path={path}
+                        component={dynamic({
+                          app,
+                          ...dynamics,
+                        })}
+                      />
+                    ))
+                }
           <Route component={error} />
         </Switch>
 

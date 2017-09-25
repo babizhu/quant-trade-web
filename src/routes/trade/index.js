@@ -76,7 +76,7 @@ const Trade = ({ dispatch, trade, loading }) => {
     title: '名称',
     dataIndex: 'name',
     key: 'name',
-    render: (text, record) => <Link to={`trade/${record._id}`}>{text}</Link>,
+    render: (text, record) => <Link to={`/trade/${record._id}`}>{text}</Link>,
   }, {
     title: '策略',
     dataIndex: 'strategyId',
