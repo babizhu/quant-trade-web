@@ -32,6 +32,7 @@ export const initMenuData = [{
       index: index++,
       subMenu: [
         {
+          path: '/user',
           icon: 'user',
           text: '用户列表',
           component: 'user',

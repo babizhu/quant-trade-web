@@ -1,7 +1,7 @@
 import { request, config } from '../utils';
 
 const { api } = config;
-const { tradeQuery, tradeSave, tradeDelete } = api;
+const { tradeQuery, tradeSave, tradeDelete,tradeDetail } = api;
 
 export async function query(params) {
   return request({
@@ -10,7 +10,13 @@ export async function query(params) {
     data: params,
   });
 }
-
+export async function detail(params) {
+    return request({
+        url: tradeDetail,
+        method: 'get',
+        data: params,
+    });
+}
 export async function save(params) {
   return request({
     url: tradeSave,

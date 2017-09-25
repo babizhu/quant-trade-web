@@ -4,8 +4,9 @@
  */
 
 import React from 'react';
+import pathToRegexp from 'path-to-regexp';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { Icon } from 'antd';
 import styles from './Breadcrumb.less';
 

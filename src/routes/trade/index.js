@@ -1,9 +1,12 @@
 import React from 'react';
 // import classnames from 'classnames';
 import { Table, Icon, Input, Button, Dropdown, Menu, Tooltip } from 'antd';
+import { Link } from 'react-router-dom';
+
 // import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import ActionModal from './actionModal';
+
 // import { showError } from '../../index';
 
 import styles from './index.less';
@@ -73,6 +76,7 @@ const Trade = ({ dispatch, trade, loading }) => {
     title: '名称',
     dataIndex: 'name',
     key: 'name',
+    render: (text, record) => <Link to={`trade/${record._id}`}>{text}</Link>,
   }, {
     title: '策略',
     dataIndex: 'strategyId',
