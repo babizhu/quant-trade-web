@@ -19,7 +19,7 @@ export const initMenuData = [{
           text: '我的交易',
           index: index++,
           component: 'trade',
-          path: 'trade',
+          path: '/trade',
           subMenu: [
             {
               path: '/trade/:id',
@@ -63,6 +63,7 @@ export const initMenuData = [{
         {
           icon: 'pay-circle-o',
           text: '策略列表',
+          path: '/tradingstrategy',
           component: 'tradingstrategy',
         },
       ],
