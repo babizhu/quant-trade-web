@@ -32,47 +32,65 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
     } else {
       renderName(subMenu,pathArray);
     }
-    if( subMenu.path === '/trade/:id'){
-      console.log('xxxxxxxxxxxxxx')
-    }
-    if(subMenu.path && pathToRegexp(subMenu.path).exec(currentPath)){
-      return true;
-    }
-    if( subMenu.subMenu){
-      build(subMenu.subMenu,pathArray);
-    }else {
-      return false;
-    }
+    // if( subMenu.path === '/trade/:id'){
+    //   console.log('xxxxxxxxxxxxxx')
+    // }
+    // if(subMenu.path && pathToRegexp(subMenu.path).exec(currentPath)){
+    //   return true;
+    // }
+    // if( subMenu.subMenu){
+    //   build(subMenu.subMenu,pathArray);
+    // }else {
+    //   return false;
+    // }
 
   };
-  const getSubMenu=(sm)=> {
+  const getSubMenu=(sm,pathArray)=> {
     if (sm.subMenu !== undefined) {
       for (const subMenu of sm.subMenu) {
-        let pathArray = [];
-        // let isFound = false;
-        // console.log('\t' + subMenu.text + '[' + subMenu.path + ']');
-        if(build(subMenu,pathArray)){
-          return pathArray;
+        console.log(subMenu);
+        console.log(pathArray)
+        if( subMenu.path === '/trade/:id'){
+          console.log('xxxxxxxxxxxxxx')
         }
+        // let pathArray = [];
+
+        build(subMenu,pathArray);
+        if(subMenu.path && pathToRegexp(subMenu.path).exec(currentPath)){
+          console.log('3333=');
+          console.log(pathArray)
+          return;
+        }
+
+        if( subMenu.subMenu){
+          getSubMenu(subMenu,pathArray);
+        }else {
+          pathArray = [];
+        }
+
       }
-      return null;
+      pathArray =  null;
     }
   };
   const getMenu = ()=>{
     for (const menuGroup of menu) {
       for (const m of menuGroup.menu) {
         // console.log('\t' + m.text + '['+m.path+']');
-        let pathArray = getSubMenu(m);
+        let pathArray =[];
+          getSubMenu(m,pathArray);
         if(pathArray !== null ){
+          console.log('444444=');
+          console.log(pathArray)
           return pathArray
         }
 
       }
     }
+
     return null;
   };
 
-  console.log(getMenu());
+  // console.log(getMenu())
   const printSubMenu = (sm) => {
     if( sm.subMenu !== undefined ) {
       for (const subMenu of sm.subMenu) {
@@ -183,11 +201,13 @@ const Breadcrumb = ({ menu, separator, currentPath }) => {
       </Link>
       <span className={styles.separator}>{separator}</span>
     </span>);
-
+  const  x = getMenu();
+  console.log('===============');
+  console.log(x)
   return (
     <div className={styles.breadcrumb}>
       {homeLink}
-      {getMenu()}
+      {x}
     </div>
   );
 };
