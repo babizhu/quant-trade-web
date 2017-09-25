@@ -13,6 +13,23 @@ import styles from './Breadcrumb.less';
 const Breadcrumb = ({ menu, separator, currentPath }) => {
   const path = currentPath.replace('/', '');
 
+
+  const printSubMenu = (sm) => {
+    console.log(sm.text);
+    if (sm.subMenu) {
+      printSubMenu(sm.subMenu);
+    }
+  };
+  const printMenu = () => {
+    for (const m of menu) {
+      console.log(m.text);
+      for (const sm of m.menu) {
+        console.log(sm.text);
+        printSubMenu(sm);
+      }
+    }
+  };
+  printMenu();
   let pathArray = [];
   const renderName = (item) => {
     // pathArray.push(

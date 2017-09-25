@@ -26,7 +26,6 @@ class App extends Component {
       const { pathname } = location;
       console.log('开始跳转到longin页面了');
       dispatch((routerRedux.push(`/login?from=${pathname}`)));
-      return true;
     }
   }
 // const App = ({ children, dispatch, app, loading, location }) => {
@@ -34,9 +33,6 @@ class App extends Component {
     const { children, dispatch, app, loading, location } = this.props;
     const { user, sideBarFold, bigScreen } = app;
     const { pathname } = location;
-
-
-        // console.log(`loading=${loading}`);
 
         //
         // const swichSider = () => {
@@ -133,7 +129,7 @@ App.propTypes = {
   app: PropTypes.object,
   loading: PropTypes.object,
 };
-export default withRouter(connect(({ app, loading }) => ({ app, loading }))(App));
+export default withRouter(connect(({ app, loading }) => ({ app, loading}))(App));
 
 // export default connect(({ app, loading }) => ({ app, loading }))(App);
 

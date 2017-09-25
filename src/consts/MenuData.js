@@ -19,6 +19,12 @@ export const initMenuData = [{
           text: '我的交易',
           index: index++,
           component: 'trade',
+          path: 'trade',
+          subMenu: [
+            {
+              path: '/trade/:id',
+              text: '详情',
+            }],
         },
       ],
     }],
@@ -36,6 +42,11 @@ export const initMenuData = [{
           icon: 'user',
           text: '用户列表',
           component: 'user',
+          subMenu: [
+            {
+              path: '/user/:id',
+              text: '详情',
+            }],
         },
         {
           icon: 'ellipsis',
