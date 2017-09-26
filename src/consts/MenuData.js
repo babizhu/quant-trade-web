@@ -12,7 +12,8 @@ export const initMenuData = [{
           icon: 'pay-circle-o',
           text: '我的策略',
           index: index++,
-          component: 'stage',
+          component: 'strategy',
+          path: '/strategy',
         },
         {
           icon: 'area-chart',
@@ -23,7 +24,7 @@ export const initMenuData = [{
           subMenu: [
             {
               path: '/trade/:id',
-              text: '详情',
+              text: '交易详情',
             }],
         },
       ],

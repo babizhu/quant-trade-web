@@ -16,17 +16,19 @@
     "classnames": "^2.2.5",
     "dva": "^2.0.3-0",
     "dva-loading": "^0.2.0",
-    "query-string": "^5.0.0",
+    "highcharts-3d": "^0.1.2",
     "jsonp": "latest",
     "lodash": "latest",
     "mockjs": "^1.0.1-beta3",
     "path-to-regexp": "^2.0.0",
     "prop-types": "latest",
     "qs": "latest",
+    "query-string": "^5.0.0",
     "rc-animate": "^2.4.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-helmet": "^5.1.3"
+    "react-helmet": "^5.1.3",
+    "react-highcharts": "^12.0.0"
   },
   "devDependencies": {
     "dva-model-extend": "^0.1.1",
