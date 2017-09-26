@@ -52,6 +52,8 @@ export const initMenuData = [{
         {
           icon: 'ellipsis',
           text: '所有策略',
+          path: '/strategy',
+
           component: 'a',
         },
       ],
