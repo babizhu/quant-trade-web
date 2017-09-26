@@ -97,24 +97,25 @@ const Detail = ({ tradeDetail }) => {
       <Tabs tabPosition="top">
         <TabPane tab="交易总览" key="dashboard">
           <div style={{ background: '#ECECEC', padding: '6px' }}>
-            <Row gutter={16}>
+            <Row gutter={10}>
               <Col xs={24} md={12}>
                 <Card title="历史收益" bordered={false} >
                   <StockReturnsChart />
                 </Card>
-                <br />
+                <div style={{ height: '6px' }} />
               </Col>
               <Col xs={24} md={12}>
-                <Card title="持仓详情" bordered={false} style={{ height: '232px' }}>
+                <Card title="持仓详情" bordered={false} style={{ height: '243px' }}>
                   <p>Card content</p>
                   <p>Card content</p>
                   <p>Card content</p>
                 </Card>
-                <br />
+                <div style={{ height: '8px' }} />
+
               </Col>
               <Col xs={24} md={12}>
 
-                <Card title="下单详情" bordered={false} style={{ height: '232px' }}>
+                <Card title="下单详情" bordered={false} style={{ height: '243px' }}>
                   <p>Card content</p>
                   <p>Card content</p>
                   <p>Card content</p>
