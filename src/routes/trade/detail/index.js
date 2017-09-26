@@ -119,16 +119,12 @@ const Detail = ({ tradeDetail }) => {
                   <p>Card content</p>
                   <p>Card content</p>
                 </Card>
-                  <br />
               </Col>
             </Row>
           </div>
         </TabPane>
         <TabPane tab="交易设置" key="nodeList">
-
           {content}
-
-
         </TabPane>
         <TabPane tab="交易统计" key="service" />
       </Tabs>
