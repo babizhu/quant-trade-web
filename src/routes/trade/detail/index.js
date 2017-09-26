@@ -5,6 +5,8 @@ import { Col, Row, Button, Tabs, Card } from 'antd';
 import classnames from 'classnames';
 import Label from '../../../components/Utils/Label';
 import StockReturnsChart from './StockReturnsChart';
+import TradeRecord from './TradeRecord';
+import Stocks from './Stocks';
 import styles from './index.less';
 
 const TabPane = Tabs.TabPane;
@@ -19,7 +21,34 @@ const Detail = ({ tradeDetail }) => {
       </div>);
     }
   }
+  const buildHead=()=>{
+    let label = <Label text={'运行中'} isSuccess />;
+    if (!data.status || data.status === 0 || data.status === 2) { // 交易处于停止状态,或者暂停状态
+      label = <Label text={'未运行'} isSuccess={false} />;
+    }
+    return(
+      <div>
+      <table style={{ width: '100%' }}>
+        <tbody>
+        <tr>
+          <td><span className={styles.name}>{data.name}</span>
+            <span className={styles.label}>{label}</span></td>
+          <td style={{ float: 'right' }}>
+            {buildActionButton()}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    <div style={{ lineHeight: '25px' }}>
+      <div className="desc">{data.desc}</div>
+    </div>
+      </div>
+    );
+  };
   const buildActionButton = () => {
+
+
     if (!data.status || data.status === 0 || data.status === 2) { // 交易处于停止状态,或者暂停状态
       return (<Button type="ghost" icon="right" className={styles.actionButton}>开始交易</Button>);
     } else { // 交易处于运行状态
@@ -29,35 +58,36 @@ const Detail = ({ tradeDetail }) => {
     }
   };
   const buildBalanceStatus = () => {
+
     return (
       <Row type="flex" justify="space-between" className={styles.databar}>
-        <Col xs={8} md={4}>
+        <Col xs={8} md={4} style={{borderRight: '1px solid #e0dede'}}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
             <div className={classnames(styles.dataValue, styles.moneyRed)}>17.99%</div>
             <div className={styles.dataLabel}>累计收益</div>
           </div>
         </Col>
-        <Col xs={8} md={4}>
+        <Col xs={8} md={4} style={{borderRight: '1px solid #e0dede'}}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
-            <div className={classnames(styles.dataValue, styles.moneyRed)}>17.99%</div>
+            <div className={classnames(styles.dataValue, styles.moneyRed)}>87.39%</div>
             <div className={styles.dataLabel}>年化收益</div>
           </div>
         </Col>
-        <Col xs={8} md={4}>
+        <Col xs={8} md={4} style={{borderRight: '1px solid #e0dede'}}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
-            <div className={classnames(styles.dataValue, styles.moneyRed)}>17.99%</div>
+            <div className={classnames(styles.dataValue, styles.moneyRed)}>¥ 0.00</div>
             <div className={styles.dataLabel}>可用资金</div>
           </div>
         </Col>
-        <Col xs={8} md={4}>
+        <Col xs={8} md={4} style={{borderRight: '1px solid #e0dede'}}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
-            <div className={classnames(styles.dataValue, styles.moneyRed)}>17.99%</div>
+            <div className={classnames(styles.dataValue, styles.moneyRed)}>45.92%</div>
             <div className={styles.dataLabel}>总体仓位</div>
           </div>
         </Col>
-        <Col xs={8} md={4}>
+        <Col xs={8} md={4} style={{borderRight: '1px solid #e0dede'}}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
-            <div className={classnames(styles.dataValue, styles.moneyRed)}>17.99%</div>
+            <div className={classnames(styles.dataValue, styles.moneyRed)}>¥170002</div>
             <div className={styles.dataLabel}>总资产</div>
           </div>
         </Col>
@@ -73,22 +103,8 @@ const Detail = ({ tradeDetail }) => {
   };
   return (<div className={styles.content}>
     <div className={styles.head}>
-      <div>
-        <table style={{ width: '100%' }}>
-          <tbody>
-            <tr>
-              <td><span className={styles.name}>{data.name}</span>
-                <span className={styles.label}><Label text={'运行中'} isSuccess /></span></td>
-              <td style={{ float: 'right' }}>
-                {buildActionButton()}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div style={{ lineHeight: '25px' }}>
-        <div className="desc">{data.desc}</div>
-      </div>
+
+      {buildHead()}
     </div>
 
     {buildBalanceStatus()}
@@ -99,26 +115,25 @@ const Detail = ({ tradeDetail }) => {
           <div style={{ background: '#ECECEC', padding: '6px' }}>
             <Row gutter={10}>
               <Col xs={24} md={12}>
-                <Card title="历史收益" bordered={false} >
+                <Card title="历史收益" bordered={false} style={{ height: '623px'  }}>
                   <StockReturnsChart />
                 </Card>
-                <div style={{ height: '6px' }} />
+                <div style={{ height: '3px' }} />
+
               </Col>
-              <Col xs={24} md={12}>
-                <Card title="持仓详情" bordered={false} style={{ height: '243px' }}>
-                  <p>Card content</p>
-                  <p>Card content</p>
-                  <p>Card content</p>
+              <Col xs={24} md={12} >
+                <Card title="交易记录" bordered={false} bodyStyle={{ padding: '6px' }}>
+
+                  <TradeRecord />
                 </Card>
-                <div style={{ height: '8px' }} />
+                <div style={{ height: '3px' }} />
 
               </Col>
-              <Col xs={24} md={12}>
 
-                <Card title="下单详情" bordered={false} style={{ height: '243px' }}>
-                  <p>Card content</p>
-                  <p>Card content</p>
-                  <p>Card content</p>
+              <Col xs={24} md={12} >
+                <Card title="股票持仓" bordered={false} bodyStyle={{ padding: '6px',minHeight: '263px'  }}>
+
+                <Stocks/>
                 </Card>
               </Col>
             </Row>
