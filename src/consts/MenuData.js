@@ -9,14 +9,14 @@ export const initMenuData = [{
       index: index++,
       subMenu: [
         {
-          icon: 'pay-circle-o',
+          icon: 'area-chart',
           text: '我的策略',
           index: index++,
           component: 'strategy',
           path: '/strategy',
         },
         {
-          icon: 'area-chart',
+          icon: 'pay-circle-o',
           text: '我的交易',
           index: index++,
           component: 'trade',

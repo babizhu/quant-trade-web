@@ -48,13 +48,13 @@ const TradeRecord = ({ tradeDetail }) => {
 
   const columns = [{
     title: '代码',
-    width:80,
+    width:75,
     dataIndex: 'code',
     key: 'code',
   },{
     title: '名称',
 
-    width:100,
+    width:85,
 
     dataIndex: 'name',
     key: 'name',
@@ -75,7 +75,7 @@ const TradeRecord = ({ tradeDetail }) => {
   }, {
     title: '交易时间',
     dataIndex: 'time',
-    width:150,
+    width:170,
     key: 'time',
   }];
   return(

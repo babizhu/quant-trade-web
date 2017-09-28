@@ -31,7 +31,7 @@ const Stocks = ({ tradeDetail }) => {
 
   const columns = [{
     title: '代码',
-    width:150,
+    width:100,
     dataIndex: 'code',
     key: 'code',
   },{
@@ -43,7 +43,7 @@ const Stocks = ({ tradeDetail }) => {
   }, {
     title: '数量(股)',
     dataIndex: 'age',
-
+    width:100,
 
     key: 'age',
   }, {

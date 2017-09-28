@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'dva';
-import { Col, Row, Button, Tabs, Card } from 'antd';
+import { Col, Row, Button, Tabs, Card,Icon } from 'antd';
 import classnames from 'classnames';
 import Label from '../../../components/Utils/Label';
 import StockReturnsChart from './StockReturnsChart';
@@ -64,37 +64,37 @@ const Detail = ({ tradeDetail }) => {
         <Col xs={8} md={4} style={{borderRight: '1px solid #e0dede'}}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
             <div className={classnames(styles.dataValue, styles.moneyRed)}>17.99%</div>
-            <div className={styles.dataLabel}>累计收益</div>
+            <div className={styles.dataLabel}><Icon type="pay-circle-o" /> 累计收益</div>
           </div>
         </Col>
         <Col xs={8} md={4} style={{borderRight: '1px solid #e0dede'}}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
             <div className={classnames(styles.dataValue, styles.moneyRed)}>87.39%</div>
-            <div className={styles.dataLabel}>年化收益</div>
+            <div className={styles.dataLabel}><Icon type="red-envelope" /> 年化收益</div>
           </div>
         </Col>
         <Col xs={8} md={4} style={{borderRight: '1px solid #e0dede'}}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
             <div className={classnames(styles.dataValue, styles.moneyRed)}>¥ 0.00</div>
-            <div className={styles.dataLabel}>可用资金</div>
+            <div className={styles.dataLabel}><Icon type="credit-card" /> 可用资金</div>
           </div>
         </Col>
         <Col xs={8} md={4} style={{borderRight: '1px solid #e0dede'}}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
             <div className={classnames(styles.dataValue, styles.moneyRed)}>45.92%</div>
-            <div className={styles.dataLabel}>总体仓位</div>
+            <div className={styles.dataLabel}><Icon type="folder" /> 总体仓位</div>
           </div>
         </Col>
         <Col xs={8} md={4} style={{borderRight: '1px solid #e0dede'}}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
             <div className={classnames(styles.dataValue, styles.moneyRed)}>¥170002</div>
-            <div className={styles.dataLabel}>总资产</div>
+            <div className={styles.dataLabel}><Icon type="wallet" /> 总资产</div>
           </div>
         </Col>
         <Col xs={8} md={4}>
           <div className={classnames(styles.item)} title="交易时段实时更新">
             <div className={classnames(styles.dataValue, styles.moneyRed)}>17.99%</div>
-            <div className={styles.dataLabel}>最大回撤</div>
+            <div className={styles.dataLabel}><Icon type="down-circle-o" /> 最大回撤</div>
           </div>
         </Col>
 
@@ -115,14 +115,14 @@ const Detail = ({ tradeDetail }) => {
           <div style={{ background: '#ECECEC', padding: '6px' }}>
             <Row gutter={10}>
               <Col xs={24} md={12}>
-                <Card title="历史收益" bordered={false} style={{ height: '623px'  }}>
+                <Card title={<span><Icon type="dot-chart" /> 历史收益</span>} bordered={false} style={{ height: '623px'  }}>
                   <StockReturnsChart />
                 </Card>
                 <div style={{ height: '3px' }} />
 
               </Col>
               <Col xs={24} md={12} >
-                <Card title="交易记录" bordered={false} bodyStyle={{ padding: '6px' }}>
+                <Card title={<span><Icon type="pay-circle-o" /> 交易记录</span>} bordered={false} bodyStyle={{ padding: '6px' }}>
 
                   <TradeRecord />
                 </Card>
@@ -131,7 +131,7 @@ const Detail = ({ tradeDetail }) => {
               </Col>
 
               <Col xs={24} md={12} >
-                <Card title="股票持仓" bordered={false} bodyStyle={{ padding: '6px',minHeight: '263px'  }}>
+                <Card title={<span><Icon type="folder" /> 股票持仓</span>} bordered={false} bodyStyle={{ padding: '6px',minHeight: '263px'  }}>
 
                 <Stocks/>
                 </Card>
