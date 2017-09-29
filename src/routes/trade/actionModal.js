@@ -46,7 +46,7 @@ const ActionModal = ({
         data = {
           ...getFieldsValue(),
           _id: '-1',
-          userName:'admin'
+          userName: 'admin',
         };
       } else {
         data = {
@@ -113,8 +113,8 @@ const ActionModal = ({
           })(<Input />)}
         </FormItem>
         <FormItem label="初始资金" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('initCash', {
-            initialValue: item.initCash === undefined?100000:item.initCash,
+          {getFieldDecorator('initBalance', {
+            initialValue: item.initBalance === undefined ? 100000 : item.initBalance,
             rules: [
               {
                 required: true,
@@ -122,7 +122,7 @@ const ActionModal = ({
               },
             ],
           })(<InputNumber
-            placeholder="请输入股票代码，多只股票请用半角逗号隔开"
+            placeholder="请输入初始资金"
             formatter={value => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             parser={value => value.replace(/\$\s?|(,*)/g, '')}
 
@@ -137,7 +137,7 @@ const ActionModal = ({
                 message: 'The input is not valid phone!',
               },
             ],
-          })(<Input placeholder="请输入股票代码，多只股票请用半角逗号隔开"/>)}
+          })(<Input placeholder="请输入股票代码，多只股票请用半角逗号隔开" />)}
         </FormItem>
         <FormItem label="运行参数" hasFeedback {...formItemLayout}>
           {getFieldDecorator('arguments', {

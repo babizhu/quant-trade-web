@@ -113,7 +113,9 @@ export default function request(options) {
       // console.log(response.request.responseURL);
       // const { data, statusText } = response;
       statusCode = response.status;
-      if (statusCode === 500) {
+      if (statusCode === 404) {
+        msg = `404|${data.msg}|${response.request.responseURL}`;
+      } else if (statusCode === 500) {
         msg = `${data.eid}|${data.msg}|${response.request.responseURL}`;
       } else {
         msg = `504|${data}|${response.request.responseURL}`;
