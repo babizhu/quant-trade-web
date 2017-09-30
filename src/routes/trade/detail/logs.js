@@ -6,7 +6,7 @@ import { Table } from 'antd';
  */
 const Logs = ({ logs }) => {
   return (
-      <span>{logs}</span>
+      <pre>{logs}</pre>
   );
 };
 
