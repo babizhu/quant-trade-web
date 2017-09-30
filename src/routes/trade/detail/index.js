@@ -12,7 +12,7 @@ import styles from './index.less';
 
 const TabPane = Tabs.TabPane;
 const Detail = ({ dispatch, tradeDetail }) => {
-  const { data } = tradeDetail;
+  const { data,logs } = tradeDetail;
   const startTrade = () => {
     dispatch({
       type: 'tradeDetail/start',
@@ -150,7 +150,7 @@ const Detail = ({ dispatch, tradeDetail }) => {
           {content}
         </TabPane>
         <TabPane tab="交易统计" key="service" />
-          <TabPane tab="运行日志" key="logs" ><Logs /></TabPane>
+          <TabPane tab="运行日志" key="logs" ><Logs logs={logs}/></TabPane>
       </Tabs>
     </div>
   </div>);

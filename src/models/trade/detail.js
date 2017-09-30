@@ -55,7 +55,7 @@ export default {
       const { success, res } = data;
       if (success) {
         yield put({
-          type: 'querySuccess',
+          type: 'querySuccess1',
           payload: {
             logs: res,
           },
@@ -68,11 +68,11 @@ export default {
 
   reducers: {
     querySuccess(state, { payload }) {
-      const { data,logs } = payload;
+      const { data } = payload;
       return {
         ...state,
         data,
-          logs,
+
       };
     },
     querySuccess1(state, { payload }) {

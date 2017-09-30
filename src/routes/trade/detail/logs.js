@@ -4,9 +4,9 @@ import { Table } from 'antd';
 /**
  * 持仓股票
  */
-const Logs = ({ tradeDetail }) => {
+const Logs = ({ logs }) => {
   return (
-    <h1>运行日志</h1>
+      <span>{logs}</span>
   );
 };
 
