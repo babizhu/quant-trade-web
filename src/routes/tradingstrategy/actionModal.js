@@ -73,17 +73,17 @@ const ActionModal = ({
   const formatText = () => {
     return (<span style={{ lineHeight: '25px' }}>
       <div>名 称 : {item.name}</div>
-      <div>类 名 : {item.className}</div>
+      <div>类 名 : {item.modelClass}</div>
       <div>作 者 : {item.owner}</div>
       <div>描 述 : {item.desc}</div>
     </span>);
   };
   const buildDeleteForm = () => {
     return (
-      <div className={'ant-confirm-body'} style={{ margin: '15px', color: '#fa0' }}>
-        <Icon className={'anticon'} type="question-circle" />
-        <span className={'ant-confirm-title'}>确认要删除吗?</span>
-        <div className={'ant-confirm-content'}>{formatText()}</div>
+      <div modelClass={'ant-confirm-body'} style={{ margin: '15px', color: '#fa0' }}>
+        <Icon modelClass={'anticon'} type="question-circle" />
+        <span modelClass={'ant-confirm-title'}>确认要删除吗?</span>
+        <div modelClass={'ant-confirm-content'}>{formatText()}</div>
       </div>
     );
   };
@@ -114,8 +114,8 @@ const ActionModal = ({
           })(<Input />)}
         </FormItem>
         <FormItem label="类 名" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('className', {
-            initialValue: item.className,
+          {getFieldDecorator('modelClass', {
+            initialValue: item.modelClass,
             rules: [
               {
                 required: true,

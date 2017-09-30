@@ -1,11 +1,12 @@
 import pathToRegexp from 'path-to-regexp';
-import { detail, start } from '../../services/trade';
+import { detail, start, getLogs } from '../../services/trade';
 
 export default {
 
   namespace: 'tradeDetail',
   state: {
     data: {},
+    logs: '',
   },
 
   subscriptions: {
@@ -14,6 +15,7 @@ export default {
         const match = pathToRegexp('/trade/:id').exec(pathname);
         if (match) {
           dispatch({ type: 'detail', payload: { id: match[1] } });
+          dispatch({ type: 'getlogs', payload: { _id: match[1] } });
         }
       });
     },
@@ -21,7 +23,6 @@ export default {
 
   effects: {
     * start({ payload }, { call }) {
-      console.log(44444444444)
       const data = yield call(start, payload);
       const { success } = data;
       if (success) {
@@ -47,15 +48,42 @@ export default {
         throw data;
       }
     },
+    * getlogs({
+                   payload,
+               }, { call, put }) {
+      const data = yield call(getLogs, payload);
+      const { success, res } = data;
+      if (success) {
+        yield put({
+          type: 'querySuccess',
+          payload: {
+            logs: res,
+          },
+        });
+      } else {
+        throw data;
+      }
+    },
   },
 
   reducers: {
     querySuccess(state, { payload }) {
-      const { data } = payload;
+      const { data,logs } = payload;
       return {
         ...state,
         data,
+          logs,
+      };
+    },
+    querySuccess1(state, { payload }) {
+      const { logs } = payload;
+      console.log(logs);
+      return {
+        ...state,
+        logs,
       };
     },
   },
+
+
 };

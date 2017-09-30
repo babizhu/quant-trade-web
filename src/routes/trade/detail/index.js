@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import Label from '../../../components/Utils/Label';
 import StockReturnsChart from './StockReturnsChart';
 import TradeRecord from './TradeRecord';
+import Logs from './logs'
 import Stocks from './Stocks';
 import styles from './index.less';
 
@@ -149,6 +150,7 @@ const Detail = ({ dispatch, tradeDetail }) => {
           {content}
         </TabPane>
         <TabPane tab="交易统计" key="service" />
+          <TabPane tab="运行日志" key="logs" ><Logs /></TabPane>
       </Tabs>
     </div>
   </div>);

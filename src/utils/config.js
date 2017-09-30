@@ -34,6 +34,7 @@ export default {
     tradeQuery: `${APIV1}/trade/query`,
     tradeDetail: `${APIV1}/trade/detail`,
     tradeStart: `${APIV1}/trade/start`,
+    tradeGetLogs: `${APIV1}/trade/getTradeInfo`,
     tradeSave: `${APIV1}/trade/save`,
     tradeDelete: `${APIV1}/trade/del`,
   },
