@@ -10,9 +10,16 @@ import Logs from './logs'
 import Stocks from './Stocks';
 import styles from './index.less';
 
+
 const TabPane = Tabs.TabPane;
 const Detail = ({ dispatch, tradeDetail }) => {
-  const { data,logs } = tradeDetail;
+  const { data,logs,beginGetLogs } = tradeDetail;
+  const tabChange=(key)=>{
+    if( key ==='logs' && !beginGetLogs){
+        dispatch({type: 'tradeDetail/getlogs', payload: {_id: data._id}});
+      }
+    };
+
   const startTrade = () => {
     dispatch({
       type: 'tradeDetail/start',
@@ -60,8 +67,8 @@ const Detail = ({ dispatch, tradeDetail }) => {
     if (!data.status || data.status === 0 || data.status === 2) { // 交易处于停止状态,或者暂停状态
       return (<Button type="ghost" icon="right" className={styles.actionButton} onClick={startTrade}>开始交易</Button>);
     } else { // 交易处于运行状态
-      return (<span><Button type="ghost" icon="reload" className={styles.actionButton}>暂停交易</Button>
-        <Button type="ghost" icon="right" className={styles.actionButton}>关闭交易</Button></span>
+      return (<span><Button type="ghost" icon="pause" className={styles.actionButton}>暂停交易</Button>
+        <Button type="ghost" icon="close" className={styles.actionButton}>关闭交易</Button></span>
       );
     }
   };
@@ -117,7 +124,7 @@ const Detail = ({ dispatch, tradeDetail }) => {
     {buildBalanceStatus()}
 
     <div className={styles.pannel}>
-      <Tabs tabPosition="top">
+      <Tabs tabPosition="top" onChange={tabChange}>
         <TabPane tab="交易总览" key="dashboard">
           <div style={{ background: '#ECECEC', padding: '6px' }}>
             <Row gutter={10}>

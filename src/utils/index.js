@@ -98,7 +98,7 @@ const validateLogin = () => {
  * @param   {String}    id
  * @param   {String}    pid
  * @param   {String}    children
- * @return  {Array}
+ * @return  {Promise}
  */
 // const arrayToTree = (array, id = 'id', pid = 'pid', children = 'children') => {
 //   const data = lodash.cloneDeep(array);
@@ -119,11 +119,14 @@ const validateLogin = () => {
 //   });
 //   return result;
 // };
-
+const delay = (ms) => new Promise((resolve) => {
+  setTimeout(resolve, ms);
+});
 export {
   config,
   request,
   queryURL,
+  delay,
     validateLogin,
   // queryArray,
   // arrayToTree,

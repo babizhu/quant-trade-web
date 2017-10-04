@@ -1,5 +1,6 @@
 import pathToRegexp from 'path-to-regexp';
 import { detail, start, getLogs } from '../../services/trade';
+import {delay} from '../../utils';
 
 export default {
 
@@ -7,6 +8,7 @@ export default {
   state: {
     data: {},
     logs: '',
+    beginGetLogs:false,
   },
 
   subscriptions: {
@@ -15,23 +17,25 @@ export default {
         const match = pathToRegexp('/trade/:id').exec(pathname);
         if (match) {
           dispatch({ type: 'detail', payload: { id: match[1] } });
-          dispatch({ type: 'getlogs', payload: { _id: match[1] } });
+          // dispatch({type: 'getlogs', payload: {_id: match[1]}});
+
         }
       });
     },
   },
 
   effects: {
-    * start({ payload }, { call }) {
+    * start({ payload }, { call,put }) {
       const data = yield call(start, payload);
       const { success } = data;
       if (success) {
-        console.log('提交成功');
+        yield put({
+          type: 'startSuccess',
+        });
       } else {
         throw data;
       }
     },
-
     * detail({
       payload,
     }, { call, put }) {
@@ -48,21 +52,39 @@ export default {
         throw data;
       }
     },
-    * getlogs({
-                   payload,
-               }, { call, put }) {
-      const data = yield call(getLogs, payload);
-      const { success, res } = data;
-      if (success) {
-        yield put({
-          type: 'querySuccess1',
-          payload: {
-            logs: res,
-          },
-        });
-      } else {
-        throw data;
+    * getlogs({ payload,}, { call, put,select }) {
+      while (true) {
+        const routing = yield select(state => state.routing);
+        if(!routing.location.pathname.startsWith('/trade/')){
+          yield put({
+            type:'beginGetLogs',
+            payload:{
+              beginGetLogs:false,
+            }
+          });
+          return;
+        }
+        const data = yield call(getLogs, payload);
+        const { success, res } = data;
+        if (success) {
+          yield put({
+            type:'beginGetLogs',
+            payload:{
+              beginGetLogs:true,
+            }
+          });
+          yield put({
+            type: 'getlogsSuccess',
+            payload: {
+              logs: res,
+            },
+          });
+        } else {
+          throw data;
+        }
+        yield call(delay, 30000);
       }
+
     },
   },
 
@@ -75,12 +97,30 @@ export default {
 
       };
     },
-    querySuccess1(state, { payload }) {
+    startSuccess(state, { payload }) {
+      let newData={
+          ...state.data,
+          status:1,
+      }
+      console.log(state.data)
+      return {
+        ...state,
+        data:newData,
+
+      };
+    },
+    getlogsSuccess(state, { payload }) {
       const { logs } = payload;
-      console.log(logs);
       return {
         ...state,
         logs,
+      };
+    },
+    beginGetLogs(state, { payload }) {
+      const { beginGetLogs } = payload;
+      return {
+        ...state,
+        beginGetLogs,
       };
     },
   },

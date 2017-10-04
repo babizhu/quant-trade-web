@@ -47,6 +47,7 @@ const ActionModal = ({
           ...getFieldsValue(),
           _id: '-1',
           userName: 'admin',
+
         };
       } else {
         data = {
