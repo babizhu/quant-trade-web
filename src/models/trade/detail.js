@@ -9,6 +9,7 @@ export default {
     data: {},
     logs: '',
     beginGetLogs:false,
+    currentId:-1,
   },
 
   subscriptions: {
@@ -16,7 +17,7 @@ export default {
       history.listen(({ pathname }) => {
         const match = pathToRegexp('/trade/:id').exec(pathname);
         if (match) {
-          dispatch({ type: 'detail', payload: { id: match[1] } });
+          dispatch({ type: 'queryDetail', payload: { id: match[1] } });
           // dispatch({type: 'getlogs', payload: {_id: match[1]}});
 
         }
@@ -36,16 +37,17 @@ export default {
         throw data;
       }
     },
-    * detail({
+    * queryDetail({
       payload,
     }, { call, put }) {
       const data = yield call(detail, payload);
-      const { success, list } = data;
+      const { success,tradeDetail } = data;
       if (success) {
         yield put({
-          type: 'querySuccess',
+          type: 'queryDetailSuccess',
           payload: {
-            data: list[0],
+            data:tradeDetail,
+            id: payload.id,
           },
         });
       } else {
@@ -89,19 +91,27 @@ export default {
   },
 
   reducers: {
-    querySuccess(state, { payload }) {
-      const { data } = payload;
+    queryDetailSuccess(state, { payload }) {
+      const { data,id } = payload;
+      data.id = id;
+      let newData = {...state.data};
+      // newData.push(data);
+
+      // newData[id]:data;
+      // state.dataLabel[id] = data;
       return {
         ...state,
-        data,
-
+        // data:newData,
+        currentId:id,
+        data:{...newData,[id]:data},
+        // [id]:data,
       };
     },
     startSuccess(state, { payload }) {
       let newData={
           ...state.data,
           status:1,
-      }
+      };
       console.log(state.data)
       return {
         ...state,

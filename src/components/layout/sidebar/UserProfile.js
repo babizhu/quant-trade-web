@@ -2,8 +2,10 @@
  * Created by liu_k on 2016/3/31.
  * 侧边栏的用户信息部分
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Icon } from 'antd';
+import PropTypes from 'prop-types';
+
 
 // import {MINI,NORMAL} from '../../actions/SideBar'
 // changeShowMode

@@ -13,10 +13,10 @@ import styles from './index.less';
 
 const TabPane = Tabs.TabPane;
 const Detail = ({ dispatch, tradeDetail }) => {
-  const { data,logs,beginGetLogs } = tradeDetail;
+  const { data,logs,beginGetLogs,currentId } = tradeDetail;
   const tabChange=(key)=>{
     if( key ==='logs' && !beginGetLogs){
-        dispatch({type: 'tradeDetail/getlogs', payload: {_id: data._id}});
+        dispatch({type: 'tradeDetail/getlogs', payload: {_id: currentId}});
       }
     };
 
@@ -24,7 +24,7 @@ const Detail = ({ dispatch, tradeDetail }) => {
     dispatch({
       type: 'tradeDetail/start',
       payload: {
-        _id: data._id,
+        _id: currentId,
       },
     });
     //   alert(data._id);
