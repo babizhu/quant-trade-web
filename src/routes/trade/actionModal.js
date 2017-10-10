@@ -54,6 +54,7 @@ const ActionModal = ({
           _id: item._id,
         };
       }
+      data.initBalance=''+data.initBalance;
       // data.address = data.address.join(' ');
       onOk(data);
     });
