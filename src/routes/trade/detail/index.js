@@ -6,19 +6,20 @@ import classnames from 'classnames';
 import Label from '../../../components/Utils/Label';
 import StockReturnsChart from './StockReturnsChart';
 import TradeRecord from './TradeRecord';
-import Logs from './logs'
+import Logs from './logs';
 import Stocks from './Stocks';
 import styles from './index.less';
 
 
 const TabPane = Tabs.TabPane;
 const Detail = ({ dispatch, tradeDetail }) => {
-  const { data,logs,beginGetLogs,currentId } = tradeDetail;
-  const tabChange=(key)=>{
-    if( key ==='logs' && !beginGetLogs){
-        dispatch({type: 'tradeDetail/getlogs', payload: {_id: currentId}});
-      }
-    };
+  const { data, logs, beginGetLogs, currentId } = tradeDetail;
+  const currentData = data[currentId];
+  const tabChange = (key) => {
+    if (key === 'logs' && !beginGetLogs) {
+      dispatch({ type: 'tradeDetail/getlogs', payload: { _id: currentId } });
+    }
+  };
 
   const startTrade = () => {
     dispatch({
@@ -30,17 +31,17 @@ const Detail = ({ dispatch, tradeDetail }) => {
     //   alert(data._id);
   };
   const content = [];
-  for (const key in data) {
-    if ({}.hasOwnProperty.call(data, key)) {
+  for (const key in currentData) {
+    if ({}.hasOwnProperty.call(currentData, key)) {
       content.push(<div key={key} className={styles.item}>
         <div>{key}</div>
-        <div>{String(data[key])}</div>
+        <div>{String(currentData[key])}</div>
       </div>);
     }
   }
   const buildHead = () => {
     let label = <Label text={'运行中'} isSuccess />;
-    if (!data.status || data.status === 0 || data.status === 2) { // 交易处于停止状态,或者暂停状态
+    if (!currentData.status || currentData.status === 0 || currentData.status === 2) { // 交易处于停止状态,或者暂停状态
       label = <Label text={'未运行'} isSuccess={false} />;
     }
     return (
@@ -48,7 +49,7 @@ const Detail = ({ dispatch, tradeDetail }) => {
         <table style={{ width: '100%' }}>
           <tbody>
             <tr>
-              <td><span className={styles.name}>{data.name}</span>
+              <td><span className={styles.name}>{currentData.name}</span>
                 <span className={styles.label}>{label}</span></td>
               <td style={{ float: 'right' }}>
                 {buildActionButton()}
@@ -58,13 +59,13 @@ const Detail = ({ dispatch, tradeDetail }) => {
         </table>
 
         <div style={{ lineHeight: '25px' }}>
-          <div className="desc">{data.desc}</div>
+          <div className="desc">{currentData.desc}</div>
         </div>
       </div>
     );
   };
   const buildActionButton = () => {
-    if (!data.status || data.status === 0 || data.status === 2) { // 交易处于停止状态,或者暂停状态
+    if (!currentData.status || currentData.status === 0 || currentData.status === 2) { // 交易处于停止状态,或者暂停状态
       return (<Button type="ghost" icon="right" className={styles.actionButton} onClick={startTrade}>开始交易</Button>);
     } else { // 交易处于运行状态
       return (<span><Button type="ghost" icon="pause" className={styles.actionButton}>暂停交易</Button>
@@ -115,7 +116,7 @@ const Detail = ({ dispatch, tradeDetail }) => {
       </Row>
     );
   };
-  return (<div className={styles.content}>
+  return (currentData === undefined ? <div /> : <div className={styles.content}>
     <div className={styles.head}>
 
       {buildHead()}
@@ -138,7 +139,7 @@ const Detail = ({ dispatch, tradeDetail }) => {
               <Col xs={24} md={12} >
                 <Card title={<span><Icon type="pay-circle-o" /> 交易记录</span>} bordered={false} bodyStyle={{ padding: '6px' }}>
 
-                  <TradeRecord />
+                  <TradeRecord tradeRecords={currentData.tradeRecords} />
                 </Card>
                 <div style={{ height: '3px' }} />
 
@@ -156,8 +157,8 @@ const Detail = ({ dispatch, tradeDetail }) => {
         <TabPane tab="交易设置" key="nodeList">
           {content}
         </TabPane>
-        <TabPane tab="交易统计" key="service" />
-          <TabPane tab="运行日志" key="logs" ><Logs logs={logs}/></TabPane>
+        <TabPane tab="交易详情" key="service" />
+        <TabPane tab="运行日志" key="logs" ><Logs logs={logs} /></TabPane>
       </Tabs>
     </div>
   </div>);

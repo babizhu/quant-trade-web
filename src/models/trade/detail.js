@@ -1,6 +1,6 @@
 import pathToRegexp from 'path-to-regexp';
 import { detail, start, getLogs } from '../../services/trade';
-import {delay} from '../../utils';
+import { delay } from '../../utils';
 
 export default {
 
@@ -8,8 +8,8 @@ export default {
   state: {
     data: {},
     logs: '',
-    beginGetLogs:false,
-    currentId:-1,
+    beginGetLogs: false,
+    currentId: -1,
   },
 
   subscriptions: {
@@ -19,14 +19,13 @@ export default {
         if (match) {
           dispatch({ type: 'queryDetail', payload: { id: match[1] } });
           // dispatch({type: 'getlogs', payload: {_id: match[1]}});
-
         }
       });
     },
   },
 
   effects: {
-    * start({ payload }, { call,put }) {
+    * start({ payload }, { call, put }) {
       const data = yield call(start, payload);
       const { success } = data;
       if (success) {
@@ -41,12 +40,12 @@ export default {
       payload,
     }, { call, put }) {
       const data = yield call(detail, payload);
-      const { success,tradeDetail } = data;
+      const { success, tradeDetail } = data;
       if (success) {
         yield put({
           type: 'queryDetailSuccess',
           payload: {
-            data:tradeDetail,
+            data: tradeDetail,
             id: payload.id,
           },
         });
@@ -54,15 +53,15 @@ export default {
         throw data;
       }
     },
-    * getlogs({ payload,}, { call, put,select }) {
+    * getlogs({ payload }, { call, put, select }) {
       while (true) {
         const routing = yield select(state => state.routing);
-        if(!routing.location.pathname.startsWith('/trade/')){
+        if (!routing.location.pathname.startsWith('/trade/')) {
           yield put({
-            type:'beginGetLogs',
-            payload:{
-              beginGetLogs:false,
-            }
+            type: 'beginGetLogs',
+            payload: {
+              beginGetLogs: false,
+            },
           });
           return;
         }
@@ -70,10 +69,10 @@ export default {
         const { success, res } = data;
         if (success) {
           yield put({
-            type:'beginGetLogs',
-            payload:{
-              beginGetLogs:true,
-            }
+            type: 'beginGetLogs',
+            payload: {
+              beginGetLogs: true,
+            },
           });
           yield put({
             type: 'getlogsSuccess',
@@ -86,15 +85,14 @@ export default {
         }
         yield call(delay, 30000);
       }
-
     },
   },
 
   reducers: {
     queryDetailSuccess(state, { payload }) {
-      const { data,id } = payload;
+      const { data, id } = payload;
       data.id = id;
-      let newData = {...state.data};
+      const newData = { ...state.data };
       // newData.push(data);
 
       // newData[id]:data;
@@ -102,20 +100,20 @@ export default {
       return {
         ...state,
         // data:newData,
-        currentId:id,
-        data:{...newData,[id]:data},
+        currentId: id,
+        data: { ...newData, [id]: data },
         // [id]:data,
       };
     },
     startSuccess(state, { payload }) {
-      let newData={
-          ...state.data,
-          status:1,
+      const newData = {
+        ...state.data,
+        status: 1,
       };
-      console.log(state.data)
+      console.log(state.data);
       return {
         ...state,
-        data:newData,
+        data: newData,
 
       };
     },

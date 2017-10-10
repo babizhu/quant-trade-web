@@ -79,8 +79,8 @@ const TradingStrategy = ({ dispatch, tradingstrategy, loading }) => {
     key: 'owner',
   }, {
     title: '类名',
-    dataIndex: 'className',
-    key: 'className',
+    dataIndex: 'modelClass',
+    key: 'modelClass',
   }, {
     title: '描述',
     dataIndex: 'desc',

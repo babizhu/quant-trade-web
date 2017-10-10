@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { withRouter, routerRedux } from 'dva/router';
 import { connect } from 'dva';
 
-class Author extends Component {
+class Auth extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
     console.log(dispatch);
@@ -16,10 +16,10 @@ class Author extends Component {
 }
 
 
-Author.propTypes = {};
-Author.defaultProps = {};
+Auth.propTypes = {};
+Auth.defaultProps = {};
 
 // export default Author;
 // export default withRouter(connect(() => ())(Author));
-export default withRouter(connect(({ loading }) => ({ loading }))(Author));
+export default withRouter(connect(({ loading }) => ({ loading }))(Auth));
 
