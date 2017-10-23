@@ -83,8 +83,8 @@ const Trade = ({ dispatch, trade, loading }) => {
     key: 'strategy',
   }, {
     title: '初始资金',
-    dataIndex: 'initCash',
-    key: 'cash',
+    dataIndex: 'initBalance',
+    key: 'initBalance',
   }, {
     title: '股票列表',
     dataIndex: 'stocks',

@@ -17,9 +17,9 @@ const TradeRecord = ({ tradeRecords }) => {
     key: 'name',
   }, {
     title: '数量(股)',
-    dataIndex: 'count',
+    dataIndex: 'share',
     width: 80,
-    key: 'count',
+    key: 'share',
   }, {
     width: 80,
 
